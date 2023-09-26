@@ -2,9 +2,9 @@ VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} ReglagesRegate 
    Caption         =   "Réglages de la Régate"
    ClientHeight    =   5660
-   ClientLeft      =   108
-   ClientTop       =   456
-   ClientWidth     =   9384.001
+   ClientLeft      =   110
+   ClientTop       =   460
+   ClientWidth     =   9380.001
    OleObjectBlob   =   "ReglagesRegate.frx":0000
    StartUpPosition =   1  'CenterOwner
 End

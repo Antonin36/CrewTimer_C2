@@ -2,9 +2,9 @@ VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} ImpResultats_CT 
    Caption         =   "Impression des Résultats"
    ClientHeight    =   5670
-   ClientLeft      =   108
-   ClientTop       =   456
-   ClientWidth     =   7956
+   ClientLeft      =   110
+   ClientTop       =   460
+   ClientWidth     =   7950
    OleObjectBlob   =   "ImpResultats_CT.frx":0000
    StartUpPosition =   1  'CenterOwner
 End
@@ -20,13 +20,17 @@ End Sub
 Private Sub Imprimer_Click()
             Dim CourseSel As String
             Dim i As Long
-            Sheets("Stockage Impressions").Range("1:1").Delete
+            Sheets("Stockage Impressions CT").Range("1:1").Delete
             For i = 0 To TableauCourses.ListCount - 1
             If TableauCourses.Selected(i) Then
-                Sheets("Stockage Impressions").Cells(3, 1 + i).Value = TableauCourses.List(i)
+                Sheets("Stockage Impressions CT").Cells(3, 1 + i).Value = TableauCourses.List(i)
                 CourseSel = CourseSel & TableauCourses.List(i) & " / "
             End If
             Next i
+    Sheets("Impressions Résultats CT").Select
+    Range("A13:H420").Select
+    Selection.ClearContents
+    Range("A13").Select
             
     Dim course1 As String, course2 As String, course3 As String, course4 As String, course5 As String
     Dim course6 As String, course7 As String, course8 As String, course9 As String, course10 As String
@@ -68,7 +72,7 @@ Private Sub Imprimer_Click()
     Dim course186 As String, course187 As String, course188 As String, course189 As String, course190 As String
     Dim course191 As String, course192 As String, course193 As String, course194 As String, course195 As String
     Dim course196 As String, course197 As String, course198 As String, course199 As String, course200 As String
-    With Sheets("Stockage Impressions")
+    With Sheets("Stockage Impressions CT")
         course1 = .Range("A3").Value
         course2 = .Range("B3").Value
         course3 = .Range("C3").Value
@@ -271,7 +275,7 @@ Private Sub Imprimer_Click()
         course200 = .Range("GR3").Value
     End With
 
-    With Sheets("Import Resultats")
+    With Sheets("Import Resultats CT")
         .AutoFilterMode = False
         .Range("$A$1:$EA$999").AutoFilter Field:=2, Criteria1:=Array(course1, course2, course3, course4, course5, _
             course6, course7, course8, course9, course10, course11, course12, course13, course14, course15, course16, _
@@ -299,7 +303,7 @@ Private Sub Imprimer_Click()
     End With
     'Sheets("Impressions CT").Select
     
-    Sheets("Import Resultats").Select
+    Sheets("Import Resultats CT").Select
     Columns("E:E").Select
     Selection.Delete Shift:=xlToLeft
     Columns("G:G").Select
@@ -314,7 +318,7 @@ Private Sub Imprimer_Click()
     Application.CutCopyMode = False
     Selection.ClearContents
     Range("A13").Select
-    Sheets("Import Resultats").Select
+    Sheets("Import Resultats CT").Select
     Range("A2:H999").Select
     Selection.Copy
     Sheets("Impressions Résultats CT").Select
@@ -339,7 +343,7 @@ Dim UniqueList()    As String
     Dim j As Long
     Dim Temp As Variant
      
-    Set Rng1 = Sheets("Import Resultats").Range("B2:B999")
+    Set Rng1 = Sheets("Import Resultats CT").Range("B2:B999")
     y = 1
      
     ReDim UniqueList(1 To Rng1.Rows.Count)

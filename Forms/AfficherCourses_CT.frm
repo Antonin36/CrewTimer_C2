@@ -2,9 +2,9 @@ VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} AfficherCourses_CT 
    Caption         =   "Gestion du Programme des Courses"
    ClientHeight    =   7848
-   ClientLeft      =   108
-   ClientTop       =   456
-   ClientWidth     =   13632
+   ClientLeft      =   110
+   ClientTop       =   460
+   ClientWidth     =   13630
    OleObjectBlob   =   "AfficherCourses_CT.frx":0000
    StartUpPosition =   1  'CenterOwner
 End
@@ -22,7 +22,7 @@ Private Sub SuppressionCourse_Click()
 End Sub
 Private Sub UserForm_Initialize()
 ' Feuille à Sélectionner
-    Sheets("Programme des Courses").Select
+    Sheets("Programme des Courses CT").Select
     ' Champs à Afficher (Ne pas oublier de déclarer le nbre de colonnes dans Properties.
     TableauPrgCourses.RowSource = "A1:F200"
     TableauPrgCourses.ColumnWidths = "60;40;50;0;140;60"

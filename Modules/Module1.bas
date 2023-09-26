@@ -1,11 +1,5 @@
 Attribute VB_Name = "Module1"
 Sub FiltreCourse()
-Attribute FiltreCourse.VB_ProcData.VB_Invoke_Func = " \n14"
-'
-' FiltreCourse Macro
-'
-
-'
     Rows("1:1").Select
     Selection.AutoFilter
     ActiveSheet.Range("$A$1:$H$28").AutoFilter Field:=1, Criteria1:="=C01-H1", _
@@ -13,12 +7,6 @@ Attribute FiltreCourse.VB_ProcData.VB_Invoke_Func = " \n14"
     ActiveWorkbook.Save
 End Sub
 Sub Test_Filtre()
-Attribute Test_Filtre.VB_ProcData.VB_Invoke_Func = " \n14"
-'
-' Test_Filtre Macro
-'
-
-'
 Dim course1 As String, course2 As String, course3 As String, course4 As String, course5 As String
 Dim course6 As String, course7 As String, course8 As String, course9 As String, course10 As String
 Dim course11 As String, course12 As String, course13 As String, course14 As String, course15 As String
@@ -51,12 +39,6 @@ With Sheets("Stockage Impressions")
 End Sub
 
 Sub TestCopieTirages()
-Attribute TestCopieTirages.VB_ProcData.VB_Invoke_Func = " \n14"
-'
-' TestCopieTirages Macro
-'
-
-'
     Sheets("Import Tirages").Select
     Cells.Select
     Selection.ClearContents

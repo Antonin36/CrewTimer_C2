@@ -2,9 +2,9 @@ VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} GestionTirages_CT 
    Caption         =   "Gestion des Tirages"
    ClientHeight    =   7776
-   ClientLeft      =   108
-   ClientTop       =   456
-   ClientWidth     =   18024
+   ClientLeft      =   110
+   ClientTop       =   460
+   ClientWidth     =   18020
    OleObjectBlob   =   "GestionTirages_CT.frx":0000
    StartUpPosition =   1  'CenterOwner
 End
@@ -26,73 +26,73 @@ Private Sub CreationTirages_Click()
     numlignegoal = 2
     
     'Trouver la dernière Ligne Utilisée en Colonne A de la Feuille Origine
-    LastRow = Sheets("Programme des Courses").Cells(Sheets("Programme des Courses").Rows.Count, "A").End(xlUp).Row
+    LastRow = Sheets("Programme des Courses CT").Cells(Sheets("Programme des Courses CT").Rows.Count, "A").End(xlUp).Row
 
     'Trouver la dernière ligne non utilisée en colonne A de la Feuille Destinataire
-    j = Sheets("Préparation Tirages").Cells(Sheets("Préparation Tirages").Rows.Count, "A").End(xlUp).Row + 1
+    j = Sheets("Préparation Tirages CT").Cells(Sheets("Préparation Tirages CT").Rows.Count, "A").End(xlUp).Row + 1
     
     'Coller Chaque Ligne contenant Oui en H
     For i = 1 To LastRow
-            If Sheets("Programme des Courses").Cells(i, 8).Value = "Oui" Then
+            If Sheets("Programme des Courses CT").Cells(i, 8).Value = "Oui" Then
                 partants = 0
                 Equipage = ""
                 trigramme = ""
                 Do While partants < Sheets("Réglages Régate").Range("E14").Value
-                    Sheets("Programme des Courses").Rows(i).Copy Destination:=Worksheets("Préparation Tirages").Range("A" & j)
-                    Sheets("Préparation Tirages").Cells(j, 1).Value = Sheets("Préparation Tirages").Cells(j, 7)
+                    Sheets("Programme des Courses CT").Rows(i).Copy Destination:=Worksheets("Préparation Tirages CT").Range("A" & j)
+                    Sheets("Préparation Tirages CT").Cells(j, 1).Value = Sheets("Préparation Tirages CT").Cells(j, 7)
                     Dim A As String
-                    A = Sheets("Préparation Tirages").Cells(j, 3).Value & "-" & Sheets("Préparation Tirages").Cells(j, 4).Value
+                    A = Sheets("Préparation Tirages CT").Cells(j, 3).Value & "-" & Sheets("Préparation Tirages CT").Cells(j, 4).Value
                     Dim B As String
-                    B = Sheets("Préparation Tirages").Cells(j, 6).Value & "-" & Sheets("Préparation Tirages").Cells(j, 4).Value
-                    Sheets("Préparation Tirages").Cells(j, 3).Value = A
-                    Sheets("Préparation Tirages").Cells(j, 4).Value = B
-                    Sheets("Préparation Tirages").Cells(j, 5).Value = A
-                    Sheets("Préparation Tirages").Cells(j, 6).Value = Sheets("Préparation Tirages").Cells(j, 9).Value
+                    B = Sheets("Préparation Tirages CT").Cells(j, 6).Value & "-" & Sheets("Préparation Tirages CT").Cells(j, 4).Value
+                    Sheets("Préparation Tirages CT").Cells(j, 3).Value = A
+                    Sheets("Préparation Tirages CT").Cells(j, 4).Value = B
+                    Sheets("Préparation Tirages CT").Cells(j, 5).Value = A
+                    Sheets("Préparation Tirages CT").Cells(j, 6).Value = Sheets("Préparation Tirages CT").Cells(j, 9).Value
                     Dim u As Integer
                     For u = 10 To 50
-                    Set rg = Sheets("Import GOAL").Cells(numlignegoal, 3).Find(What:=Sheets("Préparation Tirages").Cells(j, u).Value, LookIn:=xlValues, LookAt:=xlWhole)
+                    Set rg = Sheets("Import GOAL CT").Cells(numlignegoal, 3).Find(What:=Sheets("Préparation Tirages CT").Cells(j, u).Value, LookIn:=xlValues, LookAt:=xlWhole)
                     If Not rg Is Nothing Then Exit For
                     If u = 50 Then partants = partants + 1
                     Next u
 
                     If Not rg Is Nothing Then
-                        Equipage = Sheets("Import GOAL").Cells(numlignegoal, 5).Value & " (" & Sheets("Import GOAL").Cells(numlignegoal, 6).Value & " " & Sheets("Import GOAL").Cells(numlignegoal, 7).Value
-                        If Sheets("Import GOAL").Cells(numlignegoal, 18).Value <> "" Then
-                            Equipage = Equipage & " / " & Sheets("Import GOAL").Cells(numlignegoal, 18).Value & " " & Sheets("Import GOAL").Cells(numlignegoal, 19).Value
-                            If Sheets("Import GOAL").Cells(numlignegoal, 30).Value <> "" Then
-                                Equipage = Equipage & " / " & Sheets("Import GOAL").Cells(numlignegoal, 30).Value & " " & Sheets("Import GOAL").Cells(numlignegoal, 31).Value
-                                If Sheets("Import GOAL").Cells(numlignegoal, 42).Value <> "" Then
-                                    Equipage = Equipage & " / " & Sheets("Import GOAL").Cells(numlignegoal, 42).Value & " " & Sheets("Import GOAL").Cells(numlignegoal, 43).Value
-                                    If Sheets("Import GOAL").Cells(numlignegoal, 54).Value <> "" Then
-                                        Equipage = Equipage & " / " & Sheets("Import GOAL").Cells(numlignegoal, 54).Value & " " & Sheets("Import GOAL").Cells(numlignegoal, 55).Value
-                                        If Sheets("Import GOAL").Cells(numlignegoal, 66).Value <> "" Then
-                                            Equipage = Equipage & " / " & Sheets("Import GOAL").Cells(numlignegoal, 66).Value & " " & Sheets("Import GOAL").Cells(numlignegoal, 67).Value
-                                            If Sheets("Import GOAL").Cells(numlignegoal, 78).Value <> "" Then
-                                                Equipage = Equipage & " / " & Sheets("Import GOAL").Cells(numlignegoal, 78).Value & " " & Sheets("Import GOAL").Cells(numlignegoal, 79).Value
-                                                If Sheets("Import GOAL").Cells(numlignegoal, 90).Value <> "" Then
-                                                    Equipage = Equipage & " / " & Sheets("Import GOAL").Cells(numlignegoal, 90).Value & " " & Sheets("Import GOAL").Cells(numlignegoal, 91).Value
+                        Equipage = Sheets("Import GOAL CT").Cells(numlignegoal, 5).Value & " (" & Sheets("Import GOAL CT").Cells(numlignegoal, 6).Value & " " & Sheets("Import GOAL CT").Cells(numlignegoal, 7).Value
+                        If Sheets("Import GOAL CT").Cells(numlignegoal, 18).Value <> "" Then
+                            Equipage = Equipage & " / " & Sheets("Import GOAL CT").Cells(numlignegoal, 18).Value & " " & Sheets("Import GOAL CT").Cells(numlignegoal, 19).Value
+                            If Sheets("Import GOAL CT").Cells(numlignegoal, 30).Value <> "" Then
+                                Equipage = Equipage & " / " & Sheets("Import GOAL CT").Cells(numlignegoal, 30).Value & " " & Sheets("Import GOAL CT").Cells(numlignegoal, 31).Value
+                                If Sheets("Import GOAL CT").Cells(numlignegoal, 42).Value <> "" Then
+                                    Equipage = Equipage & " / " & Sheets("Import GOAL CT").Cells(numlignegoal, 42).Value & " " & Sheets("Import GOAL CT").Cells(numlignegoal, 43).Value
+                                    If Sheets("Import GOAL CT").Cells(numlignegoal, 54).Value <> "" Then
+                                        Equipage = Equipage & " / " & Sheets("Import GOAL CT").Cells(numlignegoal, 54).Value & " " & Sheets("Import GOAL CT").Cells(numlignegoal, 55).Value
+                                        If Sheets("Import GOAL CT").Cells(numlignegoal, 66).Value <> "" Then
+                                            Equipage = Equipage & " / " & Sheets("Import GOAL CT").Cells(numlignegoal, 66).Value & " " & Sheets("Import GOAL CT").Cells(numlignegoal, 67).Value
+                                            If Sheets("Import GOAL CT").Cells(numlignegoal, 78).Value <> "" Then
+                                                Equipage = Equipage & " / " & Sheets("Import GOAL CT").Cells(numlignegoal, 78).Value & " " & Sheets("Import GOAL CT").Cells(numlignegoal, 79).Value
+                                                If Sheets("Import GOAL CT").Cells(numlignegoal, 90).Value <> "" Then
+                                                    Equipage = Equipage & " / " & Sheets("Import GOAL CT").Cells(numlignegoal, 90).Value & " " & Sheets("Import GOAL CT").Cells(numlignegoal, 91).Value
                                                 End If
                                             End If
                                         End If
                                     End If
                                 End If
                             End If
-                        ElseIf Sheets("Import GOAL").Cells(numlignegoal, 104).Value <> "" Then
-                            Equipage = Equipage & " / Bar : " & Sheets("Import GOAL").Cells(numlignegoal, 104).Value & " " & Sheets("Import GOAL").Cells(numlignegoal, 105).Value
+                        ElseIf Sheets("Import GOAL CT").Cells(numlignegoal, 104).Value <> "" Then
+                            Equipage = Equipage & " / Bar : " & Sheets("Import GOAL CT").Cells(numlignegoal, 104).Value & " " & Sheets("Import GOAL CT").Cells(numlignegoal, 105).Value
                         Else
                             Equipage = Equipage & ")"
                         End If
-                        Sheets("Préparation Tirages").Cells(j, 7).Value = Equipage
-                        Sheets("Préparation Tirages").Cells(j, 8).Value = Sheets("Import GOAL").Cells(numlignegoal, 5).Value
-                        Sheets("Préparation Tirages").Cells(j, 9).Value = Sheets("Import GOAL").Cells(numlignegoal, 3).Value
-                        Sheets("Préparation Tirages").Cells(j, 11).Value = Sheets("Import GOAL").Cells(numlignegoal, 5).Value
+                        Sheets("Préparation Tirages CT").Cells(j, 7).Value = Equipage
+                        Sheets("Préparation Tirages CT").Cells(j, 8).Value = Sheets("Import GOAL CT").Cells(numlignegoal, 5).Value
+                        Sheets("Préparation Tirages CT").Cells(j, 9).Value = Sheets("Import GOAL CT").Cells(numlignegoal, 3).Value
+                        Sheets("Préparation Tirages CT").Cells(j, 11).Value = Sheets("Import GOAL CT").Cells(numlignegoal, 5).Value
                         If Sheets("Réglages Régate").Range("E16").Value = "Rivière" Then
-                            Sheets("Préparation Tirages").Cells(j, 10).Value = partants + 1
+                            Sheets("Préparation Tirages CT").Cells(j, 10).Value = partants + 1
                             numlignegoal = numlignegoal + 1
                             j = j + 1
                             partants = partants + 1
                         Else
-                            Sheets("Préparation Tirages").Cells(j, 10) = Sheets("Import GOAL").Cells(numlignegoal, 4).Value
+                            Sheets("Préparation Tirages CT").Cells(j, 10) = Sheets("Import GOAL CT").Cells(numlignegoal, 4).Value
                             numlignegoal = numlignegoal + 1
                             j = j + 1
                             partants = partants + 1
@@ -103,7 +103,7 @@ Private Sub CreationTirages_Click()
             End If
     Next i
     
-    Sheets("Préparation Tirages").Select
+    Sheets("Préparation Tirages CT").Select
     Columns("H:H").Select
     Selection.Replace What:="SAINTE CROIX AVN 04", Replacement:="AVN4", LookAt:= _
         xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
@@ -205,32 +205,32 @@ Private Sub CreationTirages_Click()
     Dim LastRow2 As Long
     Dim partants2 As Long
    'Find last used row in a Column A of Sheet1
-      LastRow2 = Sheets("Programme des Courses").Cells(Sheets("Programme des Courses").Rows.Count, "A").End(xlUp).Row
+      LastRow2 = Sheets("Programme des Courses CT").Cells(Sheets("Programme des Courses CT").Rows.Count, "A").End(xlUp).Row
 
    'Find first row where values should be posted in Sheet2
-      k = Sheets("Préparation Tirages").Cells(Sheets("Préparation Tirages").Rows.Count, "A").End(xlUp).Row + 1
+      k = Sheets("Préparation Tirages CT").Cells(Sheets("Préparation Tirages CT").Rows.Count, "A").End(xlUp).Row + 1
  
    
    'Paste each row that contains "Mavs" in column A of Sheet1 into Sheet2
    For l = 1 To LastRow2
-           If Sheets("Programme des Courses").Cells(l, 8).Value = "Non" Then
+           If Sheets("Programme des Courses CT").Cells(l, 8).Value = "Non" Then
            partants2 = 1
            Do While partants2 < Sheets("Réglages Régate").Range("E14").Value
-               Sheets("Programme des Courses").Rows(l).Copy Destination:=Worksheets("Préparation Tirages").Range("A" & k)
-                Sheets("Préparation Tirages").Cells(k, 1).Value = Sheets("Préparation Tirages").Cells(k, 7)
+               Sheets("Programme des Courses CT").Rows(l).Copy Destination:=Worksheets("Préparation Tirages CT").Range("A" & k)
+                Sheets("Préparation Tirages CT").Cells(k, 1).Value = Sheets("Préparation Tirages CT").Cells(k, 7)
                 Dim C As String
-                C = Sheets("Préparation Tirages").Cells(k, 3).Value & "-" & Sheets("Préparation Tirages").Cells(k, 4).Value
+                C = Sheets("Préparation Tirages CT").Cells(k, 3).Value & "-" & Sheets("Préparation Tirages CT").Cells(k, 4).Value
                 Dim D As String
-                D = Sheets("Préparation Tirages").Cells(k, 6).Value & "-" & Sheets("Préparation Tirages").Cells(k, 4).Value
-                Sheets("Préparation Tirages").Cells(k, 3).Value = C
-                Sheets("Préparation Tirages").Cells(k, 4).Value = D
-                Sheets("Préparation Tirages").Cells(k, 5).Value = C
-                Sheets("Préparation Tirages").Cells(k, 6).Value = Sheets("Préparation Tirages").Cells(k, 9).Value
-                Sheets("Préparation Tirages").Cells(k, 7).Value = "TBD"
-                Sheets("Préparation Tirages").Cells(k, 8).Value = "TBD"
-                Sheets("Préparation Tirages").Cells(k, 9).Value = "TBD"
-                Sheets("Préparation Tirages").Cells(k, 10).Value = partants2
-                Sheets("Préparation Tirages").Cells(k, 11).Value = ""
+                D = Sheets("Préparation Tirages CT").Cells(k, 6).Value & "-" & Sheets("Préparation Tirages CT").Cells(k, 4).Value
+                Sheets("Préparation Tirages CT").Cells(k, 3).Value = C
+                Sheets("Préparation Tirages CT").Cells(k, 4).Value = D
+                Sheets("Préparation Tirages CT").Cells(k, 5).Value = C
+                Sheets("Préparation Tirages CT").Cells(k, 6).Value = Sheets("Préparation Tirages CT").Cells(k, 9).Value
+                Sheets("Préparation Tirages CT").Cells(k, 7).Value = "TBD"
+                Sheets("Préparation Tirages CT").Cells(k, 8).Value = "TBD"
+                Sheets("Préparation Tirages CT").Cells(k, 9).Value = "TBD"
+                Sheets("Préparation Tirages CT").Cells(k, 10).Value = partants2
+                Sheets("Préparation Tirages CT").Cells(k, 11).Value = ""
                 k = k + 1
                 partants2 = partants2 + 1
             Loop
@@ -238,11 +238,11 @@ Private Sub CreationTirages_Click()
    Next l
    Dim LastRow3 As Long
    'Find last used row in a Column A of Sheet1
-    LastRow3 = Sheets("Préparation Tirages").Cells(Sheets("Préparation Tirages").Rows.Count, "A").End(xlUp).Row
+    LastRow3 = Sheets("Préparation Tirages CT").Cells(Sheets("Préparation Tirages CT").Rows.Count, "A").End(xlUp).Row
       
    For w = 1 To LastRow3
-           If Sheets("Préparation Tirages").Cells(l, 8).Value = "Non" Or Sheets("Préparation Tirages").Cells(w, 8).Value = "Oui" Then
-           Sheets("Préparation Tirages").Rows(w).EntireRow.Delete
+           If Sheets("Préparation Tirages CT").Cells(l, 8).Value = "Non" Or Sheets("Préparation Tirages CT").Cells(w, 8).Value = "Oui" Then
+           Sheets("Préparation Tirages CT").Rows(w).EntireRow.Delete
            End If
    Next w
        MsgBox "Les tirages ont été créés avec succès !", vbOKOnly + vbInformation, "Tirages Créés"
@@ -254,7 +254,7 @@ random_method = ""
 If MsgBox("Voulez-vous utiliser un tirage aléatoire ?", vbYesNo + vbQuestion, "Tirages Aléatoires ?") = vbYes Then
 'Mettre créer une colonne random, en ER
     random_method = "Aléatoire"
-    Sheets("Import GOAL").Select
+    Sheets("Import GOAL CT").Select
     Range("ER1").Value = "Random"
     Range("ER2").Select
     Dim rand As Long
@@ -264,14 +264,14 @@ If MsgBox("Voulez-vous utiliser un tirage aléatoire ?", vbYesNo + vbQuestion, "T
     ActiveCell.Offset(1, 0).Select
 Next rand
 'Trier la table
-ActiveWorkbook.Worksheets("Import GOAL").Sort.SortFields.Clear
-    ActiveWorkbook.Worksheets("Import GOAL").Sort.SortFields.Add2 Key:=Range( _
+ActiveWorkbook.Worksheets("Import GOAL CT").Sort.SortFields.Clear
+    ActiveWorkbook.Worksheets("Import GOAL CT").Sort.SortFields.Add2 Key:=Range( _
         "C2:C999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
         xlSortNormal
-    ActiveWorkbook.Worksheets("Import GOAL").Sort.SortFields.Add2 Key:=Range( _
+    ActiveWorkbook.Worksheets("Import GOAL CT").Sort.SortFields.Add2 Key:=Range( _
         "ER2:ER999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
         xlSortNormal
-    With ActiveWorkbook.Worksheets("Import GOAL").Sort
+    With ActiveWorkbook.Worksheets("Import GOAL CT").Sort
         .SetRange Range("A1:ER999")
         .Header = xlYes
         .MatchCase = False
@@ -286,15 +286,15 @@ ActiveWorkbook.Worksheets("Import GOAL").Sort.SortFields.Clear
     ElseIf MsgBox("Voulez-vous utiliser un tirage où le numéro du bateau est l'ordre de départ ? (Tête de Rivière UNIQUEMENT)", vbYesNo + vbQuestion, "Tirages par Numéro de Bateau ?") = vbYes Then
     'Procéder au tirage via l'ordre croissant des numéros de bateau
     random_method = "Par l'ordre croissant des numéros de bateau"
-        Sheets("Import GOAL").Select
-    ActiveWorkbook.Worksheets("Import GOAL").Sort.SortFields.Clear
-    ActiveWorkbook.Worksheets("Import GOAL").Sort.SortFields.Add2 Key:=Range( _
+        Sheets("Import GOAL CT").Select
+    ActiveWorkbook.Worksheets("Import GOAL CT").Sort.SortFields.Clear
+    ActiveWorkbook.Worksheets("Import GOAL CT").Sort.SortFields.Add2 Key:=Range( _
         "C2:C999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
         xlSortNormal
-    ActiveWorkbook.Worksheets("Import GOAL").Sort.SortFields.Add2 Key:=Range( _
+    ActiveWorkbook.Worksheets("Import GOAL CT").Sort.SortFields.Add2 Key:=Range( _
         "D2:D999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
         xlSortNormal
-    With ActiveWorkbook.Worksheets("Import GOAL").Sort
+    With ActiveWorkbook.Worksheets("Import GOAL CT").Sort
         .SetRange Range("A1:EQ999")
         .Header = xlYes
         .MatchCase = False
@@ -306,15 +306,15 @@ ActiveWorkbook.Worksheets("Import GOAL").Sort.SortFields.Clear
     'Tirage Ordre Alphabétique Nom Court
     MsgBox "Le Tirage va être effectué dans l'ordre alphabétique des noms courts des clubs.", vbOKOnly + vbInformation, "Tirage Normal"
     random_method = "Par l'ordre alphabétique des noms courts des clubs"
-    Sheets("Import GOAL").Select
-    ActiveWorkbook.Worksheets("Import GOAL").Sort.SortFields.Clear
-    ActiveWorkbook.Worksheets("Import GOAL").Sort.SortFields.Add2 Key:=Range( _
+    Sheets("Import GOAL CT").Select
+    ActiveWorkbook.Worksheets("Import GOAL CT").Sort.SortFields.Clear
+    ActiveWorkbook.Worksheets("Import GOAL CT").Sort.SortFields.Add2 Key:=Range( _
         "C2:C999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
         xlSortNormal
-    ActiveWorkbook.Worksheets("Import GOAL").Sort.SortFields.Add2 Key:=Range( _
+    ActiveWorkbook.Worksheets("Import GOAL CT").Sort.SortFields.Add2 Key:=Range( _
         "E2:E999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
         xlSortNormal
-    With ActiveWorkbook.Worksheets("Import GOAL").Sort
+    With ActiveWorkbook.Worksheets("Import GOAL CT").Sort
         .SetRange Range("A1:EQ999")
         .Header = xlYes
         .MatchCase = False
@@ -323,13 +323,13 @@ ActiveWorkbook.Worksheets("Import GOAL").Sort.SortFields.Clear
         .Apply
     End With
     'Prg Courses selon Ordre Alphabétique Catég
-    Sheets("Programme des Courses").Select
+    Sheets("Programme des Courses CT").Select
     Columns("F:F").Select
-    ActiveWorkbook.Worksheets("Programme des Courses").Sort.SortFields.Clear
-    ActiveWorkbook.Worksheets("Programme des Courses").Sort.SortFields.Add2 Key:= _
+    ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Clear
+    ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Add2 Key:= _
         Range("F1:F999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
         xlSortNormal
-    With ActiveWorkbook.Worksheets("Programme des Courses").Sort
+    With ActiveWorkbook.Worksheets("Programme des Courses CT").Sort
         .SetRange Range("A1:AW999")
         .Header = xlYes
         .MatchCase = False
@@ -340,7 +340,7 @@ ActiveWorkbook.Worksheets("Import GOAL").Sort.SortFields.Clear
     End If
     If MsgBox("Le mode de tirage défini est : " + random_method + ". Confirmez-vous ce choix ?", vbYesNo + vbInformation, "Confirmation Mode de Tirage") = vbYes Then
     ' Feuille à Sélectionner
-    Sheets("Préparation Tirages").Select
+    Sheets("Préparation Tirages CT").Select
     ' Champs à Afficher (Ne pas oublier de déclarer le nbre de colonnes dans Properties.
     TableauTirages.RowSource = "A1:K999"
     TableauTirages.ColumnWidths = "50;80;150;400;150;500;1000;50;50;80;200"
@@ -350,7 +350,7 @@ ActiveWorkbook.Worksheets("Import GOAL").Sort.SortFields.Clear
     Call UserForm_Initialize
     End If
     ' Feuille à Sélectionner
-    Sheets("Préparation Tirages").Select
+    Sheets("Préparation Tirages CT").Select
     ' Champs à Afficher (Ne pas oublier de déclarer le nbre de colonnes dans Properties.
     TableauTirages.RowSource = "A1:K999"
     TableauTirages.ColumnWidths = "50;80;150;400;150;500;1000;50;50;80;200"
@@ -361,7 +361,7 @@ Private Sub ValidTirages_Click()
 Dim answer1 As Integer
 answer1 = MsgBox("Confirmez-vous la validation des tirages ?", vbYesNo + vbExclamation, "Confirmation Validation Tirages")
   If answer1 = vbYes Then
-  Sheets("Préparation Tirages").Select
+  Sheets("Préparation Tirages CT").Select
     Range("A2:K999").Select
     Selection.Copy
     Sheets("Feuille CrewTimer").Select
@@ -376,9 +376,9 @@ answer1 = MsgBox("Confirmez-vous la validation des tirages ?", vbYesNo + vbExcla
 End Sub
 Private Sub SupprTirages_Click()
 Dim answer2 As Integer
-answer2 = MsgBox("Confirmez-vous l'invallidation des tirages ?", vbYesNo + vbExclamation, "Confirmation Invalidation Tirages")
+answer2 = MsgBox("Confirmez-vous l'invalidation des tirages ?", vbYesNo + vbExclamation, "Confirmation Invalidation Tirages")
   If answer2 = vbYes Then
-    Sheets("Préparation Tirages").Select
+    Sheets("Préparation Tirages CT").Select
     Range("A2:K999").Select
     Selection.EntireRow.Delete
     Range("A1").Select
@@ -389,17 +389,17 @@ answer2 = MsgBox("Confirmez-vous l'invallidation des tirages ?", vbYesNo + vbExc
   End If
 End Sub
 Private Sub Quit_Click()
-Sheets("Programme des Courses").Select
+Sheets("Programme des Courses CT").Select
             Cells.Select
-            ActiveWorkbook.Worksheets("Programme des Courses").Sort.SortFields.Clear
-            ActiveWorkbook.Worksheets("Programme des Courses").Sort.SortFields.Add2 Key:= _
+            ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Clear
+            ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Add2 Key:= _
             Range("A:A"), SortOn:=xlSortOnValues, Order:=xlAscending, CustomOrder:= _
             "Lundi,Mardi,Mercredi,Jeudi,Vendredi,Samedi,Dimanche", DataOption:= _
             xlSortNormal
-            ActiveWorkbook.Worksheets("Programme des Courses").Sort.SortFields.Add2 Key:= _
+            ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Add2 Key:= _
             Range("B:B"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
             xlSortNormal
-            With ActiveWorkbook.Worksheets("Programme des Courses").Sort
+            With ActiveWorkbook.Worksheets("Programme des Courses CT").Sort
                 .SetRange Range("A1:AW999")
                 .Header = xlYes
                 .MatchCase = False

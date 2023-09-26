@@ -2,9 +2,9 @@ VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} ImpTirages_CT 
    Caption         =   "Impressions des Tirages"
    ClientHeight    =   5500
-   ClientLeft      =   108
-   ClientTop       =   456
-   ClientWidth     =   7932
+   ClientLeft      =   110
+   ClientTop       =   460
+   ClientWidth     =   7930
    OleObjectBlob   =   "ImpTirages_CT.frx":0000
    StartUpPosition =   1  'CenterOwner
 End
@@ -20,21 +20,25 @@ End Sub
 Private Sub Imprimer_Click()
             Dim CourseSel As String
             Dim i As Long
-            Sheets("Stockage Impressions").Range("1:1").Delete
+            Sheets("Stockage Impressions CT").Range("1:1").Delete
             For i = 0 To TableauCourses.ListCount - 1
             If TableauCourses.Selected(i) Then
-                Sheets("Stockage Impressions").Cells(1, 1 + i).Value = TableauCourses.List(i)
+                Sheets("Stockage Impressions CT").Cells(1, 1 + i).Value = TableauCourses.List(i)
                 CourseSel = CourseSel & TableauCourses.List(i) & " / "
             End If
             Next i
-            Sheets("Import Tirages").Select
+            Sheets("Import Tirages CT").Select
     Cells.Select
     Selection.ClearContents
     Range("A1").Select
+    Sheets("Impressions Tirages CT").Select
+    Range("A13:H420").Select
+    Selection.ClearContents
+    Range("A13").Select
     Sheets("Feuille CrewTimer").Select
     Range("A7:K999").Select
     Selection.Copy
-    Sheets("Import Tirages").Select
+    Sheets("Import Tirages CT").Select
     Range("A1").Select
     ActiveSheet.Paste
       Dim course1 As String, course2 As String, course3 As String, course4 As String, course5 As String
@@ -77,7 +81,7 @@ Private Sub Imprimer_Click()
     Dim course186 As String, course187 As String, course188 As String, course189 As String, course190 As String
     Dim course191 As String, course192 As String, course193 As String, course194 As String, course195 As String
     Dim course196 As String, course197 As String, course198 As String, course199 As String, course200 As String
-    With Sheets("Stockage Impressions")
+    With Sheets("Stockage Impressions CT")
         course1 = .Range("A1").Value
         course2 = .Range("B1").Value
         course3 = .Range("C1").Value
@@ -280,7 +284,7 @@ Private Sub Imprimer_Click()
         course200 = .Range("GR1").Value
     End With
 
-    With Sheets("Import Tirages")
+    With Sheets("Import Tirages CT")
         .AutoFilterMode = False
         .Range("$A$1:$EA$999").AutoFilter Field:=4, Criteria1:=Array(course1, course2, course3, course4, course5, _
             course6, course7, course8, course9, course10, course11, course12, course13, course14, course15, course16, _

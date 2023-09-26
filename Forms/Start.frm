@@ -2,9 +2,9 @@ VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} Start 
    Caption         =   "Démarrage du Système"
    ClientHeight    =   5544
-   ClientLeft      =   108
-   ClientTop       =   456
-   ClientWidth     =   6504
+   ClientLeft      =   110
+   ClientTop       =   460
+   ClientWidth     =   6500
    OleObjectBlob   =   "Start.frx":0000
    StartUpPosition =   1  'CenterOwner
 End
@@ -30,21 +30,21 @@ answer1 = MsgBox("Etes-vous certain de vouloir réinitialiser TOUTE la régate ?",
         Sheets("Réglages Régate").Range("E16").Value = ""
         Sheets("Réglages Régate").Range("K4").Value = ""
         Sheets("Réglages Régate").Range("K6").Value = ""
-        Sheets("Préparation Tirages").Select
+        Sheets("Préparation Tirages CT").Select
         Range("A2:K999").Select
         Selection.ClearContents
         Sheets("Feuille CrewTimer").Select
         Range("A8:K999").Select
         Selection.ClearContents
-        Sheets("Import GOAL").Select
+        Sheets("Import GOAL CT").Select
         Range("A1:FA9999").Select
-        Sheets("Stockage Impressions").Select
-        Range("A1:FA9999").Select
-        Selection.ClearContents
-        Sheets("Import Tirages").Select
+        Sheets("Stockage Impressions CT").Select
         Range("A1:FA9999").Select
         Selection.ClearContents
-        Sheets("Import Resultats").Select
+        Sheets("Import Tirages CT").Select
+        Range("A1:FA9999").Select
+        Selection.ClearContents
+        Sheets("Import Resultats CT").Select
         Range("A1:FA9999").Select
         Selection.ClearContents
         Sheets("Impressions Résultats CT").Select
@@ -53,7 +53,7 @@ answer1 = MsgBox("Etes-vous certain de vouloir réinitialiser TOUTE la régate ?",
         Sheets("Impressions Tirages CT").Select
         Range("A13:H420").Select
         Selection.ClearContents
-        Sheets("Programme des Courses").Select
+        Sheets("Programme des Courses CT").Select
         Range("A2:FA9999").Select
         Selection.ClearContents
         Sheets("Accueil").Select

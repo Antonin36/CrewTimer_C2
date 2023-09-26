@@ -1,10 +1,6 @@
 Attribute VB_Name = "Macros"
 Sub Affiche_Reglages()
-Attribute Affiche_Reglages.VB_ProcData.VB_Invoke_Func = " \n14"
-' Affiche_Reglages Macro
-
     ReglagesRegate.Show
-    
 End Sub
 Sub AfficheGestImp_PostTirages_CT()
         Sheets("Impressions Tirages CT").Select
@@ -18,35 +14,19 @@ Sub AfficheGestImp_PostResultats_CT()
         Selection.ClearContents
         Sheets("Impressions CT").Select
 End Sub
-Sub Affiche_Tirages()
-' Affiche_Tirages Macro
-
+Sub Affiche_Tirages_CT()
     GestionTirages_CT.Show
-    
 End Sub
 Sub Affiche_Imp_Tirages_CT()
-' Affiche_Tirages Macro
-
     ImpTirages_CT.Show
-    
 End Sub
 Sub Affiche_Imp_Resultat_CT()
-' Affiche_Tirages Macro
-
     ImpResultats_CT.Show
-    
 End Sub
 Sub Retour_Accueil()
-Attribute Retour_Accueil.VB_ProcData.VB_Invoke_Func = " \n14"
-'
-' Retour_Accueil Macro
-
     Sheets("Accueil").Select
 End Sub
-
 Sub Affiche_Gest_CT()
-'
-' Retour_Accueil Macro
     If Sheets("Réglages Régate").Range("E16").Value = "Indoor" Then
     MsgBox "Vous avez paramétré une régate Indoor, l'accès à la gestion CrewTimer est impossible. Merci de vérifier vos paramètres de régate.", vbOKOnly + vbExclamation, "Accès Impossible"
     Else
@@ -62,37 +42,25 @@ MsgBox "En cours de création...", vbCritical, "Accès Interdit"
     'End If
 End Sub
 Sub Affiche_Impr_CT()
-'
-' Retour_Accueil Macro
-
     Sheets("Impressions CT").Select
 End Sub
 Sub Affiche_Impr_ReinitImpressions_CT()
-'
-' Retour_Accueil Macro
-
+    ActiveWorkbook.ActiveSheet.Select
+    Range("A13:H420").Select
+    Selection.ClearContents
+    Range("A13").Select
     Sheets("Impressions CT").Select
 End Sub
 Sub Affiche_Export_CT()
-'
-' Affiche_Export_CT Macro
-
     Sheets("Feuille CrewTimer").Select
 End Sub
 
 Sub Affiche_Gest_Course_CT()
-'
-' Affiche_Gest_Course_CT Macro
     AfficherCourses_CT.Show
 End Sub
 
-Sub Import_GOAL()
-Attribute Import_GOAL.VB_ProcData.VB_Invoke_Func = " \n14"
-'
-' Import_GOAL Macro
-'
-
-'
+Sub Import_GOAL_CT()
+Attribute Import_GOAL_CT.VB_ProcData.VB_Invoke_Func = " \n14"
 Dim user_selected_filename As String
    
     With Application.FileDialog(msoFileDialogFilePicker)
@@ -103,7 +71,7 @@ Dim user_selected_filename As String
         user_selected_filename = .SelectedItems(1)
     End With
 
-    Sheets("Import GOAL").Select
+    Sheets("Import GOAL CT").Select
     Cells.Select
     Selection.Delete Shift:=xlUp
     Range("A1").Select
@@ -160,7 +128,7 @@ answer1 = MsgBox("Confirmez-vous l'effacement de la feuille CrewTimer ainsi que 
     Sheets("Feuille CrewTimer").Select
         Range("A8:K999").Select
         Selection.EntireRow.Delete
-        Sheets("Préparation Tirages").Select
+        Sheets("Préparation Tirages CT").Select
         Range("A2:K999").Select
         Selection.EntireRow.Delete
         Sheets("Feuille CrewTimer").Select
@@ -188,12 +156,7 @@ For Each ws In ThisWorkbook.Worksheets
     On Error GoTo 0
 Next ws
 End Sub
-Sub ImportResultat()
-'
-' ImportResultat Macro
-'
-
-'
+Sub ImportResultat_CT()
     Sheets("Import Resultats").Select
     Dim user_selected_filename2 As String
    
@@ -205,7 +168,7 @@ Sub ImportResultat()
         user_selected_filename2 = .SelectedItems(1)
     End With
 
-    Sheets("Import Resultats").Select
+    Sheets("Import Resultats CT").Select
     Cells.Select
     Selection.Delete Shift:=xlUp
     Range("A1").Select
