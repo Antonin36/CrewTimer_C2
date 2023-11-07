@@ -1,3 +1,5 @@
+Note pour encoder une string json mettre d'abord tout le fichier sur une seule ligne, le séparer en morceaux, et le générer de manière procédurale. Puis sortir le fichier dans le répertoire courant et enfin reset la string.
+
 Réglage pour toute la régate :
 "event_name": "Nom Compétition"
 
