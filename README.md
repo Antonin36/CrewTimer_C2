@@ -4,7 +4,7 @@ Un système de gestion de course avec la possibilité d'importer directement les
 Fonctions Implantées :
 CrewTimer :
 Import depuis GOAL
-Tirages Automatiques (Aléatoire, Par Numéro de Bateau et Par Ordre Alphabétique des Noms Courts des Clubs)
+Tirages Automatiques (Aléatoire, Par Numéro de Bateau et Par Ordre Alphabétique des Noms Courts des Clubs, Prise en Charge TDR.)
 Import Résultats depuis CrewTimer
 Impressions Tirages et Résultats (jusqu'à 17 pages)
 Gestion du Programme des Courses
