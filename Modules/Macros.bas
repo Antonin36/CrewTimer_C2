@@ -65,8 +65,8 @@ Dim user_selected_filename As String
    
     With Application.FileDialog(msoFileDialogFilePicker)
         .Filters.Clear
-        .Filters.Add "Text Files", "*.csv"
-        .Title = "Sélectionner l'export GOAL"
+        .Filters.Add "Fichiers Export GOAL", "*.csv"
+        .Title = "Sélectionner l'Export GOAL"
         If .Show = 0 Then Exit Sub 'user cancels
         user_selected_filename = .SelectedItems(1)
     End With
@@ -162,8 +162,8 @@ Sub ImportResultat_CT()
    
     With Application.FileDialog(msoFileDialogFilePicker)
         .Filters.Clear
-        .Filters.Add "Text Files", "*.csv"
-        .Title = "Sélectionner l'export Résultat CrewTimer"
+        .Filters.Add "Fichier Export Résultats CrewTimer", "*.csv"
+        .Title = "Sélectionner l'Export Résultat CrewTimer"
         If .Show = 0 Then Exit Sub 'user cancels
         user_selected_filename2 = .SelectedItems(1)
     End With
