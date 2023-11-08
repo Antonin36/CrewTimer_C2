@@ -25,3 +25,4 @@ Attribute SupprTirages.VB_ProcData.VB_Invoke_Func = " \n14"
     Selection.EntireRow.Delete
     Range("A1").Select
 End Sub
+

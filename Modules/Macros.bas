@@ -1,4 +1,5 @@
 Attribute VB_Name = "Macros"
+
 Sub Affiche_Reglages()
     ReglagesRegate.Show
 End Sub
@@ -59,6 +60,57 @@ Sub Affiche_Gest_Course_CT()
     AfficherCourses_CT.Show
 End Sub
 
+Sub Import_GOAL_C2()
+Dim user_selected_filename As String
+   
+    With Application.FileDialog(msoFileDialogFilePicker)
+        .Filters.Clear
+        .Filters.Add "Fichiers Export GOAL", "*.csv"
+        .Title = "Sélectionner l'Export GOAL"
+        If .Show = 0 Then Exit Sub 'user cancels
+        user_selected_filename = .SelectedItems(1)
+    End With
+
+    Sheets("Import GOAL C2").Select
+    Cells.Select
+    Selection.Delete Shift:=xlUp
+    Range("A1").Select
+    Application.CutCopyMode = False
+    
+    With ActiveSheet.QueryTables.Add(Connection:="TEXT;" & user_selected_filename, Destination:=Range("$A$1"))
+        .Name = "ImportGOAL"
+        .FieldNames = True
+        .RowNumbers = False
+        .FillAdjacentFormulas = False
+        .PreserveFormatting = True
+        .RefreshOnFileOpen = False
+        .RefreshStyle = xlInsertDeleteCells
+        .SavePassword = False
+        .SaveData = True
+        .AdjustColumnWidth = True
+        .RefreshPeriod = 0
+        .TextFilePromptOnRefresh = False
+        .TextFilePlatform = 1252
+        .TextFileStartRow = 6
+        .TextFileParseType = xlDelimited
+        .TextFileTextQualifier = xlTextQualifierDoubleQuote
+        .TextFileConsecutiveDelimiter = False
+        .TextFileTabDelimiter = False
+        .TextFileSemicolonDelimiter = True
+        .TextFileCommaDelimiter = False
+        .TextFileSpaceDelimiter = False
+        .TextFileColumnDataTypes = Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, _
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 _
+        , 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, _
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 _
+        , 1, 1, 1, 1, 1, 1, 1)
+        .TextFileTrailingMinusNumbers = True
+        .Refresh BackgroundQuery:=False
+    End With
+    Call clearConnectionsAndQueries
+    Sheets("Gestion Concept2").Select
+    MsgBox "L'import du fichier GOAL à été réussi avec succès !", vbInformation, "Import GOAL"
+End Sub
 Sub Import_GOAL_CT()
 Attribute Import_GOAL_CT.VB_ProcData.VB_Invoke_Func = " \n14"
 Dim user_selected_filename As String
