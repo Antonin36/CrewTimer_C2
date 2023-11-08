@@ -4,7 +4,7 @@ Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} AfficherCourses_CT
    ClientHeight    =   7840
    ClientLeft      =   110
    ClientTop       =   460
-   ClientWidth     =   13630
+   ClientWidth     =   13780
    OleObjectBlob   =   "AfficherCourses_CT.frx":0000
    StartUpPosition =   1  'CenterOwner
 End

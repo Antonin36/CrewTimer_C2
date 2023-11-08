@@ -1,10 +1,10 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} ImpTirages_CT 
    Caption         =   "Impressions des Tirages"
-   ClientHeight    =   5500
+   ClientHeight    =   5440
    ClientLeft      =   110
    ClientTop       =   460
-   ClientWidth     =   7930
+   ClientWidth     =   7980
    OleObjectBlob   =   "ImpTirages_CT.frx":0000
    StartUpPosition =   1  'CenterOwner
 End

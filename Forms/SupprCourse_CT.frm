@@ -1,10 +1,10 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} SupprCourse_CT 
    Caption         =   "Suppression d'une Course"
-   ClientHeight    =   5424
+   ClientHeight    =   5440
    ClientLeft      =   110
    ClientTop       =   460
-   ClientWidth     =   8640.001
+   ClientWidth     =   8680.001
    OleObjectBlob   =   "SupprCourse_CT.frx":0000
    StartUpPosition =   1  'CenterOwner
 End

@@ -56,6 +56,32 @@ answer1 = MsgBox("Etes-vous certain de vouloir réinitialiser TOUTE la régate ?",
         Sheets("Programme des Courses CT").Select
         Range("A2:FA9999").Select
         Selection.ClearContents
+        Sheets("Préparation Tirages C2").Select
+        Range("A2:K999").Select
+        Selection.ClearContents
+        Sheets("Feuille Concept2").Select
+        Range("A8:K999").Select
+        Selection.ClearContents
+        Sheets("Import GOAL C2").Select
+        Range("A1:FA9999").Select
+        Sheets("Stockage Impressions C2").Select
+        Range("A1:FA9999").Select
+        Selection.ClearContents
+        Sheets("Import Tirages C2").Select
+        Range("A1:FA9999").Select
+        Selection.ClearContents
+        Sheets("Import Resultats C2").Select
+        Range("A1:FA9999").Select
+        Selection.ClearContents
+        Sheets("Impressions Résultats C2").Select
+        Range("A13:H420").Select
+        Selection.ClearContents
+        Sheets("Impressions Tirages C2").Select
+        Range("A13:H420").Select
+        Selection.ClearContents
+        Sheets("Programme des Courses C2").Select
+        Range("A2:FA9999").Select
+        Selection.ClearContents
         Sheets("Accueil").Select
         ReglagesRegate.Show
         Unload Me

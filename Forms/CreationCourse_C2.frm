@@ -1,10 +1,10 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} CreationCourse_C2 
    Caption         =   "Création d'une Course"
-   ClientHeight    =   5960
+   ClientHeight    =   6040
    ClientLeft      =   110
    ClientTop       =   450
-   ClientWidth     =   8290.001
+   ClientWidth     =   7980
    OleObjectBlob   =   "CreationCourse_C2.frx":0000
    StartUpPosition =   1  'CenterOwner
 End
@@ -19,26 +19,26 @@ Private Sub Annuler_Click()
 End Sub
 Private Sub Sauvegarder_Click()
             Dim LastRow As Long
-            LastRow = Sheets("Programme des Courses CT").Cells(Rows.Count, "A").End(xlUp).Row + 1
+            LastRow = Sheets("Programme des Courses C2").Cells(Rows.Count, "A").End(xlUp).Row + 1
             Dim CategSel As String
             Dim i As Long
             For i = 0 To Categ.ListCount - 1
             If Categ.Selected(i) Then
-                Sheets("Programme des Courses CT").Cells(LastRow, 10 + i).Value = Categ.List(i)
+                Sheets("Programme des Courses C2").Cells(LastRow, 10 + i).Value = Categ.List(i)
                 CategSel = CategSel & Categ.List(i) & " / "
             End If
             Next i
             CategSel = Left(CategSel, Len(CategSel) - 3)
-            Sheets("Programme des Courses CT").Cells(LastRow, "A").Value = Jour.Text
-            Sheets("Programme des Courses CT").Cells(LastRow, "B").Value = Heure.Text
-            Sheets("Programme des Courses CT").Cells(LastRow, "C").Value = IDCourse.Text
-            Sheets("Programme des Courses CT").Cells(LastRow, "D").Value = TypeCourse.Text
-            Sheets("Programme des Courses CT").Cells(LastRow, "E").Value = TypeCourse.Text
-            Sheets("Programme des Courses CT").Cells(LastRow, "F").Value = CategSel
-            Sheets("Programme des Courses CT").Cells(LastRow, "G").Value = Jour.Text
-            Sheets("Programme des Courses CT").Cells(LastRow, "H").Value = Tirage.Text
-            Sheets("Programme des Courses CT").Cells(LastRow, "I").Value = InfoSysProg.Text
-            Sheets("Programme des Courses CT").Select
+            Sheets("Programme des Courses C2").Cells(LastRow, "A").Value = Jour.Text
+            Sheets("Programme des Courses C2").Cells(LastRow, "B").Value = Heure.Text
+            Sheets("Programme des Courses C2").Cells(LastRow, "C").Value = IDCourse.Text
+            Sheets("Programme des Courses C2").Cells(LastRow, "D").Value = TypeCourse.Text
+            Sheets("Programme des Courses C2").Cells(LastRow, "E").Value = TypeCourse.Text
+            Sheets("Programme des Courses C2").Cells(LastRow, "F").Value = CategSel
+            Sheets("Programme des Courses C2").Cells(LastRow, "G").Value = Jour.Text
+            Sheets("Programme des Courses C2").Cells(LastRow, "H").Value = Tirage.Text
+            Sheets("Programme des Courses C2").Cells(LastRow, "I").Value = InfoSysProg.Text
+            Sheets("Programme des Courses C2").Select
             Columns("G:G").Select
             Selection.Replace What:="Lundi", Replacement:="Monday", LookAt:=xlWhole, _
                 SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
@@ -191,17 +191,17 @@ Private Sub Sauvegarder_Click()
             Selection.Replace What:="Autre", Replacement:="Unspecified", LookAt:=xlWhole, _
             SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
             ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-            Sheets("Programme des Courses CT").Select
+            Sheets("Programme des Courses C2").Select
             Cells.Select
-            ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Clear
-            ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Add2 Key:= _
+            ActiveWorkbook.Worksheets("Programme des Courses C2").Sort.SortFields.Clear
+            ActiveWorkbook.Worksheets("Programme des Courses C2").Sort.SortFields.Add2 Key:= _
             Range("A:A"), SortOn:=xlSortOnValues, Order:=xlAscending, CustomOrder:= _
             "Lundi,Mardi,Mercredi,Jeudi,Vendredi,Samedi,Dimanche", DataOption:= _
             xlSortNormal
-            ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Add2 Key:= _
+            ActiveWorkbook.Worksheets("Programme des Courses C2").Sort.SortFields.Add2 Key:= _
             Range("B:B"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
             xlSortNormal
-            With ActiveWorkbook.Worksheets("Programme des Courses CT").Sort
+            With ActiveWorkbook.Worksheets("Programme des Courses C2").Sort
                 .SetRange Range("A1:AW999")
                 .Header = xlYes
                 .MatchCase = False
@@ -210,7 +210,7 @@ Private Sub Sauvegarder_Click()
                 .Apply
             End With
             Range("A1").Select
-            Sheets("Gestion CrewTimer").Select
+            Sheets("Gestion Concept2").Select
           MsgBox "La course à été créée avec succès !", vbOKOnly + vbInformation, "Course Créée"
       Unload Me
 End Sub
@@ -229,7 +229,7 @@ Dim UniqueList()    As String
     Dim j As Long
     Dim Temp As Variant
      
-    Set Rng1 = Sheets("Import Goal CT").Range("C2:C999")
+    Set Rng1 = Sheets("Import GOAL C2").Range("C2:C999")
     y = 1
      
     ReDim UniqueList(1 To Rng1.Rows.Count)
@@ -269,7 +269,7 @@ Dim UniqueList()    As String
     Dim Unique2          As Boolean
     Dim w               As Long
      
-    Set Rng2 = Sheets("Référentiel Progression CT").Range("B2:B999")
+    Set Rng2 = Sheets("Référentiel Progression C2").Range("B2:B999")
     w = 1
      
     ReDim UniqueList2(1 To Rng2.Rows.Count)
@@ -299,5 +299,7 @@ Dim UniqueList()    As String
     Me.Jour.AddItem ("Samedi")
     Me.Jour.AddItem ("Dimanche")
 End Sub
+
+
 
 

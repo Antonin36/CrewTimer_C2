@@ -1,10 +1,10 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} ImpResultats_CT 
    Caption         =   "Impression des Résultats"
-   ClientHeight    =   5670
+   ClientHeight    =   5640
    ClientLeft      =   110
    ClientTop       =   460
-   ClientWidth     =   7950
+   ClientWidth     =   7980
    OleObjectBlob   =   "ImpResultats_CT.frx":0000
    StartUpPosition =   1  'CenterOwner
 End

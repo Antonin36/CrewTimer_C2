@@ -1,10 +1,10 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} GestionTirages_CT 
    Caption         =   "Gestion des Tirages"
-   ClientHeight    =   7770
+   ClientHeight    =   7740
    ClientLeft      =   110
    ClientTop       =   460
-   ClientWidth     =   18020
+   ClientWidth     =   17980
    OleObjectBlob   =   "GestionTirages_CT.frx":0000
    StartUpPosition =   1  'CenterOwner
 End
@@ -17,21 +17,21 @@ Private alea As Boolean
 Private numCollection As New Collection ' Déclarez une collection pour stocker les numéros de ligne
 
 ' Fonction pour ajouter un numéro de ligne à la collection
-Sub AddToCollection(col As Collection, item As Long)
+Sub AddToCollection(col As Collection, Item As Long)
     On Error Resume Next
-    col.Add item, CStr(item) ' Utilisez CStr pour convertir le numéro de ligne en une clé de chaîne unique
+    col.Add Item, CStr(Item) ' Utilisez CStr pour convertir le numéro de ligne en une clé de chaîne unique
     On Error GoTo 0
 End Sub
 Function IsInCollection(col As Collection, val As Long) As Boolean
     On Error Resume Next
-    Dim item As Variant
+    Dim Item As Variant
     IsInCollection = False
-    For Each item In col
-        If item = val Then
+    For Each Item In col
+        If Item = val Then
             IsInCollection = True
             Exit Function
         End If
-    Next item
+    Next Item
     On Error GoTo 0
 End Function
 

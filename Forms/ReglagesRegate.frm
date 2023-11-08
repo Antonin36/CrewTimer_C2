@@ -156,21 +156,21 @@ If MsgBox("Etes-vous certain de vouloir réinitialiser TOUTE la régate ?", vbYesN
         Sheets("Réglages Régate").Range("E16").Value = ""
         Sheets("Réglages Régate").Range("K4").Value = ""
         Sheets("Réglages Régate").Range("K6").Value = ""
-        Sheets("Préparation Tirages").Select
+        Sheets("Préparation Tirages CT").Select
         Range("A2:K999").Select
         Selection.ClearContents
         Sheets("Feuille CrewTimer").Select
         Range("A8:K999").Select
         Selection.ClearContents
-        Sheets("Import GOAL").Select
+        Sheets("Import GOAL CT").Select
         Range("A1:FA9999").Select
-        Sheets("Stockage Impressions").Select
-        Range("A1:FA9999").Select
-        Selection.ClearContents
-        Sheets("Import Tirages").Select
+        Sheets("Stockage Impressions CT").Select
         Range("A1:FA9999").Select
         Selection.ClearContents
-        Sheets("Import Resultats").Select
+        Sheets("Import Tirages CT").Select
+        Range("A1:FA9999").Select
+        Selection.ClearContents
+        Sheets("Import Resultats CT").Select
         Range("A1:FA9999").Select
         Selection.ClearContents
         Sheets("Impressions Résultats CT").Select
@@ -179,7 +179,33 @@ If MsgBox("Etes-vous certain de vouloir réinitialiser TOUTE la régate ?", vbYesN
         Sheets("Impressions Tirages CT").Select
         Range("A13:H420").Select
         Selection.ClearContents
-        Sheets("Programme des Courses").Select
+        Sheets("Programme des Courses CT").Select
+        Range("A2:FA9999").Select
+        Selection.ClearContents
+        Sheets("Préparation Tirages C2").Select
+        Range("A2:K999").Select
+        Selection.ClearContents
+        Sheets("Feuille Concept2").Select
+        Range("A8:K999").Select
+        Selection.ClearContents
+        Sheets("Import GOAL C2").Select
+        Range("A1:FA9999").Select
+        Sheets("Stockage Impressions C2").Select
+        Range("A1:FA9999").Select
+        Selection.ClearContents
+        Sheets("Import Tirages C2").Select
+        Range("A1:FA9999").Select
+        Selection.ClearContents
+        Sheets("Import Resultats C2").Select
+        Range("A1:FA9999").Select
+        Selection.ClearContents
+        Sheets("Impressions Résultats C2").Select
+        Range("A13:H420").Select
+        Selection.ClearContents
+        Sheets("Impressions Tirages C2").Select
+        Range("A13:H420").Select
+        Selection.ClearContents
+        Sheets("Programme des Courses C2").Select
         Range("A2:FA9999").Select
         Selection.ClearContents
         Sheets("Accueil").Select
