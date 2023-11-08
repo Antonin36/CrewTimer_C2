@@ -49,3 +49,18 @@ Par course :
 "split_value": Durée Split,
 "team_size": 1,
 "duration_type": "meters"
+
+Pour course parcourir la plus grande distance en X secondes :
+"duration_type": "time",
+"duration" : Durée en S
+"race_type": "individual",
+
+Pour course parcourir le plus grand nombre de calorie en X secondes :
+"race_type": "individual calorie score",
+"duration_type": "time",
+"duration" : Durée en S
+
+Pour course en calories :
+"duration": 60,
+"duration_type": "calories",
+"race_type": "individual",
