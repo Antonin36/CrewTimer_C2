@@ -50,12 +50,17 @@ Par course :
 "team_size": 1,
 "duration_type": "meters"
 
+Classique :
+"duration_type": "meters",
+"duration" : Durée en M
+"race_type": "individual",
+
 Pour course parcourir la plus grande distance en X secondes :
 "duration_type": "time",
 "duration" : Durée en S
 "race_type": "individual",
 
-Pour course parcourir le plus grand nombre de calorie en X secondes :
+Pour course parcourir le plus grand nombre de calorie en X secondes Compatible Equipe mais pas Relais :
 "race_type": "individual calorie score",
 "duration_type": "time",
 "duration" : Durée en S

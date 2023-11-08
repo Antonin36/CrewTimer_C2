@@ -1,5 +1,0 @@
-{"race_definition":
-{"boats": [{"affiliation": "club","class_name": "catégorie","lane_number": 1,"name": "Nom Equipage 1",
-"participants": [{"name": "Nom Participant 1"},{"name": "Nom Participant 2"}]}],
-"c2_race_id": "","duration": 2000,"duration_type": "meters","event_name": "NOM COMPETITION","name_long": "NOM COURSE (J16H1x/J17F1x/J18F1x)",
-"name_short": "short name","race_id": "","race_type": "team","split_value": 500,"team_scoring": "avg","team_size": 2,"time_cap": 0}}

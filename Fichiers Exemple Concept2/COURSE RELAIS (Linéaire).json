@@ -1,6 +1,0 @@
-{"race_definition":
-{"boats": [{"affiliation": "club","class_name": "catégorie","lane_number": 1,"name": "Nom Equipage (MONACO SN 1 (Nom Participant 1))",
-"participants": [{"name": ""}]}],
-"c2_race_id": "","display_prompt_at_splits": false,"duration": 2000,"duration_type": "meters","event_name": "NOM COMPETITION",
-"name_long": "NOM COURSE (J16H1x/J17F1x/J18F1x)","name_short": "short name","race_id": "","race_type": "relay","sound_horn_at_splits": false,
-"split_value": 500,"team_size": 1,"time_cap": 0}}
