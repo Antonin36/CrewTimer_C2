@@ -267,7 +267,9 @@ Private Sub CreationTirages_Click()
                         cell.Value = cell.Value & Mid(tempStr, carequipage, 1)
                         End If
                         Next carequipage
-                        
+                        Dim jsonCell2 As String
+                        jsonCell2 = ""
+                        jsonCell2 = jsonCell
                         jsonCell = jsonCell & "{""affiliation"": """ & Sheets("Préparation Tirages C2").Cells(j, 8).Value & """,""class_name"": """ & Sheets("Import GOAL C2").Cells(numlignegoal, 3).Value & """,""lane_number"": " & partants + 1 & ","
                         Equipage = Sheets("Import GOAL C2").Cells(numlignegoal, 5).Value & " (" & Sheets("Import GOAL C2").Cells(numlignegoal, 6).Value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 7).Value
                         rameur1 = Sheets("Import GOAL C2").Cells(numlignegoal, 6).Value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 7).Value
@@ -367,6 +369,7 @@ Private Sub CreationTirages_Click()
                         If Sheets("Programme des Courses C2").Cells(i, 52).Value = "Indiv" Then
                         jsonCell = jsonCell & "{""name"": """ & Sheets("Préparation Tirages C2").Cells(j, 7).Value & """}]},"
                         End If
+                        If Equipage = " ( )" Then jsonCell = jsonCell2
                         Sheets("Préparation Tirages C2").Cells(j, 9).Value = Sheets("Import GOAL C2").Cells(numlignegoal, 3).Value
                         Sheets("Préparation Tirages C2").Cells(j, 11).Value = Sheets("Import GOAL C2").Cells(numlignegoal, 5).Value
                         Sheets("Préparation Tirages C2").Cells(j, 10).Value = partants + 1
@@ -706,7 +709,7 @@ ActiveWorkbook.Worksheets("Import GOAL C2").Sort.SortFields.Clear
     random_method = "Par l'ordre croissant des numéros de bateau"
     Sheets("Réglages Régate").Select
     Sheets("Réglages Régate").Range("H16").Value = "Num"
-        Sheets("Import GOAL C2").Select
+    Sheets("Import GOAL C2").Select
     ActiveWorkbook.Worksheets("Import GOAL C2").Sort.SortFields.Clear
     ActiveWorkbook.Worksheets("Import GOAL C2").Sort.SortFields.Add2 Key:=Range( _
         "C2:C999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
