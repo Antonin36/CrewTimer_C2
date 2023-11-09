@@ -32,8 +32,8 @@ Private Sub UserForm_Initialize()
 ' Feuille à Sélectionner
     Sheets("Programme des Courses C2").Select
     ' Champs à Afficher (Ne pas oublier de déclarer le nbre de colonnes dans Properties.
-    TableauPrgCourses.RowSource = "A1:BB200"
-    TableauPrgCourses.ColumnWidths = "60;40;50;0;140;250;0;0;140;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;60;60;60;60;60"
+    TableauPrgCourses.RowSource = "A1:BD200"
+    TableauPrgCourses.ColumnWidths = "60;40;50;0;140;250;0;0;140;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;60;60;60;60;60;0;60"
     Sheets("Gestion Concept2").Select
     Me.AjoutCourses_Indiv.Caption = "Créer une Course" & vbCrLf & "Individuelle"
     Me.AjoutCourses_Equipes.Caption = "Créer une Course" & vbCrLf & "par Equipes"

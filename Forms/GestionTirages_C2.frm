@@ -63,19 +63,19 @@ Private Sub CreationTirages_Click()
     partants = 0
     numlignegoal = 2
     Sheets("Programme des Courses C2").Select
-    Columns("F:F").Select
-    ActiveWorkbook.Worksheets("Programme des Courses C2").Sort.SortFields.Clear
-    ActiveWorkbook.Worksheets("Programme des Courses C2").Sort.SortFields.Add2 Key:= _
-        Range("F1:F999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
-        xlSortNormal
-    With ActiveWorkbook.Worksheets("Programme des Courses C2").Sort
-        .SetRange Range("A1:AW999")
-        .Header = xlYes
-        .MatchCase = False
-        .Orientation = xlTopToBottom
-        .SortMethod = xlPinYin
-        .Apply
-    End With
+    'Columns("F:F").Select
+    'ActiveWorkbook.Worksheets("Programme des Courses C2").Sort.SortFields.Clear
+    'ActiveWorkbook.Worksheets("Programme des Courses C2").Sort.SortFields.Add2 Key:= _
+        'Range("F1:F999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
+        'xlSortNormal
+   ' With ActiveWorkbook.Worksheets("Programme des Courses C2").Sort
+        '.SetRange Range("A1:AW999")
+        '.Header = xlYes
+        '.MatchCase = False
+        '.Orientation = xlTopToBottom
+        '.SortMethod = xlPinYin
+        '.Apply
+    'End With
     ClearCollection numCollection
     'Trouver la dernière Ligne Utilisée en Colonne A de la Feuille Origine
     LastRow = Sheets("Programme des Courses C2").Cells(Sheets("Programme des Courses C2").Rows.Count, "A").End(xlUp).Row
@@ -118,6 +118,18 @@ Private Sub CreationTirages_Click()
                     Sheets("Préparation Tirages C2").Cells(j, 4).Value = B
                     Sheets("Préparation Tirages C2").Cells(j, 5).Value = A
                     Sheets("Préparation Tirages C2").Cells(j, 6).Value = Sheets("Préparation Tirages C2").Cells(j, 9).Value
+                    Sheets("Préparation Tirages C2").Cells(j, 13).Value = Sheets("Préparation Tirages C2").Cells(j, 50).Value
+                    Sheets("Préparation Tirages C2").Cells(j, 14).Value = Sheets("Préparation Tirages C2").Cells(j, 51).Value
+                    Sheets("Préparation Tirages C2").Cells(j, 15).Value = Sheets("Préparation Tirages C2").Cells(j, 52).Value
+                    Sheets("Préparation Tirages C2").Cells(j, 16).Value = Sheets("Préparation Tirages C2").Cells(j, 53).Value
+                    Sheets("Préparation Tirages C2").Cells(j, 17).Value = Sheets("Préparation Tirages C2").Cells(j, 54).Value
+                    Sheets("Préparation Tirages C2").Cells(j, 18).Value = Sheets("Préparation Tirages C2").Cells(j, 56).Value
+                    Sheets("Préparation Tirages C2").Cells(j, 50).Value = ""
+                    Sheets("Préparation Tirages C2").Cells(j, 51).Value = ""
+                    Sheets("Préparation Tirages C2").Cells(j, 52).Value = ""
+                    Sheets("Préparation Tirages C2").Cells(j, 53).Value = ""
+                    Sheets("Préparation Tirages C2").Cells(j, 54).Value = ""
+                    Sheets("Préparation Tirages C2").Cells(j, 56).Value = ""
                     Dim u As Integer
                     For u = 10 To 50
                     Do
@@ -140,104 +152,104 @@ Private Sub CreationTirages_Click()
                     If casegoal = casetirage Then
                         Sheets("Préparation Tirages C2").Cells(j, 8).Value = Sheets("Import GOAL C2").Cells(numlignegoal, 5).Value
                         Sheets("Préparation Tirages C2").Select
-    Columns("H:H").Select
-    Selection.Replace What:="SAINTE CROIX AVN 04", Replacement:="AVN4", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="MANOSQUE AC", Replacement:="ACDM", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="ESPARRON DE VERDON CN", Replacement:="CNEV", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="SAVINES LE LAC ASP", Replacement:="ASP", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="EMBRUN CA", Replacement:="CAEM", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="NICE CN", Replacement:="CNNI", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="CANNES MANDELIEU RCCM", Replacement:="RCCM", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="MENTON SCA", Replacement:="SCAM", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="VILLEFRANCHE SN", Replacement:="SNVI", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="MARSEILLE ASPTT", Replacement:="AMSA", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="MARSEILLE AAS", Replacement:="AAS", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="ISTRES ANO", Replacement:="ANOI", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="CASSIS AC", Replacement:="ACDC", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="MARSEILLE CA", Replacement:="CAM", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="SAINT CHAMAS CASC", Replacement:="CASC", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="PEYROLLES CNPA", Replacement:="CNPA", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="MARIGNANE CMS", Replacement:="CMSA", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="MARTIGUES AC", Replacement:="MAAC", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="MARSEILLE RC", Replacement:="RCMA", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="LA CIOTAT SN", Replacement:="SNLC", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="VITROLLES SA", Replacement:="VSA", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="HYERES ASPTT", Replacement:="ASAH", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="SIX OURS ACSF", Replacement:="ACSF", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="VERDON AC", Replacement:="ACV", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="SAINT CASSIEN ASC", Replacement:="ASTC", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="LA SEYNE SUR MER AV", Replacement:="ASEY", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="TOULON AV", Replacement:="ATON", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="SAINTE MAXIME CA", Replacement:="CAMX", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="SALETTES CN", Replacement:="CNDS", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="AVIGNON SN", Replacement:="SNAV", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="CADEROUSSE SN", Replacement:="SNCA", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="MONACO SN", Replacement:="SNMO", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Range("A1").Select
+                        Columns("H:H").Select
+                        Selection.Replace What:="SAINTE CROIX AVN 04", Replacement:="AVN4", LookAt:= _
+                            xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                            ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                        Selection.Replace What:="MANOSQUE AC", Replacement:="ACDM", LookAt:= _
+                            xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                            ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                        Selection.Replace What:="ESPARRON DE VERDON CN", Replacement:="CNEV", LookAt:= _
+                            xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                            ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                        Selection.Replace What:="SAVINES LE LAC ASP", Replacement:="ASP", LookAt:= _
+                            xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                            ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                        Selection.Replace What:="EMBRUN CA", Replacement:="CAEM", LookAt:= _
+                            xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                            ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                        Selection.Replace What:="NICE CN", Replacement:="CNNI", LookAt:= _
+                            xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                            ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                        Selection.Replace What:="CANNES MANDELIEU RCCM", Replacement:="RCCM", LookAt:= _
+                            xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                            ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                        Selection.Replace What:="MENTON SCA", Replacement:="SCAM", LookAt:= _
+                            xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                            ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                        Selection.Replace What:="VILLEFRANCHE SN", Replacement:="SNVI", LookAt:= _
+                            xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                            ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                        Selection.Replace What:="MARSEILLE ASPTT", Replacement:="AMSA", LookAt:= _
+                            xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                            ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                        Selection.Replace What:="MARSEILLE AAS", Replacement:="AAS", LookAt:= _
+                            xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                            ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                        Selection.Replace What:="ISTRES ANO", Replacement:="ANOI", LookAt:= _
+                            xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                            ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                        Selection.Replace What:="CASSIS AC", Replacement:="ACDC", LookAt:= _
+                            xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                            ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                        Selection.Replace What:="MARSEILLE CA", Replacement:="CAM", LookAt:= _
+                            xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                            ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                        Selection.Replace What:="SAINT CHAMAS CASC", Replacement:="CASC", LookAt:= _
+                            xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                            ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                        Selection.Replace What:="PEYROLLES CNPA", Replacement:="CNPA", LookAt:= _
+                            xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                            ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                        Selection.Replace What:="MARIGNANE CMS", Replacement:="CMSA", LookAt:= _
+                            xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                            ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                        Selection.Replace What:="MARTIGUES AC", Replacement:="MAAC", LookAt:= _
+                            xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                            ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                        Selection.Replace What:="MARSEILLE RC", Replacement:="RCMA", LookAt:= _
+                            xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                            ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                        Selection.Replace What:="LA CIOTAT SN", Replacement:="SNLC", LookAt:= _
+                            xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                            ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                        Selection.Replace What:="VITROLLES SA", Replacement:="VSA", LookAt:= _
+                            xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                            ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                        Selection.Replace What:="HYERES ASPTT", Replacement:="ASAH", LookAt:= _
+                            xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                            ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                        Selection.Replace What:="SIX OURS ACSF", Replacement:="ACSF", LookAt:= _
+                            xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                            ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                        Selection.Replace What:="VERDON AC", Replacement:="ACV", LookAt:= _
+                            xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                            ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                        Selection.Replace What:="SAINT CASSIEN ASC", Replacement:="ASTC", LookAt:= _
+                            xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                            ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                        Selection.Replace What:="LA SEYNE SUR MER AV", Replacement:="ASEY", LookAt:= _
+                            xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                            ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                        Selection.Replace What:="TOULON AV", Replacement:="ATON", LookAt:= _
+                            xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                            ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                        Selection.Replace What:="SAINTE MAXIME CA", Replacement:="CAMX", LookAt:= _
+                            xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                            ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                        Selection.Replace What:="SALETTES CN", Replacement:="CNDS", LookAt:= _
+                            xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                            ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                        Selection.Replace What:="AVIGNON SN", Replacement:="SNAV", LookAt:= _
+                            xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                            ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                        Selection.Replace What:="CADEROUSSE SN", Replacement:="SNCA", LookAt:= _
+                            xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                            ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                        Selection.Replace What:="MONACO SN", Replacement:="SNMO", LookAt:= _
+                            xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                            ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                        Range("A1").Select
                         Dim cell As Range
                         Dim tempStr As String
                         Dim carequipage As Integer
@@ -323,125 +335,41 @@ Private Sub CreationTirages_Click()
                         jsonCell = Left(jsonCell, Len(jsonCell) - 1)
                         End If
                         jsonCell = jsonCell & "]},"
-                        Else
+                        End If
+                        If Sheets("Programme des Courses C2").Cells(i, 52).Value = "Relais" Then
+                        jsonCell = jsonCell & "{""name"": """
+                        If rameur1 <> "" Then
+                            jsonCell = jsonCell & rameur1
+                                If rameur2 <> "" Then
+                                jsonCell = jsonCell & " / " & rameur2
+                                    If rameur3 <> "" Then
+                                    jsonCell = jsonCell & " / " & rameur3
+                                        If rameur4 <> "" Then
+                                        jsonCell = jsonCell & " / " & rameur4
+                                            If rameur5 <> "" Then
+                                            jsonCell = jsonCell & " / " & rameur5
+                                                If rameur6 <> "" Then
+                                                jsonCell = jsonCell & " / " & rameur6
+                                                    If rameur7 <> "" Then
+                                                    jsonCell = jsonCell & " / " & rameur7
+                                                        If rameur8 <> "" Then
+                                                        jsonCell = jsonCell & " / " & rameur8
+                                                        End If
+                                                    End If
+                                                End If
+                                            End If
+                                        End If
+                                    End If
+                                End If
+                            End If
+                        jsonCell = jsonCell & """}]},"
+                        End If
+                        If Sheets("Programme des Courses C2").Cells(i, 52).Value = "Indiv" Then
                         jsonCell = jsonCell & "{""name"": """ & Sheets("Préparation Tirages C2").Cells(j, 7).Value & """}]},"
                         End If
                         Sheets("Préparation Tirages C2").Cells(j, 9).Value = Sheets("Import GOAL C2").Cells(numlignegoal, 3).Value
                         Sheets("Préparation Tirages C2").Cells(j, 11).Value = Sheets("Import GOAL C2").Cells(numlignegoal, 5).Value
-                        If Sheets("Réglages Régate").Range("E16").Value = "Indoor" Then
-                            If Sheets("Réglages Régate").Range("G16").Value = "QQCH" Then
-                            Sheets("Préparation Tirages C2").Cells(j, 10) = Sheets("Import GOAL C2").Cells(numlignegoal, 4).Value
-                            Else
-                            Sheets("Préparation Tirages C2").Cells(j, 10).Value = partants + 1
-                            End If
-                            numCollection.Add numlignegoal
-                            numlignegoal = 2
-                            j = j + 1
-                            partants = partants + 1
-                            casegoal = ""
-                            casetirage = ""
-                                    
-    Sheets("Préparation Tirages C2").Select
-    Columns("H:H").Select
-    Selection.Replace What:="SAINTE CROIX AVN 04", Replacement:="AVN4", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="MANOSQUE AC", Replacement:="ACDM", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="ESPARRON DE VERDON CN", Replacement:="CNEV", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="SAVINES LE LAC ASP", Replacement:="ASP", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="EMBRUN CA", Replacement:="CAEM", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="NICE CN", Replacement:="CNNI", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="CANNES MANDELIEU RCCM", Replacement:="RCCM", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="MENTON SCA", Replacement:="SCAM", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="VILLEFRANCHE SN", Replacement:="SNVI", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="MARSEILLE ASPTT", Replacement:="AMSA", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="MARSEILLE AAS", Replacement:="AAS", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="ISTRES ANO", Replacement:="ANOI", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="CASSIS AC", Replacement:="ACDC", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="MARSEILLE CA", Replacement:="CAM", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="SAINT CHAMAS CASC", Replacement:="CASC", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="PEYROLLES CNPA", Replacement:="CNPA", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="MARIGNANE CMS", Replacement:="CMSA", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="MARTIGUES AC", Replacement:="MAAC", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="MARSEILLE RC", Replacement:="RCMA", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="LA CIOTAT SN", Replacement:="SNLC", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="VITROLLES SA", Replacement:="VSA", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="HYERES ASPTT", Replacement:="ASAH", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="SIX OURS ACSF", Replacement:="ACSF", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="VERDON AC", Replacement:="ACV", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="SAINT CASSIEN ASC", Replacement:="ASTC", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="LA SEYNE SUR MER AV", Replacement:="ASEY", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="TOULON AV", Replacement:="ATON", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="SAINTE MAXIME CA", Replacement:="CAMX", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="SALETTES CN", Replacement:="CNDS", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="AVIGNON SN", Replacement:="SNAV", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="CADEROUSSE SN", Replacement:="SNCA", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="MONACO SN", Replacement:="SNMO", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Range("A1").Select
-                        Else
-                            Sheets("Préparation Tirages C2").Cells(j, 10) = Sheets("Import GOAL C2").Cells(numlignegoal, 4).Value
+                        Sheets("Préparation Tirages C2").Cells(j, 10).Value = partants + 1
                             numCollection.Add numlignegoal
                             numlignegoal = 2
                             j = j + 1
@@ -449,105 +377,104 @@ Private Sub CreationTirages_Click()
                             casegoal = ""
                             casetirage = ""
                             Sheets("Préparation Tirages C2").Select
-    Columns("H:H").Select
-    Selection.Replace What:="SAINTE CROIX AVN 04", Replacement:="AVN4", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="MANOSQUE AC", Replacement:="ACDM", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="ESPARRON DE VERDON CN", Replacement:="CNEV", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="SAVINES LE LAC ASP", Replacement:="ASP", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="EMBRUN CA", Replacement:="CAEM", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="NICE CN", Replacement:="CNNI", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="CANNES MANDELIEU RCCM", Replacement:="RCCM", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="MENTON SCA", Replacement:="SCAM", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="VILLEFRANCHE SN", Replacement:="SNVI", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="MARSEILLE ASPTT", Replacement:="AMSA", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="MARSEILLE AAS", Replacement:="AAS", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="ISTRES ANO", Replacement:="ANOI", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="CASSIS AC", Replacement:="ACDC", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="MARSEILLE CA", Replacement:="CAM", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="SAINT CHAMAS CASC", Replacement:="CASC", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="PEYROLLES CNPA", Replacement:="CNPA", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="MARIGNANE CMS", Replacement:="CMSA", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="MARTIGUES AC", Replacement:="MAAC", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="MARSEILLE RC", Replacement:="RCMA", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="LA CIOTAT SN", Replacement:="SNLC", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="VITROLLES SA", Replacement:="VSA", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="HYERES ASPTT", Replacement:="ASAH", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="SIX OURS ACSF", Replacement:="ACSF", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="VERDON AC", Replacement:="ACV", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="SAINT CASSIEN ASC", Replacement:="ASTC", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="LA SEYNE SUR MER AV", Replacement:="ASEY", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="TOULON AV", Replacement:="ATON", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="SAINTE MAXIME CA", Replacement:="CAMX", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="SALETTES CN", Replacement:="CNDS", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="AVIGNON SN", Replacement:="SNAV", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="CADEROUSSE SN", Replacement:="SNCA", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Selection.Replace What:="MONACO SN", Replacement:="SNMO", LookAt:= _
-        xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
-        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Range("A1").Select
-                        End If
+                            Columns("H:H").Select
+                            Selection.Replace What:="SAINTE CROIX AVN 04", Replacement:="AVN4", LookAt:= _
+                                xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                                ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                            Selection.Replace What:="MANOSQUE AC", Replacement:="ACDM", LookAt:= _
+                                xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                                ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                            Selection.Replace What:="ESPARRON DE VERDON CN", Replacement:="CNEV", LookAt:= _
+                                xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                                ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                            Selection.Replace What:="SAVINES LE LAC ASP", Replacement:="ASP", LookAt:= _
+                                xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                                ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                            Selection.Replace What:="EMBRUN CA", Replacement:="CAEM", LookAt:= _
+                                xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                                ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                            Selection.Replace What:="NICE CN", Replacement:="CNNI", LookAt:= _
+                                xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                                ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                            Selection.Replace What:="CANNES MANDELIEU RCCM", Replacement:="RCCM", LookAt:= _
+                                xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                                ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                            Selection.Replace What:="MENTON SCA", Replacement:="SCAM", LookAt:= _
+                                xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                                ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                            Selection.Replace What:="VILLEFRANCHE SN", Replacement:="SNVI", LookAt:= _
+                                xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                                ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                            Selection.Replace What:="MARSEILLE ASPTT", Replacement:="AMSA", LookAt:= _
+                                xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                                ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                            Selection.Replace What:="MARSEILLE AAS", Replacement:="AAS", LookAt:= _
+                                xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                                ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                            Selection.Replace What:="ISTRES ANO", Replacement:="ANOI", LookAt:= _
+                                xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                                ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                            Selection.Replace What:="CASSIS AC", Replacement:="ACDC", LookAt:= _
+                                xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                                ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                            Selection.Replace What:="MARSEILLE CA", Replacement:="CAM", LookAt:= _
+                                xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                                ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                            Selection.Replace What:="SAINT CHAMAS CASC", Replacement:="CASC", LookAt:= _
+                                xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                                ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                            Selection.Replace What:="PEYROLLES CNPA", Replacement:="CNPA", LookAt:= _
+                                xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                                ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                            Selection.Replace What:="MARIGNANE CMS", Replacement:="CMSA", LookAt:= _
+                                xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                                ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                            Selection.Replace What:="MARTIGUES AC", Replacement:="MAAC", LookAt:= _
+                                xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                                ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                            Selection.Replace What:="MARSEILLE RC", Replacement:="RCMA", LookAt:= _
+                                xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                                ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                            Selection.Replace What:="LA CIOTAT SN", Replacement:="SNLC", LookAt:= _
+                                xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                                ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                            Selection.Replace What:="VITROLLES SA", Replacement:="VSA", LookAt:= _
+                                xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                                ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                            Selection.Replace What:="HYERES ASPTT", Replacement:="ASAH", LookAt:= _
+                                xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                                ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                            Selection.Replace What:="SIX OURS ACSF", Replacement:="ACSF", LookAt:= _
+                                xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                                ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                            Selection.Replace What:="VERDON AC", Replacement:="ACV", LookAt:= _
+                                xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                                ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                            Selection.Replace What:="SAINT CASSIEN ASC", Replacement:="ASTC", LookAt:= _
+                                xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                                ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                            Selection.Replace What:="LA SEYNE SUR MER AV", Replacement:="ASEY", LookAt:= _
+                                xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                                ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                            Selection.Replace What:="TOULON AV", Replacement:="ATON", LookAt:= _
+                                xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                                ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                            Selection.Replace What:="SAINTE MAXIME CA", Replacement:="CAMX", LookAt:= _
+                                xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                                ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                            Selection.Replace What:="SALETTES CN", Replacement:="CNDS", LookAt:= _
+                                xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                                ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                            Selection.Replace What:="AVIGNON SN", Replacement:="SNAV", LookAt:= _
+                                xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                                ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                            Selection.Replace What:="CADEROUSSE SN", Replacement:="SNCA", LookAt:= _
+                                xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                                ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                            Selection.Replace What:="MONACO SN", Replacement:="SNMO", LookAt:= _
+                                xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+                                ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+                            Range("A1").Select
                     End If
                 Loop
                 If partants = Sheets("Réglages Régate").Range("E14").Value Then
@@ -569,28 +496,28 @@ Private Sub CreationTirages_Click()
                 jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""calories"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""individual"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_size"": 1,""time_cap"": 0}}"
                 End If
                 If Sheets("Programme des Courses C2").Cells(i, 52).Value = "Equipe" And Sheets("Programme des Courses C2").Cells(i, 53).Value = "Distance" And Sheets("Programme des Courses C2").Cells(i, 54).Value = "Moyenne" Then
-                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""meters"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""team"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_scoring"": ""avg"",""team_size"": " & Sheets("Réglages Régate").Range("E14").Value & ",""time_cap"": 0}}"
+                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""meters"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""team"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_scoring"": ""avg"",""team_size"": " & Sheets("Programme des Courses C2").Cells(i, 56).Value & ",""time_cap"": 0}}"
                 End If
                 If Sheets("Programme des Courses C2").Cells(i, 52).Value = "Equipe" And Sheets("Programme des Courses C2").Cells(i, 53).Value = "Max de Distance" And Sheets("Programme des Courses C2").Cells(i, 54).Value = "Moyenne" Then
-                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""time"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""team"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_scoring"": ""avg"",""team_size"": " & Sheets("Réglages Régate").Range("E14").Value & ",""time_cap"": 0}}"
+                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""time"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""team"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_scoring"": ""avg"",""team_size"": " & Sheets("Programme des Courses C2").Cells(i, 56).Value & ",""time_cap"": 0}}"
                 End If
                 If Sheets("Programme des Courses C2").Cells(i, 52).Value = "Equipe" And Sheets("Programme des Courses C2").Cells(i, 53).Value = "Max de Calories" And Sheets("Programme des Courses C2").Cells(i, 54).Value = "Moyenne" Then
-                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""time"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""team calorie score"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_scoring"": ""avg"",""team_size"": " & Sheets("Réglages Régate").Range("E14").Value & ",""time_cap"": 0}}"
+                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""time"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""team calorie score"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_scoring"": ""avg"",""team_size"": " & Sheets("Programme des Courses C2").Cells(i, 56).Value & ",""time_cap"": 0}}"
                 End If
                 If Sheets("Programme des Courses C2").Cells(i, 52).Value = "Equipe" And Sheets("Programme des Courses C2").Cells(i, 53).Value = "Calories" And Sheets("Programme des Courses C2").Cells(i, 54).Value = "Moyenne" Then
-                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""calories"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""team"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_scoring"": ""avg"",""team_size"": " & Sheets("Réglages Régate").Range("E14").Value & ",""time_cap"": 0}}"
+                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""calories"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""team"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_scoring"": ""avg"",""team_size"": " & Sheets("Programme des Courses C2").Cells(i, 56).Value & ",""time_cap"": 0}}"
                 End If
                 If Sheets("Programme des Courses C2").Cells(i, 52).Value = "Equipe" And Sheets("Programme des Courses C2").Cells(i, 53).Value = "Distance" And Sheets("Programme des Courses C2").Cells(i, 54).Value = "Somme" Then
-                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""meters"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""team"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_scoring"": ""sum"",""team_size"": " & Sheets("Réglages Régate").Range("E14").Value & ",""time_cap"": 0}}"
+                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""meters"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""team"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_scoring"": ""sum"",""team_size"": " & Sheets("Programme des Courses C2").Cells(i, 56).Value & ",""time_cap"": 0}}"
                 End If
                 If Sheets("Programme des Courses C2").Cells(i, 52).Value = "Equipe" And Sheets("Programme des Courses C2").Cells(i, 53).Value = "Max de Distance" And Sheets("Programme des Courses C2").Cells(i, 54).Value = "Somme" Then
-                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""time"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""team"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_scoring"": ""sum"",""team_size"": " & Sheets("Réglages Régate").Range("E14").Value & ",""time_cap"": 0}}"
+                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""time"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""team"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_scoring"": ""sum"",""team_size"": " & Sheets("Programme des Courses C2").Cells(i, 56).Value & ",""time_cap"": 0}}"
                 End If
                 If Sheets("Programme des Courses C2").Cells(i, 52).Value = "Equipe" And Sheets("Programme des Courses C2").Cells(i, 53).Value = "Max de Calories" And Sheets("Programme des Courses C2").Cells(i, 54).Value = "Somme" Then
-                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""time"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""team calorie score"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_scoring"": ""sum"",""team_size"": " & Sheets("Réglages Régate").Range("E14").Value & ",""time_cap"": 0}}"
+                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""time"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""team calorie score"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_scoring"": ""sum"",""team_size"": " & Sheets("Programme des Courses C2").Cells(i, 56).Value & ",""time_cap"": 0}}"
                 End If
                 If Sheets("Programme des Courses C2").Cells(i, 52).Value = "Equipe" And Sheets("Programme des Courses C2").Cells(i, 53).Value = "Calories" And Sheets("Programme des Courses C2").Cells(i, 54).Value = "Somme" Then
-                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""calories"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""team"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_scoring"": ""sum"",""team_size"": " & Sheets("Réglages Régate").Range("E14").Value & ",""time_cap"": 0}}"
+                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""calories"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""team"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_scoring"": ""sum"",""team_size"": " & Sheets("Programme des Courses C2").Cells(i, 56).Value & ",""time_cap"": 0}}"
                 End If
                 If Sheets("Programme des Courses C2").Cells(i, 52).Value = "Relais" And Sheets("Programme des Courses C2").Cells(i, 53).Value = "Distance" Then
                 jsonCell = jsonCell & """display_prompt_at_splits"": true,""duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""meters"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""relay"",""sound_horn_at_splits"": false,""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_size"": 1,""time_cap"": 0}}"
@@ -623,7 +550,6 @@ Private Sub CreationTirages_Click()
            partants2 = 0
            Do While partants2 < Sheets("Réglages Régate").Range("E14").Value
                Sheets("Programme des Courses C2").Rows(l).Copy Destination:=Worksheets("Préparation Tirages C2").Range("A" & k)
-                Sheets("Préparation Tirages C2").Cells(k, 1).Value = Sheets("Préparation Tirages C2").Cells(k, 7)
                 Dim C As String
                 C = Sheets("Préparation Tirages C2").Cells(k, 3).Value & "_" & Sheets("Préparation Tirages C2").Cells(k, 4).Value
                 Dim D As String
@@ -632,9 +558,9 @@ Private Sub CreationTirages_Click()
                 Sheets("Préparation Tirages C2").Cells(k, 4).Value = D
                 Sheets("Préparation Tirages C2").Cells(k, 5).Value = C
                 Sheets("Préparation Tirages C2").Cells(k, 6).Value = Sheets("Préparation Tirages C2").Cells(k, 9).Value
-                Sheets("Préparation Tirages C2").Cells(k, 7).Value = "TBD"
-                Sheets("Préparation Tirages C2").Cells(k, 8).Value = "TBD"
-                Sheets("Préparation Tirages C2").Cells(k, 9).Value = "TBD"
+                Sheets("Préparation Tirages C2").Cells(k, 7).Value = "A Déterminer"
+                Sheets("Préparation Tirages C2").Cells(k, 8).Value = "A Déterminer"
+                Sheets("Préparation Tirages C2").Cells(k, 9).Value = "A Déterminer"
                 Sheets("Préparation Tirages C2").Cells(k, 10).Value = partants2 + 1
                 Sheets("Préparation Tirages C2").Cells(k, 11).Value = ""
                 k = k + 1
@@ -738,8 +664,9 @@ alea = False
 Dim random_method As String
 random_method = ""
 Sheets("Réglages Régate").Select
-            Sheets("Réglages Régate").Range("G16").Value = ""
-    Sheets("Gestion Concept2").Select
+Sheets("Réglages Régate").Range("G16").Value = ""
+Sheets("Réglages Régate").Range("H16").Value = ""
+Sheets("Gestion Concept2").Select
 If MsgBox("Voulez-vous utiliser un tirage aléatoire ?", vbYesNo + vbQuestion, "Tirages Aléatoires ?") = vbYes Then
 alea = True
 'Mettre créer une colonne random, en ER
@@ -751,16 +678,13 @@ alea = True
     Range("ER1").Value = "Random"
     Range("ER2").Select
     Dim rand As Long
-    rand = 998
+    rand = Sheets("Import GOAL C2").Cells(Sheets("Import GOAL C2").Rows.Count, "C").End(xlUp).Row - 1
     For rand = 1 To rand
     ActiveCell.Value = Rnd()
     ActiveCell.Offset(1, 0).Select
 Next rand
 'Trier la table
 ActiveWorkbook.Worksheets("Import GOAL C2").Sort.SortFields.Clear
-    ActiveWorkbook.Worksheets("Import GOAL C2").Sort.SortFields.Add2 Key:=Range( _
-        "C2:C999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
-        xlSortNormal
     ActiveWorkbook.Worksheets("Import GOAL C2").Sort.SortFields.Add2 Key:=Range( _
         "ER2:ER999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
         xlSortNormal
@@ -773,14 +697,15 @@ ActiveWorkbook.Worksheets("Import GOAL C2").Sort.SortFields.Clear
         .Apply
     End With
     'Effacer la colonne random
+    Range("ER1:ER999").Select
     Range("ER1:ER999").Value = ""
     Range("A1").Select
     
-    ElseIf MsgBox("Voulez-vous utiliser un tirage où le numéro du bateau est l'ordre de départ ? (Tête de Rivière UNIQUEMENT)", vbYesNo + vbQuestion, "Tirages par Numéro de Bateau ?") = vbYes Then
+    ElseIf MsgBox("Voulez-vous utiliser un tirage où le numéro du bateau défini dans GOAL est l'ordre de départ ?", vbYesNo + vbQuestion, "Tirages par Numéro de Bateau ?") = vbYes Then
     'Procéder au tirage via l'ordre croissant des numéros de bateau
     random_method = "Par l'ordre croissant des numéros de bateau"
     Sheets("Réglages Régate").Select
-    Sheets("Réglages Régate").Range("G16").Value = "TDR"
+    Sheets("Réglages Régate").Range("H16").Value = "Num"
         Sheets("Import GOAL C2").Select
     ActiveWorkbook.Worksheets("Import GOAL C2").Sort.SortFields.Clear
     ActiveWorkbook.Worksheets("Import GOAL C2").Sort.SortFields.Add2 Key:=Range( _
@@ -872,7 +797,7 @@ Dim answer1 As Integer
 answer1 = MsgBox("Confirmez-vous la validation des tirages ?", vbYesNo + vbExclamation, "Confirmation Validation Tirages")
   If answer1 = vbYes Then
   Sheets("Préparation Tirages C2").Select
-    Range("A2:K999").Select
+    Range("A2:R999").Select
     Selection.Copy
     Sheets("Feuille Concept2").Select
     Range("A8").Select
@@ -899,8 +824,9 @@ answer1 = MsgBox("Confirmez-vous la validation des tirages ?", vbYesNo + vbExcla
             Range("A1").Select
             Sheets("Réglages Régate").Select
             Sheets("Réglages Régate").Range("G16").Value = ""
+            Sheets("Réglages Régate").Range("H16").Value = ""
             Sheets("Gestion Concept2").Select
-    MsgBox "Les tirages ont bien été validés et transférés dans la table pour l'export vers CrewTimer !", vbOKOnly + vbInformation, "Tirages Validés"
+    MsgBox "Les tirages ont bien été validés et transférés dans la table pour l'export vers Concept2 !", vbOKOnly + vbInformation, "Tirages Validés"
     Unload Me
   Else
     Exit Sub
@@ -914,6 +840,7 @@ answer2 = MsgBox("Confirmez-vous l'invalidation des tirages ?", vbYesNo + vbExcl
     Range("A2:K999").Select
     Selection.EntireRow.Delete
     Range("A1").Select
+    ActiveWorkbook.Worksheets("Programme des Courses C2").Columns("BC").ClearContents
     MsgBox "Les tirages ont bien été invalidés.", vbOKOnly + vbInformation, "Tirages Invalidés"
     Call UserForm_Initialize
   Else

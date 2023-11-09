@@ -112,9 +112,12 @@ Dim reponse As VbMsgBoxResult
     Dim i As Long
     LastRow = Sheets("Programme des Courses C2").Cells(Sheets("Programme des Courses C2").Rows.Count, "BC").End(xlUp).Row
     For i = 2 To LastRow
+    Do While Sheets("Programme des Courses C2").Cells(i, 55).Value = ""
+    i = i + 1
+    Loop
     Json = Sheets("Programme des Courses C2").Cells(i, 55).Value
     jsonString = Sheets("Programme des Courses C2").Cells(i, 55).Value ' Le paramètre Whitespace ajoute une indentation pour une meilleure lisibilité
-    cheminFichier = dossier & "\" & Sheets("Programme des Courses C2").Cells(i, 3).Value & "_" & Sheets("Programme des Courses C2").Cells(i, 4).Value & ".rac2"  ' Remplacez "votre_fichier.json" par le nom de fichier de votre choix
+    cheminFichier = dossier & "\" & Sheets("Réglages Régate").Range("D4").Value & "_" & Sheets("Programme des Courses C2").Cells(i, 3).Value & "_" & Sheets("Programme des Courses C2").Cells(i, 4).Value & ".rac2"  ' Remplacez "votre_fichier.json" par le nom de fichier de votre choix
     ' Enregistrer la chaîne JSON dans le fichier
             Open cheminFichier For Output As #1
             Print #1, jsonString
@@ -265,6 +268,7 @@ answer1 = MsgBox("Confirmez-vous l'effacement de la feuille Concept2 ainsi que d
         Sheets("Préparation Tirages C2").Select
         Range("A2:K999").Select
         Selection.EntireRow.Delete
+        ActiveWorkbook.Worksheets("Programme des Courses C2").Columns("BC").ClearContents
         Sheets("Feuille Concept2").Select
     MsgBox "La feuille Concept2 ainsi que les tirages ont été effacés !", vbOKOnly + vbInformation, "Concept2 et Tirages Effacés"
   Else

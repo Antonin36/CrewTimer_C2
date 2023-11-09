@@ -25,4 +25,277 @@ Attribute SupprTirages.VB_ProcData.VB_Invoke_Func = " \n14"
     Selection.EntireRow.Delete
     Range("A1").Select
 End Sub
+Sub FiltreCourse()
+    Rows("1:1").Select
+    Selection.AutoFilter
+    ActiveSheet.Range("$A$1:$H$28").AutoFilter Field:=1, Criteria1:="=C01-H1", _
+        Operator:=xlOr, Criteria2:="=C01-H3"
+    ActiveWorkbook.Save
+End Sub
+Sub Test_Filtre()
+Dim course1 As String, course2 As String, course3 As String, course4 As String, course5 As String
+Dim course6 As String, course7 As String, course8 As String, course9 As String, course10 As String
+Dim course11 As String, course12 As String, course13 As String, course14 As String, course15 As String
+With Sheets("Stockage Impressions")
+        course1 = .Range("A1").Value
+        course2 = .Range("B1").Value
+        course3 = .Range("C1").Value
+        course4 = .Range("D1").Value
+        course5 = .Range("E1").Value
+        course6 = .Range("F1").Value
+        course7 = .Range("G1").Value
+        course8 = .Range("H1").Value
+        course9 = .Range("I1").Value
+        course10 = .Range("J1").Value
+        course11 = .Range("K1").Value
+        course12 = .Range("L1").Value
+        course13 = .Range("M1").Value
+        course14 = .Range("N1").Value
+        course15 = .Range("O1").Value
+    End With
+
+    With Sheets("Import Tirages")
+        .AutoFilterMode = False
+        .Range("$A$1:$EA$999").AutoFilter Field:=1, Criteria1:=Array(course1, course2, course3, course4, course5, _
+            course6, course7, course8, course9, course10, course11, course12, course13, course14, course15), _
+            Operator:=xlFilterValues
+        .Range("A1").Select
+    End With
+    'Sheets("Impressions CT").Select
+End Sub
+
+Sub TestCopieTirages()
+    Sheets("Import Tirages").Select
+    Cells.Select
+    Selection.ClearContents
+    Range("A1").Select
+    Sheets("Feuille CrewTimer").Select
+    Range("A7:K35").Select
+    Selection.Copy
+    ActiveWindow.ScrollWorkbookTabs Sheets:=-1
+    Sheets("Import Tirages").Select
+    Range("A1").Select
+    ActiveSheet.Paste
+    Columns("E:E").Select
+    Application.CutCopyMode = False
+    Selection.Delete Shift:=xlToLeft
+    Selection.Delete Shift:=xlToLeft
+    Columns("I:I").Select
+    Selection.Delete Shift:=xlToLeft
+    Columns("E:E").EntireColumn.AutoFit
+    Columns("F:F").EntireColumn.AutoFit
+    Columns("H:H").EntireColumn.AutoFit
+    Columns("G:G").EntireColumn.AutoFit
+    Columns("B:B").EntireColumn.AutoFit
+    Columns("A:A").EntireColumn.AutoFit
+    Range("I1").Select
+End Sub
+Sub ImpTirages()
+'
+' ImpTirages Macro
+'
+
+'
+    Sheets("Import Tirages").Select
+    Cells.Select
+    Selection.ClearContents
+    Range("A1").Select
+    Sheets("Feuille CrewTimer").Select
+    Range("A7:K999").Select
+    Selection.Copy
+    Sheets("Import Tirages").Select
+    Range("A1").Select
+    ActiveSheet.Paste
+    'insérer filtre
+    Columns("E:E").Select
+    Selection.Delete Shift:=xlToLeft
+    Columns("J:J").Select
+    Selection.Delete Shift:=xlToLeft
+    Columns("E:E").Select
+    Selection.Delete Shift:=xlToLeft
+    Range("A2:I999").Select
+    Selection.Copy
+    Sheets("Impressions Tirages CT ").Select
+    Range("A13").Select
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+    Range("A1").Select
+    Unload Me
+End Sub
+Sub formatResultat()
+'
+' formatResultat Macro
+'
+
+'
+    Sheets("Import Resultats").Select
+    Columns("E:E").Select
+    Selection.Delete Shift:=xlToLeft
+    Columns("G:G").Select
+    Selection.Delete Shift:=xlToLeft
+    Selection.Delete Shift:=xlToLeft
+    Selection.Delete Shift:=xlToLeft
+    Selection.Delete Shift:=xlToLeft
+    Range("A1:H999").Select
+    Selection.Copy
+    Sheets("Impressions Résultats CT").Select
+    Range("A13:H999").Select
+    Application.CutCopyMode = False
+    Selection.ClearContents
+    Range("A13").Select
+    Sheets("Import Resultats").Select
+    Range("A1:H999").Select
+    Selection.Copy
+    Sheets("Impressions Résultats CT").Select
+    Range("A13").Select
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+End Sub
+Sub EffImpr()
+'
+' EffImpr Macro
+'
+
+'
+    Sheets("Impressions Tirages CT").Select
+    Range("A13:H420").Select
+    Selection.ClearContents
+    Range("A13").Select
+    Sheets("Import Resultats CT").Select
+End Sub
+Sub testtri()
+'
+' testtri Macro
+'
+
+'
+    Sheets("Programme des Courses CT").Select
+    Columns("F:F").Select
+    ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Clear
+    ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Add2 Key _
+        :=Range("F1:F999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption _
+        :=xlSortNormal
+    With ActiveWorkbook.Worksheets("Programme des Courses CT").Sort
+        .SetRange Range("A1:AW999")
+        .Header = xlYes
+        .MatchCase = False
+        .Orientation = xlTopToBottom
+        .SortMethod = xlPinYin
+        .Apply
+    End With
+    Sheets("Préparation Tirages CT").Select
+End Sub
+Sub IfAleaBeforeNon()
+'
+' IfAleaBeforeNon Macro
+'
+
+'
+    Sheets("Préparation Tirages CT").Select
+    Columns("J:J").Select
+    Selection.Cut
+    Columns("M:M").Select
+    ActiveSheet.Paste
+    Range("G2:L999").Select
+    Range("L2").Activate
+    ActiveWorkbook.Worksheets("Préparation Tirages CT").Sort.SortFields.Clear
+    ActiveWorkbook.Worksheets("Préparation Tirages CT").Sort.SortFields.Add2 Key _
+        :=Range("L2:L999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption _
+        :=xlSortNormal
+    With ActiveWorkbook.Worksheets("Préparation Tirages CT").Sort
+        .SetRange Range("G2:L999")
+        .Header = xlYes
+        .MatchCase = False
+        .Orientation = xlTopToBottom
+        .SortMethod = xlPinYin
+        .Apply
+    End With
+    Columns("M:M").Select
+    Selection.Cut
+    Columns("J:J").Select
+    ActiveSheet.Paste
+    Range("A2").Select
+End Sub
+Sub EnleverLigneInutiles()
+'
+' EnleverLigneInutiles Macro
+'
+
+'
+    Sheets("Préparation Tirages CT").Select
+    Rows("1:1").Select
+    Selection.AutoFilter
+    ActiveSheet.Range("$A$1:$Z$403").AutoFilter Field:=7, Criteria1:="( )"
+    Rows("2:1048576").Select
+    Selection.Delete Shift:=xlUp
+    Rows("1:1").Select
+    ActiveSheet.ShowAllData
+    Selection.AutoFilter
+    Range("A1").Select
+End Sub
+Sub RandomTirages()
+'
+' RandomTirages Macro
+'
+
+'
+    Sheets("Feuille CrewTimer").Select
+    Range("M7").Select
+    ActiveCell.FormulaR1C1 = "Random"
+    Range("M8").Select
+    ActiveCell.FormulaR1C1 = "=RAND()"
+    Range("M8").Select
+    Selection.AutoFill Destination:=Range("M8:M1000"), Type:=xlFillDefault
+    Range("M8:M1000").Select
+    Rows("8:1048576").Select
+    ActiveWorkbook.Worksheets("Feuille CrewTimer").Sort.SortFields.Clear
+    ActiveWorkbook.Worksheets("Feuille CrewTimer").Sort.SortFields.Add2 Key:= _
+        Range("A8:A1000"), SortOn:=xlSortOnValues, Order:=xlAscending, CustomOrder _
+        :="Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday", DataOption:= _
+        xlSortNormal
+    ActiveWorkbook.Worksheets("Feuille CrewTimer").Sort.SortFields.Add2 Key:= _
+        Range("B8:B1000"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption _
+        :=xlSortNormal
+    ActiveWorkbook.Worksheets("Feuille CrewTimer").Sort.SortFields.Add2 Key:= _
+        Range("M8:M1000"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption _
+        :=xlSortNormal
+    With ActiveWorkbook.Worksheets("Feuille CrewTimer").Sort
+        .SetRange Range("A7:N1000")
+        .Header = xlYes
+        .MatchCase = False
+        .Orientation = xlTopToBottom
+        .SortMethod = xlPinYin
+        .Apply
+    End With
+    Columns("M:M").Select
+    Selection.Delete Shift:=xlToLeft
+    Range("A1").Select
+End Sub
+
+Sub RandTirages()
+' Générer des valeurs aléatoires dans la colonne M
+ActiveWorkbook.Worksheets("Feuille CrewTimer").Range("M8:M1000").FormulaR1C1 = "=RAND()"
+
+' Tri des données
+With ActiveWorkbook.Worksheets("Feuille CrewTimer").Sort
+    .SortFields.Clear
+    .SortFields.Add2 Key:=ActiveWorkbook.Worksheets("Feuille CrewTimer").Range("A8:A1000"), SortOn:=xlSortOnValues, Order:=xlAscending, CustomOrder _
+        :="Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday", DataOption:=xlSortNormal
+    .SortFields.Add2 Key:=ActiveWorkbook.Worksheets("Feuille CrewTimer").Range("B8:B1000"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption _
+        :=xlSortNormal
+    .SortFields.Add2 Key:=ActiveWorkbook.Worksheets("Feuille CrewTimer").Range("M8:M1000"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption _
+        :=xlSortNormal
+    .SetRange ActiveWorkbook.Worksheets("Feuille CrewTimer").Range("A7:N1000")
+    .Header = xlYes
+    .MatchCase = False
+    .Orientation = xlTopToBottom
+    .SortMethod = xlPinYin
+    .Apply
+End With
+
+' Suppression de la colonne M
+ActiveWorkbook.Worksheets("Feuille CrewTimer").Columns("M:M").Delete Shift:=xlToLeft
+
+End Sub
+
 

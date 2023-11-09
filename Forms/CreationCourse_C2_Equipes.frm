@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} CreationCourse_C2_Equipes 
    Caption         =   "Création d'une Course par Equipes"
-   ClientHeight    =   8040
+   ClientHeight    =   8440.001
    ClientLeft      =   110
    ClientTop       =   450
    ClientWidth     =   9780.001
@@ -43,6 +43,7 @@ Private Sub Sauvegarder_Click()
             Sheets("Programme des Courses C2").Cells(LastRow, "AX").Value = DureeCourse.Text
             Sheets("Programme des Courses C2").Cells(LastRow, "AY").Value = Split.Text
             Sheets("Programme des Courses C2").Cells(LastRow, "AZ").Value = "Equipe"
+            Sheets("Programme des Courses C2").Cells(LastRow, "BD").Value = TailleEquipe.Text
             Sheets("Programme des Courses C2").Select
             Columns("G:G").Select
             Selection.Replace What:="Lundi", Replacement:="Monday", LookAt:=xlWhole, _
@@ -309,6 +310,15 @@ Dim UniqueList()    As String
     Me.TypeCourse.AddItem ("Calories")
     Me.ModeCalcul.AddItem ("Moyenne")
     Me.ModeCalcul.AddItem ("Somme")
+    Me.TailleEquipe.AddItem ("1")
+    Me.TailleEquipe.AddItem ("2")
+    Me.TailleEquipe.AddItem ("3")
+    Me.TailleEquipe.AddItem ("4")
+    Me.TailleEquipe.AddItem ("5")
+    Me.TailleEquipe.AddItem ("6")
+    Me.TailleEquipe.AddItem ("7")
+    Me.TailleEquipe.AddItem ("8")
+    
 End Sub
 
 
