@@ -1,27 +1,40 @@
 # CrewTimer_C2
-Un système de gestion de course avec la possibilité d'importer directement les fichiers.
+Un système de gestion de course avec la possibilité d'importer directement les fichiers. \
+\
+Fonctions Implantées : \
 
-Fonctions Implantées :
+Générales : 
+- Jusqu'à 100 partants par course, 
+- Jusqu'à 40 catégories sur la même régate, 
+- Jusqu'à 200 courses. 
+
 CrewTimer :
-Import depuis GOAL
-Tirages Automatiques (Aléatoire, Par Numéro de Bateau et Par Ordre Alphabétique des Noms Courts des Clubs, Prise en Charge TDR.)
-Import Résultats depuis CrewTimer
-Impressions Tirages et Résultats (jusqu'à 17 pages)
-Gestion du Programme des Courses
 
-Concept2 :
-Import depuis GOAL
-Tirages Automatiques (Aléatoire, Par Numéro de Bateau et Par Ordre Alphabétique des Noms Courts des Clubs, Prise en Charge TDR.)
-Import Résultats depuis CrewTimer
-Impressions Tirages (jusqu'à 17 pages)
-Gestion du Programme des Courses
-Génération des Fichiers RAC2
+- Import depuis GOAL FFSA 
+- Tirages Automatiques (Aléatoire, Par Numéro de Bateau et Par Ordre Alphabétique des Noms Courts des Clubs, Prise en Charge TDR), 
+- Import Résultats depuis CrewTimer, 
+- Impressions Tirages et Résultats (Jusqu'à 17 pages, augmentable/diminutible si besoin.), 
+- Gestion du Programme des Courses. 
 
-Fonctions à Implanter :
-CrewTimer :
-Import depuis OPUSS
-Import depuis FFSU
+Concept2 : 
 
-Concept2 :
-Import depuis OPUSS
-Import depuis FFSU
+- Import depuis GOAL FFSA, 
+- Tirages Automatiques (Aléatoire, Par Numéro Défini et Par Ordre Alphabétique des Noms Courts des Clubs.) 
+- Gestion de tous les types de courses prévus dans ErgRace (Individuel, Par Equipe, En Relais), 
+- Gestion de tous les types de distance prévus dans ErgRace (Calories, Distance, Max de Distance sur un temps donné, etc...), 
+- Impressions Tirages (Jusqu'à 17 pages, augmentable/diminutible si besoin.), 
+- Gestion du Programme des Courses, 
+- Génération des Fichiers RAC2 pour importation dans ErgRace. \
+Note Importante : L'impression des Résultats doit se faire dans ErgRace !
+
+Fonctions à Implanter : \
+\
+CrewTimer : \
+\
+Import depuis OPUSS, \
+Import depuis FFSU. \
+\
+Concept2 : \
+\
+Import depuis OPUSS, \
+Import depuis FFSU.
