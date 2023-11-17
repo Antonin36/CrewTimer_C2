@@ -1,7 +1,7 @@
 # CrewTimer_C2
 Un système de gestion de course avec la possibilité d'importer directement les fichiers. \
 \
-Fonctions Implantées : \
+Fonctions Implantées : 
 
 Générales : 
 - Jusqu'à 100 partants par course, 
@@ -29,12 +29,9 @@ Note Importante : L'impression des Résultats doit se faire dans ErgRace !
 
 Fonctions à Implanter : \
 \
-CrewTimer : \
+CrewTimer et Concept2 : \
 \
 Import depuis OPUSS, \
-Import depuis FFSU. \
-\
-Concept2 : \
-\
-Import depuis OPUSS, \
-Import depuis FFSU.
+Import depuis FFSU, \
+Gestion des Inscriptions, \
+Webservices GOAL.
