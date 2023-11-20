@@ -17,16 +17,16 @@ Private alea As Boolean
 Private numCollection As New Collection ' Déclarez une collection pour stocker les numéros de ligne
 
 ' Fonction pour ajouter un numéro de ligne à la collection
-Sub AddToCollection(col As Collection, Item As Long)
+Sub AddToCollection(Col As Collection, Item As Long)
     On Error Resume Next
-    col.Add Item, CStr(Item) ' Utilisez CStr pour convertir le numéro de ligne en une clé de chaîne unique
+    Col.Add Item, CStr(Item) ' Utilisez CStr pour convertir le numéro de ligne en une clé de chaîne unique
     On Error GoTo 0
 End Sub
-Function IsInCollection(col As Collection, val As Long) As Boolean
+Function IsInCollection(Col As Collection, val As Long) As Boolean
     On Error Resume Next
     Dim Item As Variant
     IsInCollection = False
-    For Each Item In col
+    For Each Item In Col
         If Item = val Then
             IsInCollection = True
             Exit Function
@@ -36,8 +36,8 @@ Function IsInCollection(col As Collection, val As Long) As Boolean
 End Function
 
 ' Fonction pour vider la collection
-Sub ClearCollection(col As Collection)
-    Set col = New Collection
+Sub ClearCollection(Col As Collection)
+    Set Col = New Collection
 End Sub
 Private Sub CreationTirages_Click()
     Application.ScreenUpdating = False
@@ -66,6 +66,9 @@ Private Sub CreationTirages_Click()
         .SortMethod = xlPinYin
         .Apply
     End With
+    Range("B8:B999").Select
+    Selection.NumberFormat = "hh:mm:ss"
+    Range("B8").Select
     ClearCollection numCollection
     'Trouver la dernière Ligne Utilisée en Colonne A de la Feuille Origine
     LastRow = Sheets("Programme des Courses CT").Cells(Sheets("Programme des Courses CT").Rows.Count, "A").End(xlUp).Row
@@ -136,8 +139,8 @@ Private Sub CreationTirages_Click()
                                 End If
                             End If
                         End If
-                        If Sheets("Import GOAL CT").Cells(numlignegoal, 104).Value <> "" Then
-                            Equipage = Equipage & " / Bar : " & Sheets("Import GOAL CT").Cells(numlignegoal, 104).Value & " " & Sheets("Import GOAL CT").Cells(numlignegoal, 105).Value
+                        If Sheets("Import GOAL CT").Cells(numlignegoal, 102).Value <> "" Then
+                            Equipage = Equipage & " / Bar : " & Sheets("Import GOAL CT").Cells(numlignegoal, 102).Value & " " & Sheets("Import GOAL CT").Cells(numlignegoal, 103).Value
                         End If
                         Equipage = Equipage & ")"
                         Sheets("Préparation Tirages CT").Cells(j, 7).Value = Equipage
@@ -366,6 +369,23 @@ Private Sub CreationTirages_Click()
         ActiveSheet.ShowAllData
         Selection.AutoFilter
         Range("A1").Select
+        If Sheets("Réglages Régate").Range("G16").Value = "TDR" Then
+        Sheets("Préparation Tirages CT").Select
+    Range("J2:J999").Select
+    ActiveWorkbook.Worksheets("Préparation Tirages CT").Sort.SortFields.Clear
+    ActiveWorkbook.Worksheets("Préparation Tirages CT").Sort.SortFields.Add2 Key _
+        :=Range("J2:J999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption _
+        :=xlSortNormal
+    With ActiveWorkbook.Worksheets("Préparation Tirages CT").Sort
+        .SetRange Range("A1:AW999")
+        .Header = xlYes
+        .MatchCase = False
+        .Orientation = xlTopToBottom
+        .SortMethod = xlPinYin
+        .Apply
+    End With
+    Range("A1").Select
+        End If
         If Sheets("Réglages Régate").Range("G16").Value = "Rand" Then
         Sheets("Réglages Régate").Select
         Sheets("Réglages Régate").Range("G16").Value = ""
@@ -561,6 +581,9 @@ answer1 = MsgBox("Confirmez-vous la validation des tirages ?", vbYesNo + vbExcla
             Range("A1").Select
             Sheets("Réglages Régate").Select
             Sheets("Réglages Régate").Range("G16").Value = ""
+            Range("B8:B999").Select
+            Selection.NumberFormat = "hh:mm:ss"
+            Range("B8").Select
             Sheets("Gestion CrewTimer").Select
     MsgBox "Les tirages ont bien été validés et transférés dans la table pour l'export vers CrewTimer !", vbOKOnly + vbInformation, "Tirages Validés"
     Unload Me

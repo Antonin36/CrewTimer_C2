@@ -303,14 +303,7 @@ Private Sub Imprimer_Click()
     End With
     'Sheets("Impressions CT").Select
     
-    Sheets("Import Resultats CT").Select
-    Columns("E:E").Select
-    Selection.Delete Shift:=xlToLeft
-    Columns("G:G").Select
-    Selection.Delete Shift:=xlToLeft
-    Selection.Delete Shift:=xlToLeft
-    Selection.Delete Shift:=xlToLeft
-    Selection.Delete Shift:=xlToLeft
+    
     Range("A2:H999").Select
     Selection.Copy
     Sheets("Impressions Résultats CT").Select
@@ -325,6 +318,13 @@ Private Sub Imprimer_Click()
     Range("A13").Select
     Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
         :=False, Transpose:=False
+    Range("A1").Select
+    With Sheets("Import Resultats CT")
+        If .AutoFilterMode Then
+            .AutoFilterMode = False
+        End If
+    End With
+    Sheets("Impressions Résultats CT").Select
     Range("A1").Select
     Unload Me
             

@@ -337,6 +337,23 @@ Sub ImportResultat_CT()
         .Refresh BackgroundQuery:=False
     End With
     Call clearConnectionsAndQueries
+    Dim dCol As Long, Col As Long
+    Dim tColSup, Flg As Boolean
+    ' # Liste des colonnes à conserver
+    ' Respecter l'orthographe de chaque terme
+    tColSup = Split("EventNum,Event,Place,Crew,Bow,Stroke,AdjTime,Delta", ",")
+    ' Avec la feuille
+    With Sheets("Import Resultats CT")
+    ' Dernière colonne
+    dCol = .Cells(1, Columns.Count).End(xlToLeft).Column
+    ' Pour chaque colonne
+    For Col = dCol To 1 Step -1
+      ' Vérifier si nom de colonne trouvé dans celles à supprimer
+      Flg = IsError(Application.Match(.Cells(1, Col).Value, tColSup, 0))
+      ' Si c'est le cas on supprime
+      If Flg Then .Cells(1, Col).EntireColumn.Delete Shift:=xlToLeft
+    Next Col
+    End With
     Sheets("Gestion CrewTimer").Select
     MsgBox "L'import du fichier résultat à été réussi avec succès !", vbInformation, "Import Résultats"
 End Sub
