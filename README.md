@@ -34,4 +34,5 @@ CrewTimer et Concept2 : \
 Import depuis OPUSS, \
 Import depuis FFSU, \
 Gestion des Inscriptions, \
+Impressions par catégorie et classement automatique, \
 Webservices GOAL.
