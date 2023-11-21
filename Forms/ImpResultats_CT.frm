@@ -325,6 +325,18 @@ Private Sub Imprimer_Click()
         End If
     End With
     Sheets("Impressions Résultats CT").Select
+    Range("G13:G999").Select
+    Selection.Replace What:=".", Replacement:=",", LookAt:=xlPart, _
+        SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+    Range("H13:H999").Select
+    Selection.NumberFormat = "mm:ss.000"
+    Range("H13:H999").Select
+    Selection.Replace What:=".", Replacement:=",", LookAt:=xlPart, _
+        SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+    Range("H13:H999").Select
+    Selection.NumberFormat = "mm:ss.000"
     Range("A1").Select
     Unload Me
             
