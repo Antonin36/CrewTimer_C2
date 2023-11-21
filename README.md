@@ -36,7 +36,5 @@ Import depuis FFSU, \
 Gestion des Inscriptions, \
 Impressions par catégorie et classement automatique, \
 Webservices GOAL (Si Possible...), \
-Ajouter tous les clubs de France (Pour l'instant uniquement la LR13 est saisie.), \
-Optimiser le cherche et remplace des noms de clubs grâce à un code court, via Array au lieu de ligne par ligne.
 
 Pour tous bugs trouvés, merci d'ouvrir une Issue.

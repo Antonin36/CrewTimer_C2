@@ -297,5 +297,31 @@ End With
 ActiveWorkbook.Worksheets("Feuille CrewTimer").Columns("M:M").Delete Shift:=xlToLeft
 
 End Sub
+Sub DistanceEntreSautsDePageHorizontal()
+    Dim ws As Worksheet
+    Set ws = ThisWorkbook.Sheets("Impressions Résultats CT") ' Ajustez selon votre feuille
+    ThisWorkbook.Sheets("Impressions Résultats CT").Select
+    ws.Activate
+    
+    If ws.HPageBreaks.Count >= 2 Then
+        ' Obtenez les positions des deux sauts de page horizontaux
+        Dim firstBreak As Double
+        Dim secondBreak As Double
+        firstBreak = ws.HPageBreaks(1).Location
+        secondBreak = ws.HPageBreaks(2).Location
+        
+        ' Calculez la distance entre les deux sauts de page en points
+        Dim distanceEnPoints As Double
+        distanceEnPoints = secondBreak - firstBreak
+        
+        ' Affichez la distance en points dans la fenêtre de l'éditeur VBA
+        Debug.Print "Premier Saut de Page Horizontal : " & firstBreak
+        Debug.Print "Deuxième Saut de Page Horizontal : " & secondBreak
+        Debug.Print "Distance entre les sauts de page horizontaux : " & distanceEnPoints & " points"
+    Else
+        MsgBox "Il n'y a pas suffisamment de sauts de page horizontaux pour calculer la distance.", vbExclamation
+    End If
+End Sub
+
 
 
