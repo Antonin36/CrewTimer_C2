@@ -35,7 +35,7 @@ Import depuis OPUSS, \
 Import depuis FFSU, \
 Gestion des Inscriptions, \
 Impressions par catégorie et classement automatique (Prêt pour le tri par temps.), \
-Transposer dans les tables export (L'ID inscription, l'ID Course)
-Webservices GOAL (Si Possible...), prévu : Contrôle Validité, Catégorie, Récupération des Infos Manifestations depuis GOAL via ID Manifestation. \
+Transposer dans les tables export (L'ID inscription, l'ID Course), \
+Webservices GOAL (Si Possible...), prévu : Contrôle Validité, Catégorie, Récupération des Infos Manifestations depuis GOAL via ID Manifestation.
 
 Pour tous bugs trouvés, merci d'ouvrir une Issue.
