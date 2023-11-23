@@ -20,11 +20,29 @@ End Sub
 Private Sub Supprimer_Click()
  Dim strng As String
     Dim lCol As Long, lRow As Long
+    auMoinsUneSelection = False
     If MsgBox("Êtes-vous sûr de vouloir supprimer cette course ?", vbYesNo + vbQuestion, "Confirmation de Suppression") = vbYes Then
     Sheets("Programme des Courses CT").Select
     For r = 0 To TableauCourses.ListCount - 1
+            If TableauCourses.Selected(r) Then
+                auMoinsUneSelection = True
+                Exit For
+            End If
+        Next r
+        
+        ' Si aucune ligne n'est sélectionnée, affichez un message d'erreur et quittez la procédure
+        If Not auMoinsUneSelection Then
+            MsgBox "Veuillez sélectionner au moins une ligne à supprimer.", vbExclamation, "Erreur de Suppression"
+            Exit Sub
+        End If
+    For r = 0 To TableauCourses.ListCount - 1
         If TableauCourses.Selected(r) Then
-        Rows(r + 1).Delete Shift:=xlUp
+            If r = 0 Then
+            MsgBox "La première ligne (entête de colonne) ne peut pas être supprimée.", vbExclamation, "Erreur de Suppression"
+            Exit Sub
+        Else
+            Rows(r + 1).Delete Shift:=xlUp
+        End If
     End If
     Next
     Sheets("Gestion CrewTimer").Select

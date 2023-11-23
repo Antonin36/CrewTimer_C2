@@ -17,6 +17,10 @@ Private Sub AjoutCourses_Click()
     CreationCourse_CT.Show
 End Sub
 
+Private Sub ModificationCourse_Click()
+    SelModifCourse_CT.Show
+End Sub
+
 Private Sub SuppressionCourse_Click()
     SupprCourse_CT.Show
 End Sub
@@ -30,5 +34,6 @@ Private Sub UserForm_Initialize()
 End Sub
 
 Private Sub Quit_Click()
+    Sheets("Gestion CrewTimer").Select
     Unload Me
 End Sub
