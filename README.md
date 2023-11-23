@@ -5,7 +5,7 @@ Fonctions Implantées :
 
 Générales : 
 - Jusqu'à 100 partants par course, 
-- Jusqu'à 40 catégories sur la même régate, 
+- Jusqu'à 40 épreuves sur la même régate, (Augmentation jusqu'à 100-150 prévue.)
 - Jusqu'à 200 courses. 
 
 CrewTimer :
@@ -33,7 +33,7 @@ CrewTimer et Concept2 : \
 \
 Import depuis OPUSS, \
 Import depuis FFSU, \
-Gestion des Inscriptions, \
+Gestion des Inscriptions (Prêt pour Implantation), \
 Impressions par catégorie et classement automatique (Prêt pour le tri par temps.), \
 Transposer dans les tables export (L'ID inscription, l'ID Course), \
 Webservices GOAL (Si Possible...), prévu : Contrôle Validité, Catégorie, Récupération des Infos Manifestations depuis GOAL via ID Manifestation.

@@ -2,6 +2,12 @@ Attribute VB_Name = "Macros"
 Sub Affiche_Reglages()
     ReglagesRegate.Show
 End Sub
+Sub AfficheGestInscriptions_CT()
+    GestIns_CT.Show
+End Sub
+Sub AfficheGestInscriptions_C2()
+    GestIns_C2.Show
+End Sub
 Sub AfficheGestImp_PostTirages_CT()
         Sheets("Impressions Tirages CT").Select
         Range("A13:H420").Select
@@ -177,6 +183,22 @@ Dim user_selected_filename As String
         .Refresh BackgroundQuery:=False
     End With
     Call clearConnectionsAndQueries
+    Dim foundCellFinGOAL As Range
+    Set foundCellFinGOAL = Cells.Find(What:="EQUIPAGES INCOMPLETS", After:=ActiveCell, LookIn:= _
+    xlFormulas2, LookAt:=xlPart, SearchOrder:=xlByRows, SearchDirection:= _
+    xlNext, MatchCase:=False, SearchFormat:=False)
+
+    If Not foundCellFinGOAL Is Nothing Then
+        ' Sélectionne les lignes où la correspondance est trouvée
+        Rows(foundCellFinGOAL.Row & ":" & foundCellFinGOAL.Row + 5000).Select
+        ' Efface le contenu des cellules sélectionnées
+        Selection.ClearContents
+    End If
+    Range("A1:EZ999").Select
+    Selection.Replace What:="Ã©", Replacement:="é", LookAt:=xlPart, _
+        SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+    Range("A1").Select
     Sheets("Gestion Concept2").Select
     MsgBox "L'import du fichier GOAL à été réussi avec succès !", vbInformation, "Import GOAL"
 End Sub
@@ -229,6 +251,22 @@ Dim user_selected_filename As String
         .Refresh BackgroundQuery:=False
     End With
     Call clearConnectionsAndQueries
+    Dim foundCellFinGOAL As Range
+    Set foundCellFinGOAL = Cells.Find(What:="EQUIPAGES INCOMPLETS", After:=ActiveCell, LookIn:= _
+    xlFormulas2, LookAt:=xlPart, SearchOrder:=xlByRows, SearchDirection:= _
+    xlNext, MatchCase:=False, SearchFormat:=False)
+
+    If Not foundCellFinGOAL Is Nothing Then
+        ' Sélectionne les lignes où la correspondance est trouvée
+        Rows(foundCellFinGOAL.Row & ":" & foundCellFinGOAL.Row + 5000).Select
+        ' Efface le contenu des cellules sélectionnées
+        Selection.ClearContents
+    End If
+    Range("A1:EZ999").Select
+    Selection.Replace What:="Ã©", Replacement:="é", LookAt:=xlPart, _
+        SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
+        ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
+    Range("A1").Select
     Sheets("Gestion CrewTimer").Select
     MsgBox "L'import du fichier GOAL à été réussi avec succès !", vbInformation, "Import GOAL"
 End Sub

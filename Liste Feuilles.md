@@ -1,6 +1,7 @@
 Accueil
 Réglages Régate
 Référentiels Divers
+Stockage Divers
 
 CrewTimer :
 Gestion CrewTimer
