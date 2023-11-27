@@ -14,6 +14,7 @@ CrewTimer :
 - Tirages Automatiques (Aléatoire, Par Numéro de Bateau et Par Ordre Alphabétique des Noms Courts des Clubs, Prise en Charge TDR), 
 - Import Résultats depuis CrewTimer, 
 - Impressions Tirages et Résultats (Jusqu'à 17 pages, augmentable/diminutible si besoin.), 
+- Gestion des Epreuves,
 - Gestion du Programme des Courses. 
 
 Concept2 : 
@@ -23,6 +24,7 @@ Concept2 :
 - Gestion de tous les types de courses prévus dans ErgRace (Individuel, Par Equipe, En Relais), 
 - Gestion de tous les types de distance prévus dans ErgRace (Calories, Distance, Max de Distance sur un temps donné, etc...), 
 - Impressions Tirages (Jusqu'à 17 pages, augmentable/diminutible si besoin.), 
+- Gestion des Epreuves,
 - Gestion du Programme des Courses, 
 - Génération des Fichiers RAC2 pour importation dans ErgRace. \
 Note Importante : L'impression des Résultats doit se faire dans ErgRace !
@@ -33,7 +35,7 @@ CrewTimer et Concept2 : \
 \
 Import depuis OPUSS, \
 Import depuis FFSU, \
-Gestion des Inscriptions (Prêt pour Implantation), \
+Gestion des Inscriptions (Implantation Gestion Epreuves OK, Reste Gestion Engagements...), \
 Impressions par catégorie et classement automatique (Prêt pour le tri par temps.), \
 Faire le bout de code pour corriger les temps en HH.MM.SS quand le début n'est pas 00, \
 Transposer dans les tables export (L'ID inscription, l'ID Course, bref tout les paramètres de GOAL...), \

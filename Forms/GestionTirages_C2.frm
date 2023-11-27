@@ -59,7 +59,7 @@ Private Sub CreationTirages_Click()
     Dim rameur6 As String
     Dim rameur7 As String
     Dim rameur8 As String
-    Dim barreur As String
+    Dim Barreur As String
     partants = 0
     numlignegoal = 2
     Sheets("Programme des Courses C2").Select
@@ -108,7 +108,7 @@ Private Sub CreationTirages_Click()
                     rameur6 = ""
                     rameur7 = ""
                     rameur8 = ""
-                    barreur = ""
+                    Barreur = ""
                     Sheets("Programme des Courses C2").Rows(i).Copy Destination:=Worksheets("Préparation Tirages C2").Range("A" & j)
                     Dim A As String
                     A = Sheets("Préparation Tirages C2").Cells(j, 3).Value & "_" & Sheets("Préparation Tirages C2").Cells(j, 4).Value
@@ -1573,7 +1573,7 @@ Private Sub CreationTirages_Click()
                         End If
                         If Sheets("Import GOAL C2").Cells(numlignegoal, 104).Value <> "" Then
                             Equipage = Equipage & " / Bar : " & Sheets("Import GOAL C2").Cells(numlignegoal, 104).Value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 105).Value
-                            barreur = Sheets("Import GOAL C2").Cells(numlignegoal, 104).Value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 105).Value
+                            Barreur = Sheets("Import GOAL C2").Cells(numlignegoal, 104).Value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 105).Value
                         End If
                         Equipage = Equipage & ")"
                         Sheets("Préparation Tirages C2").Cells(j, 7).Value = Equipage

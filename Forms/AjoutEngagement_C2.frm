@@ -24,3 +24,7 @@ End Sub
 Private Sub Import_GOAL_Click()
 
 End Sub
+
+Private Sub Nom_Equipage_Change()
+
+End Sub

@@ -14,13 +14,14 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Private Sub GestionEngagements_Click()
-
+    GestEngagements_C2.Show
 End Sub
 
 Private Sub GestionEpreuves_Click()
-
+    GestEpreuves_C2.Show
 End Sub
 
 Private Sub RetourAccueil_Click()
     Unload Me
 End Sub
+

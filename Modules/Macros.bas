@@ -442,5 +442,18 @@ Sub ImportResultat_C2()
     Sheets("Gestion Concept2").Select
     MsgBox "L'import du fichier résultat à été réussi avec succès !", vbInformation, "Import Résultats"
 End Sub
+Function CalculerAge(dateActuelle As Date, dateNaissance As Date) As Integer
+    ' Calculer l'âge
+    Dim age As Integer
+    age = DateDiff("yyyy", dateNaissance, dateActuelle)
+
+    ' Vérifier si l'anniversaire est déjà passé cette année
+    If DateSerial(Year(dateActuelle), Month(dateNaissance), Day(dateNaissance)) > dateActuelle Then
+        age = age - 1 ' Décrémenter l'âge si l'anniversaire n'est pas encore passé
+    End If
+
+    ' Retourner l'âge calculé
+    CalculerAge = age
+End Function
 
 

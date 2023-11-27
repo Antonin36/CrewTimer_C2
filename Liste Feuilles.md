@@ -16,6 +16,7 @@ Préparation Tirages CT
 Programme des Courses CT
 Import GOAL CT
 Référentiel Progression CT
+Stockage Epreuves CT
 
 Concept2 :
 Gestion Concept2
@@ -30,3 +31,4 @@ Préparation Tirages C2
 Programme des Courses C2
 Import GOAL C2
 Référentiel Progression C2
+Stockage Epreuves C2
