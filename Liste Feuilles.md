@@ -17,6 +17,7 @@ Programme des Courses CT
 Import GOAL CT
 Référentiel Progression CT
 Stockage Epreuves CT
+Stockage Import Catégories CT
 
 Concept2 :
 Gestion Concept2
@@ -32,3 +33,4 @@ Programme des Courses C2
 Import GOAL C2
 Référentiel Progression C2
 Stockage Epreuves C2
+Stockage Import Catégories C2

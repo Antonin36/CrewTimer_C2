@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} AjoutEpreuve_C2 
    Caption         =   "Ajout d'une Epreuve"
-   ClientHeight    =   4840
+   ClientHeight    =   5440
    ClientLeft      =   110
    ClientTop       =   450
    ClientWidth     =   9780.001
@@ -23,7 +23,7 @@ Private Sub Sauvegarder_Click()
             Dim i As Long
             For i = 0 To Categ.ListCount - 1
             If Categ.Selected(i) Then
-                Sheets("Stockage Epreuves C2").Cells(LastRow, 6 + i).Value = Categ.List(i)
+                Sheets("Stockage Epreuves C2").Cells(LastRow, 8 + i).Value = Categ.List(i)
                 CategSel = CategSel & Categ.List(i) & " / "
             End If
             Next i
@@ -32,7 +32,8 @@ Private Sub Sauvegarder_Click()
             Sheets("Stockage Epreuves C2").Cells(LastRow, "B").Value = Nom_Epreuve.Text
             Sheets("Stockage Epreuves C2").Cells(LastRow, "C").Value = CategSel
             Sheets("Stockage Epreuves C2").Cells(LastRow, "D").Value = Taille.Text
-            Sheets("Stockage Epreuves C2").Cells(LastRow, "AR").Value = CodeEpreuve.Text
+            Sheets("Stockage Epreuves C2").Cells(LastRow, "AV").Value = CodeEpreuve.Text
+            Sheets("Stockage Epreuves C2").Cells(LastRow, "F").Value = TypePart.Text
             Sheets("Stockage Epreuves C2").Select
             Range("A1").Select
             Sheets("Gestion CrewTimer").Select
@@ -59,6 +60,9 @@ Private Sub UserForm_Initialize()
     Me.Taille.AddItem ("6")
     Me.Taille.AddItem ("7")
     Me.Taille.AddItem ("8")
+    Me.TypePart.AddItem ("Homme")
+    Me.TypePart.AddItem ("Femme")
+    Me.TypePart.AddItem ("Mixte")
 End Sub
 
 

@@ -1,0 +1,1 @@
+Création de la Feuille en Prévision d'une éventuelle refonte du stockage des valeurs.

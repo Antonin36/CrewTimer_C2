@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} ModifEpreuve_CT 
    Caption         =   "Modification d'une Epreuve"
-   ClientHeight    =   4840
+   ClientHeight    =   5440
    ClientLeft      =   110
    ClientTop       =   450
    ClientWidth     =   9780.001
@@ -33,7 +33,8 @@ Private Sub Sauvegarder_Click()
             Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, "C").Value = CategSel
             Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, "D").Value = Taille.Text
             Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, "E").Value = Barreur.Text
-            Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, "AR").Value = CodeEpreuve.Text
+            Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, "AV").Value = CodeEpreuve.Text
+            Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, "F").Value = TypePart.Text
             Sheets("Stockage Epreuves CT").Select
             Range("A1").Select
             Sheets("Gestion CrewTimer").Select
@@ -63,21 +64,25 @@ CourseAModifier_CT = Sheets("Réglages Régate").Cells(30, "B").Value
     Me.Taille.AddItem ("8")
     Me.Barreur.AddItem ("Oui")
     Me.Barreur.AddItem ("Non")
+    Me.TypePart.AddItem ("Homme")
+    Me.TypePart.AddItem ("Femme")
+    Me.TypePart.AddItem ("Mixte")
     ' Ajoutez ici le code nécessaire pour charger les données de la ligne spécifiée dans les contrôles de l'UserForm
     ' Par exemple, si vous avez un contrôle TextBoxNomCourse, vous pouvez le remplir comme ceci :
     CodeEpreuve.Text = Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, 1).Value
     Nom_Epreuve.Text = Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, 2).Value
     Taille.Text = Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, 4).Value
     Barreur.Text = Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, 5).Value
+    TypePart.Text = Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, 6).Value
     'Ne Pas Récupérer G et D
     ' Ajoutez d'autres lignes similaires pour les autres contrôles que vous souhaitez initialiser
-    For colcateg = 6 To 45
+    For colcateg = 8 To 47
     ' Vérifiez si la cellule spécifiée contient une valeur
     If Not IsEmpty(Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, colcateg).Value) Then
         ' Assurez-vous que l'index est dans la plage valide pour la ListBox
-        If colcateg - 6 < Categ.ListCount Then
+        If colcateg - 8 < Categ.ListCount Then
             ' Ajoutez l'option à la ListBox
-            Categ.Selected(colcateg - 6) = True
+            Categ.Selected(colcateg - 8) = True
         End If
     End If
 Next colcateg

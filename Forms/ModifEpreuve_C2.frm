@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} ModifEpreuve_C2 
    Caption         =   "Modification d'une Epreuve"
-   ClientHeight    =   4840
+   ClientHeight    =   5440
    ClientLeft      =   110
    ClientTop       =   450
    ClientWidth     =   9780.001
@@ -23,7 +23,7 @@ Private Sub Sauvegarder_Click()
             Dim i As Long
             For i = 0 To Categ.ListCount - 1
             If Categ.Selected(i) Then
-                Sheets("Stockage Epreuves C2").Cells(CourseAModifier_C2, 6 + i).Value = Categ.List(i)
+                Sheets("Stockage Epreuves C2").Cells(CourseAModifier_C2, 8 + i).Value = Categ.List(i)
                 CategSel = CategSel & Categ.List(i) & " / "
             End If
             Next i
@@ -32,7 +32,8 @@ Private Sub Sauvegarder_Click()
             Sheets("Stockage Epreuves C2").Cells(CourseAModifier_C2, "B").Value = Nom_Epreuve.Text
             Sheets("Stockage Epreuves C2").Cells(CourseAModifier_C2, "C").Value = CategSel
             Sheets("Stockage Epreuves C2").Cells(CourseAModifier_C2, "D").Value = Taille.Text
-            Sheets("Stockage Epreuves C2").Cells(CourseAModifier_C2, "AR").Value = CodeEpreuve.Text
+            Sheets("Stockage Epreuves C2").Cells(CourseAModifier_C2, "AV").Value = CodeEpreuve.Text
+            Sheets("Stockage Epreuves C2").Cells(CourseAModifier_C2, "F").Value = TypePart.Text
             Sheets("Stockage Epreuves C2").Select
             Range("A1").Select
             Sheets("Gestion Concept2").Select
@@ -60,19 +61,23 @@ CourseAModifier_C2 = Sheets("Réglages Régate").Cells(31, "B").Value
     Me.Taille.AddItem ("6")
     Me.Taille.AddItem ("7")
     Me.Taille.AddItem ("8")
+    Me.TypePart.AddItem ("Homme")
+    Me.TypePart.AddItem ("Femme")
+    Me.TypePart.AddItem ("Mixte")
     ' Ajoutez ici le code nécessaire pour charger les données de la ligne spécifiée dans les contrôles de l'UserForm
     ' Par exemple, si vous avez un contrôle TextBoxNomCourse, vous pouvez le remplir comme ceci :
     CodeEpreuve.Text = Sheets("Stockage Epreuves C2").Cells(CourseAModifier_C2, 1).Value
     Nom_Epreuve.Text = Sheets("Stockage Epreuves C2").Cells(CourseAModifier_C2, 2).Value
     Taille.Text = Sheets("Stockage Epreuves C2").Cells(CourseAModifier_C2, 4).Value
+    TypePart.Text = Sheets("Stockage Epreuves C2").Cells(CourseAModifier_C2, 6).Value
     'Ne Pas Récupérer G et D
-    For colcateg = 6 To 45
+    For colcateg = 8 To 47
     ' Vérifiez si la cellule spécifiée contient une valeur
     If Not IsEmpty(Sheets("Stockage Epreuves C2").Cells(CourseAModifier_C2, colcateg).Value) Then
         ' Assurez-vous que l'index est dans la plage valide pour la ListBox
-        If colcateg - 6 < Categ.ListCount Then
+        If colcateg - 8 < Categ.ListCount Then
             ' Ajoutez l'option à la ListBox
-            Categ.Selected(colcateg - 6) = True
+            Categ.Selected(colcateg - 8) = True
         End If
     End If
 Next colcateg
