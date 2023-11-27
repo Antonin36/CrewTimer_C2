@@ -35,7 +35,9 @@ Import depuis OPUSS, \
 Import depuis FFSU, \
 Gestion des Inscriptions (Prêt pour Implantation), \
 Impressions par catégorie et classement automatique (Prêt pour le tri par temps.), \
-Transposer dans les tables export (L'ID inscription, l'ID Course), \
-Webservices GOAL (Si Possible...), prévu : Contrôle Validité, Catégorie, Récupération des Infos Manifestations depuis GOAL via ID Manifestation.
+Faire le bout de code pour corriger les temps en HH.MM.SS quand le début n'est pas 00, \
+Transposer dans les tables export (L'ID inscription, l'ID Course, bref tout les paramètres de GOAL...), \
+Webservices GOAL (Si Possible...), prévu : Contrôle Validité, Catégorie, Récupération des Infos Manifestations depuis GOAL via ID Manifestation, \
+Refaire le module d'impressions, s'inspirer de Time-Team.
 
 Pour tous bugs trouvés, merci d'ouvrir une Issue.
