@@ -98,26 +98,6 @@ Dim derniereLigne As Long
                     Exit For
                 End If
             Next mot
-            If InStr(1, cellule.Value, "1", vbTextCompare) > 0 Then
-                ' Marquer dans la colonne D de la même ligne
-                cellule.Offset(0, 3).NumberFormat = "@"
-                cellule.Offset(0, 3).Value = 1
-            End If
-            If InStr(1, cellule.Value, "2", vbTextCompare) > 0 Then
-                ' Marquer dans la colonne D de la même ligne
-                cellule.Offset(0, 3).NumberFormat = "@"
-                cellule.Offset(0, 3).Value = 2
-            End If
-            If InStr(1, cellule.Value, "4", vbTextCompare) > 0 Then
-                ' Marquer dans la colonne D de la même ligne
-                cellule.Offset(0, 3).NumberFormat = "@"
-                cellule.Offset(0, 3).Value = 4
-            End If
-            If InStr(1, cellule.Value, "8", vbTextCompare) > 0 Then
-                ' Marquer dans la colonne D de la même ligne
-                cellule.Offset(0, 3).NumberFormat = "@"
-                cellule.Offset(0, 3).Value = 8
-            End If
             If InStr(1, cellule.Value, "+", vbTextCompare) > 0 Then
                 ' Marquer dans la colonne E de la même ligne
                 cellule.Offset(0, 4).NumberFormat = "@"
@@ -127,76 +107,121 @@ Dim derniereLigne As Long
                 cellule.Offset(0, 4).Value = "Non"
             End If
             If InStr(1, cellule.Value, "H1", vbTextCompare) > 0 Then
+                ' Marquer dans la colonne D de la même ligne
+                cellule.Offset(0, 3).NumberFormat = "@"
+                cellule.Offset(0, 3).Value = 1
                 ' Marquer dans la colonne F de la même ligne
                 cellule.Offset(0, 5).NumberFormat = "@"
                 cellule.Offset(0, 5).Value = "Homme"
             End If
             If InStr(1, cellule.Value, "H2", vbTextCompare) > 0 Then
+                ' Marquer dans la colonne D de la même ligne
+                cellule.Offset(0, 3).NumberFormat = "@"
+                cellule.Offset(0, 3).Value = 2
                 ' Marquer dans la colonne F de la même ligne
                 cellule.Offset(0, 5).NumberFormat = "@"
                 cellule.Offset(0, 5).Value = "Homme"
             End If
             If InStr(1, cellule.Value, "H4", vbTextCompare) > 0 Then
+                ' Marquer dans la colonne D de la même ligne
+                cellule.Offset(0, 3).NumberFormat = "@"
+                cellule.Offset(0, 3).Value = 4
                 ' Marquer dans la colonne F de la même ligne
                 cellule.Offset(0, 5).NumberFormat = "@"
                 cellule.Offset(0, 5).Value = "Homme"
             End If
             If InStr(1, cellule.Value, "H8", vbTextCompare) > 0 Then
+                ' Marquer dans la colonne D de la même ligne
+                cellule.Offset(0, 3).NumberFormat = "@"
+                cellule.Offset(0, 3).Value = 8
                 ' Marquer dans la colonne F de la même ligne
                 cellule.Offset(0, 5).NumberFormat = "@"
                 cellule.Offset(0, 5).Value = "Homme"
             End If
             If InStr(1, cellule.Value, "F1", vbTextCompare) > 0 Then
+                ' Marquer dans la colonne D de la même ligne
+                cellule.Offset(0, 3).NumberFormat = "@"
+                cellule.Offset(0, 3).Value = 1
                 ' Marquer dans la colonne F de la même ligne
                 cellule.Offset(0, 5).NumberFormat = "@"
                 cellule.Offset(0, 5).Value = "Femme"
             End If
             If InStr(1, cellule.Value, "F2", vbTextCompare) > 0 Then
+                ' Marquer dans la colonne D de la même ligne
+                cellule.Offset(0, 3).NumberFormat = "@"
+                cellule.Offset(0, 3).Value = 2
                 ' Marquer dans la colonne F de la même ligne
                 cellule.Offset(0, 5).NumberFormat = "@"
                 cellule.Offset(0, 5).Value = "Femme"
             End If
             If InStr(1, cellule.Value, "F4", vbTextCompare) > 0 Then
+                ' Marquer dans la colonne D de la même ligne
+                cellule.Offset(0, 3).NumberFormat = "@"
+                cellule.Offset(0, 3).Value = 4
                 ' Marquer dans la colonne F de la même ligne
                 cellule.Offset(0, 5).NumberFormat = "@"
                 cellule.Offset(0, 5).Value = "Femme"
             End If
             If InStr(1, cellule.Value, "F8", vbTextCompare) > 0 Then
+                ' Marquer dans la colonne D de la même ligne
+                cellule.Offset(0, 3).NumberFormat = "@"
+                cellule.Offset(0, 3).Value = 8
                 ' Marquer dans la colonne F de la même ligne
                 cellule.Offset(0, 5).NumberFormat = "@"
                 cellule.Offset(0, 5).Value = "Femme"
             End If
             If InStr(1, cellule.Value, "M1", vbTextCompare) > 0 Then
+                ' Marquer dans la colonne D de la même ligne
+                cellule.Offset(0, 3).NumberFormat = "@"
+                cellule.Offset(0, 3).Value = 1
                 ' Marquer dans la colonne F de la même ligne
                 cellule.Offset(0, 5).NumberFormat = "@"
                 cellule.Offset(0, 5).Value = "Mixte"
             End If
             If InStr(1, cellule.Value, "M2", vbTextCompare) > 0 Then
+                ' Marquer dans la colonne D de la même ligne
+                cellule.Offset(0, 3).NumberFormat = "@"
+                cellule.Offset(0, 3).Value = 2
                 ' Marquer dans la colonne F de la même ligne
                 cellule.Offset(0, 5).NumberFormat = "@"
                 cellule.Offset(0, 5).Value = "Mixte"
             End If
             If InStr(1, cellule.Value, "M4", vbTextCompare) > 0 Then
+                ' Marquer dans la colonne D de la même ligne
+                cellule.Offset(0, 3).NumberFormat = "@"
+                cellule.Offset(0, 3).Value = 4
                 ' Marquer dans la colonne F de la même ligne
                 cellule.Offset(0, 5).NumberFormat = "@"
                 cellule.Offset(0, 5).Value = "Mixte"
             End If
             If InStr(1, cellule.Value, "M8", vbTextCompare) > 0 Then
+                ' Marquer dans la colonne D de la même ligne
+                cellule.Offset(0, 3).NumberFormat = "@"
+                cellule.Offset(0, 3).Value = 8
                 ' Marquer dans la colonne F de la même ligne
                 cellule.Offset(0, 5).NumberFormat = "@"
                 cellule.Offset(0, 5).Value = "Mixte"
             End If
             If InStr(1, cellule.Value, "FR4", vbTextCompare) > 0 Then
+                ' Marquer dans la colonne D de la même ligne
+                cellule.Offset(0, 3).NumberFormat = "@"
+                cellule.Offset(0, 3).Value = 4
                 ' Marquer dans la colonne F de la même ligne
                 cellule.Offset(0, 5).NumberFormat = "@"
                 cellule.Offset(0, 5).Value = "Femme"
             End If
             If InStr(1, cellule.Value, "HR4", vbTextCompare) > 0 Then
+                ' Marquer dans la colonne D de la même ligne
+                cellule.Offset(0, 3).NumberFormat = "@"
+                cellule.Offset(0, 3).Value = 4
                 ' Marquer dans la colonne F de la même ligne
                 cellule.Offset(0, 5).NumberFormat = "@"
                 cellule.Offset(0, 5).Value = "Homme"
             End If
             If InStr(1, cellule.Value, "MR4", vbTextCompare) > 0 Then
+                ' Marquer dans la colonne D de la même ligne
+                cellule.Offset(0, 3).NumberFormat = "@"
+                cellule.Offset(0, 3).Value = 4
                 ' Marquer dans la colonne F de la même ligne
                 cellule.Offset(0, 5).NumberFormat = "@"
                 cellule.Offset(0, 5).Value = "Mixte"

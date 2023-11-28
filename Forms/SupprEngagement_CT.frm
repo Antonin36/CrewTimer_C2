@@ -13,3 +13,51 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Private Sub Annuler_Click()
+ Unload Me
+End Sub
+
+Private Sub Supprimer_Click()
+ Dim strng As String
+    Dim lCol As Long, lRow As Long
+    auMoinsUneSelection = False
+    If MsgBox("Êtes-vous sûr de vouloir supprimer cet engagement ?", vbYesNo + vbQuestion, "Confirmation de Suppression") = vbYes Then
+    Sheets("Import GOAL CT").Select
+    For r = 0 To TableauCourses.ListCount - 1
+            If TableauCourses.Selected(r) Then
+                auMoinsUneSelection = True
+                Exit For
+            End If
+        Next r
+        
+        ' Si aucune ligne n'est sélectionnée, affichez un message d'erreur et quittez la procédure
+        If Not auMoinsUneSelection Then
+            MsgBox "Veuillez sélectionner au moins une ligne à supprimer.", vbExclamation, "Erreur de Suppression"
+            Exit Sub
+        End If
+    For r = 0 To TableauCourses.ListCount - 1
+        If TableauCourses.Selected(r) Then
+            If r = 0 Then
+            MsgBox "La première ligne (entête de colonne) ne peut pas être supprimée.", vbExclamation, "Erreur de Suppression"
+            Exit Sub
+        Else
+            Rows(r + 1).Delete Shift:=xlUp
+        End If
+    End If
+    Next
+    Sheets("Gestion CrewTimer").Select
+    MsgBox "L'engagement à été supprimé avec succès !", vbInformation, "Confirmation Suppression"
+    End If
+    Unload Me
+End Sub
+Private Sub UserForm_Initialize()
+    ' Feuille à Sélectionner
+    Sheets("Import GOAL CT").Select
+    ' Champs à Afficher (Ne pas oublier de déclarer le nbre de colonnes dans Properties.
+    TableauCourses.RowSource = "C1:G1000"
+    TableauCourses.ColumnWidths = "150;150;400;150;150"
+    Sheets("Gestion CrewTimer").Select
+End Sub
+
+
+

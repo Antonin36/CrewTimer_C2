@@ -3210,7 +3210,29 @@ Sheets("Réglages Régate").Select
 Sheets("Réglages Régate").Range("G16").Value = ""
 Sheets("Réglages Régate").Range("H16").Value = ""
 Sheets("Gestion Concept2").Select
-If MsgBox("Voulez-vous utiliser un tirage aléatoire ?", vbYesNo + vbQuestion, "Tirages Aléatoires ?") = vbYes Then
+'Mettre tps pronostique
+If MsgBox("Voulez-vous utiliser un tirage suivant les temps pronostiques ?", vbYesNo + vbQuestion, "Tirages par Temps Pronostique ?") = vbYes Then
+    random_method = "Par l'ordre des temps pronostiques"
+    Sheets("Réglages Régate").Select
+    Sheets("Réglages Régate").Range("J16").Value = "Tps"
+    Sheets("Import GOAL C2").Select
+    ActiveWorkbook.Worksheets("Import GOAL C2").Sort.SortFields.Clear
+    ActiveWorkbook.Worksheets("Import GOAL C2").Sort.SortFields.Add2 Key:=Range( _
+        "C2:C999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
+        xlSortNormal
+    ActiveWorkbook.Worksheets("Import GOAL C2").Sort.SortFields.Add2 Key:=Range( _
+        "EP2:EP999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
+        xlSortNormal
+    With ActiveWorkbook.Worksheets("Import GOAL C2").Sort
+        .SetRange Range("A1:EQ999")
+        .Header = xlYes
+        .MatchCase = False
+        .Orientation = xlTopToBottom
+        .SortMethod = xlPinYin
+        .Apply
+    End With
+
+ElseIf MsgBox("Voulez-vous utiliser un tirage aléatoire ?", vbYesNo + vbQuestion, "Tirages Aléatoires ?") = vbYes Then
 alea = True
 'Mettre créer une colonne random, en ER
     Sheets("Réglages Régate").Select

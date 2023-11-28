@@ -10,7 +10,8 @@ Générales :
 
 CrewTimer :
 
-- Import depuis GOAL FFSA 
+- Import depuis GOAL FFSA,
+- Gestion des Inscriptions,
 - Tirages Automatiques (Aléatoire, Par Numéro de Bateau et Par Ordre Alphabétique des Noms Courts des Clubs, Prise en Charge TDR), 
 - Import Résultats depuis CrewTimer, 
 - Impressions Tirages et Résultats (Jusqu'à 17 pages, augmentable/diminutible si besoin.), 
@@ -19,8 +20,9 @@ CrewTimer :
 
 Concept2 : 
 
-- Import depuis GOAL FFSA, 
-- Tirages Automatiques (Aléatoire, Par Numéro Défini et Par Ordre Alphabétique des Noms Courts des Clubs.) 
+- Import depuis GOAL FFSA,
+- Gestion des Inscriptions,
+- Tirages Automatiques (Aléatoire, Par Numéro Défini et Par Ordre Alphabétique des Noms Courts des Clubs.) ,
 - Gestion de tous les types de courses prévus dans ErgRace (Individuel, Par Equipe, En Relais), 
 - Gestion de tous les types de distance prévus dans ErgRace (Calories, Distance, Max de Distance sur un temps donné, etc...), 
 - Impressions Tirages (Jusqu'à 17 pages, augmentable/diminutible si besoin.), 
@@ -35,11 +37,8 @@ CrewTimer et Concept2 : \
 \
 Import depuis OPUSS, \
 Import depuis FFSU, \
-Gestion des Inscriptions (Implantation Gestion Epreuves OK, Reste Gestion Engagements...), \
-Impressions par catégorie et classement automatique (Prêt pour le tri par temps.), \
-Faire le bout de code pour corriger les temps en HH.MM.SS quand le début n'est pas 00, \
 Transposer dans les tables export (L'ID inscription, l'ID Course, bref tout les paramètres de GOAL...), \
 Webservices GOAL (Si Possible...), prévu : Contrôle Validité, Catégorie, Récupération des Infos Manifestations depuis GOAL via ID Manifestation, \
-Refaire le module d'impressions, s'inspirer de Time-Team.
+Refaire le module d'impression, s'inspirer de Time-Team et Impressions par catégorie et classement automatique (Prêt pour le tri par temps.).
 
 Pour tous bugs trouvés, merci d'ouvrir une Issue.
