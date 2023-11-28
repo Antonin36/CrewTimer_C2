@@ -1,14 +1,14 @@
 VERSION 5.00
-Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} ImpTirages_CT 
+Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} ImpTiragesCourse_C2 
    Caption         =   "Impressions des Tirages"
-   ClientHeight    =   5440
+   ClientHeight    =   5640
    ClientLeft      =   110
-   ClientTop       =   460
+   ClientTop       =   450
    ClientWidth     =   7980
-   OleObjectBlob   =   "ImpTirages_CT.frx":0000
+   OleObjectBlob   =   "ImpTiragesCourse_C2.frx":0000
    StartUpPosition =   1  'CenterOwner
 End
-Attribute VB_Name = "ImpTirages_CT"
+Attribute VB_Name = "ImpTiragesCourse_C2"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
@@ -20,25 +20,25 @@ End Sub
 Private Sub Imprimer_Click()
             Dim CourseSel As String
             Dim i As Long
-            Sheets("Stockage Impressions CT").Range("1:1").Delete
+            Sheets("Stockage Impressions C2").Range("1:1").Delete
             For i = 0 To TableauCourses.ListCount - 1
             If TableauCourses.Selected(i) Then
-                Sheets("Stockage Impressions CT").Cells(1, 1 + i).Value = TableauCourses.List(i)
+                Sheets("Stockage Impressions C2").Cells(1, 1 + i).Value = TableauCourses.List(i)
                 CourseSel = CourseSel & TableauCourses.List(i) & " / "
             End If
             Next i
-            Sheets("Import Tirages CT").Select
+            Sheets("Import Tirages C2").Select
     Cells.Select
     Selection.ClearContents
     Range("A1").Select
-    Sheets("Impressions Tirages CT").Select
+    Sheets("Impressions Tirages C2").Select
     Range("A13:H420").Select
     Selection.ClearContents
     Range("A13").Select
-    Sheets("Feuille CrewTimer").Select
+    Sheets("Feuille Concept2").Select
     Range("A7:K999").Select
     Selection.Copy
-    Sheets("Import Tirages CT").Select
+    Sheets("Import Tirages C2").Select
     Range("A1").Select
     ActiveSheet.Paste
       Dim course1 As String, course2 As String, course3 As String, course4 As String, course5 As String
@@ -81,7 +81,7 @@ Private Sub Imprimer_Click()
     Dim course186 As String, course187 As String, course188 As String, course189 As String, course190 As String
     Dim course191 As String, course192 As String, course193 As String, course194 As String, course195 As String
     Dim course196 As String, course197 As String, course198 As String, course199 As String, course200 As String
-    With Sheets("Stockage Impressions CT")
+    With Sheets("Stockage Impressions C2")
         course1 = .Range("A1").Value
         course2 = .Range("B1").Value
         course3 = .Range("C1").Value
@@ -284,7 +284,7 @@ Private Sub Imprimer_Click()
         course200 = .Range("GR1").Value
     End With
 
-    With Sheets("Import Tirages CT")
+    With Sheets("Import Tirages C2")
         .AutoFilterMode = False
         .Range("$A$1:$EA$999").AutoFilter Field:=4, Criteria1:=Array(course1, course2, course3, course4, course5, _
             course6, course7, course8, course9, course10, course11, course12, course13, course14, course15, course16, _
@@ -311,7 +311,7 @@ Private Sub Imprimer_Click()
             Operator:=xlFilterValues
         .Range("A1").Select
     End With
-    'Sheets("Impressions CT").Select
+    'Sheets("Impressions C2").Select
     
     Columns("E:E").Select
     Selection.Delete Shift:=xlToLeft
@@ -321,7 +321,7 @@ Private Sub Imprimer_Click()
     Selection.Delete Shift:=xlToLeft
     Range("A2:I999").Select
     Selection.Copy
-    Sheets("Impressions Tirages CT").Select
+    Sheets("Impressions Tirages C2").Select
     Range("A13").Select
     Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
         :=False, Transpose:=False
@@ -365,7 +365,7 @@ Dim UniqueList()    As String
     Dim j As Long
     Dim Temp As Variant
      
-    Set Rng1 = Sheets("Feuille CrewTimer").Range("D8:D999")
+    Set Rng1 = Sheets("Feuille Concept2").Range("D8:D999")
     y = 1
      
     ReDim UniqueList(1 To Rng1.Rows.Count)
@@ -398,3 +398,7 @@ Dim UniqueList()    As String
         Next i
     End With
 End Sub
+
+
+
+
