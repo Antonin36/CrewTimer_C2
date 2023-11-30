@@ -38,7 +38,6 @@ CrewTimer et Concept2 : \
 Import depuis OPUSS, \
 Import depuis FFSU, \
 Transposer dans les tables export (L'ID inscription, l'ID Course, bref tout les paramètres de GOAL...), \
-Webservices GOAL (Si Possible...), prévu : Contrôle Validité, Catégorie, Récupération des Infos Manifestations depuis GOAL via ID Manifestation, \
-Refaire le module d'impression, s'inspirer de Time-Team et Impressions par catégorie et classement automatique (En cours d'implantation...).
+Webservices GOAL (Si Possible...), prévu : Contrôle Validité, Catégorie, Récupération des Infos Manifestations depuis GOAL via ID Manifestation.
 
 Pour tous bugs trouvés, merci d'ouvrir une Issue.
