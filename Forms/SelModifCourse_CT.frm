@@ -29,10 +29,10 @@ Private Sub Modifier_Click()
             ' Ouvrez le UserForm de modification en passant la ligne sélectionnée en paramètre
             Dim CourseModif_CT As Long
             CourseModif_CT = r + 1
-            Sheets("Réglages Régate").Cells(26, "B").Value = CourseModif_CT
+            Sheets("Réglages Régate").Cells(26, "B").value = CourseModif_CT
             ModifCourse_CT.Show
             CourseModif_CT = 0
-            Sheets("Réglages Régate").Cells(26, "B").Value = 0
+            Sheets("Réglages Régate").Cells(26, "B").value = 0
             Unload Me
         End If
     Else

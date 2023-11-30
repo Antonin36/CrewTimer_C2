@@ -14,7 +14,7 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Private Sub UserForm_Initialize()
-MsgBox "L'impression des résultats doit se faire depuis ErgRace.", vbOKOnly + vbInformation, "Impression depuis ErgRace"
+MsgBox "Pour imprimer les résultats par course, vous pouvez soit, n'importer que le fichier de la course, soit imprimer depuis ErgRace.", vbOKOnly + vbInformation, "Impression Non Normale"
 Unload Me
 End Sub
 

@@ -24,26 +24,26 @@ Private Sub Sauvegarder_Click()
             Dim i As Long
             For i = 0 To Categ.ListCount - 1
             If Categ.Selected(i) Then
-                Sheets("Programme des Courses C2").Cells(LastRow, 10 + i).Value = Categ.List(i)
+                Sheets("Programme des Courses C2").Cells(LastRow, 10 + i).value = Categ.List(i)
                 CategSel = CategSel & Categ.List(i) & " / "
             End If
             Next i
             CategSel = Left(CategSel, Len(CategSel) - 3)
-            Sheets("Programme des Courses C2").Cells(LastRow, "A").Value = Jour.Text
-            Sheets("Programme des Courses C2").Cells(LastRow, "B").Value = Heure.Text
-            Sheets("Programme des Courses C2").Cells(LastRow, "C").Value = IDCourse.Text
-            Sheets("Programme des Courses C2").Cells(LastRow, "D").Value = EtapeCourse.Text
-            Sheets("Programme des Courses C2").Cells(LastRow, "E").Value = EtapeCourse.Text
-            Sheets("Programme des Courses C2").Cells(LastRow, "F").Value = CategSel
-            Sheets("Programme des Courses C2").Cells(LastRow, "G").Value = Jour.Text
-            Sheets("Programme des Courses C2").Cells(LastRow, "H").Value = Tirage.Text
-            Sheets("Programme des Courses C2").Cells(LastRow, "I").Value = InfoSysProg.Text
-            Sheets("Programme des Courses C2").Cells(LastRow, "BA").Value = TypeCourse.Text
-            Sheets("Programme des Courses C2").Cells(LastRow, "BB").Value = ModeCalcul.Text
-            Sheets("Programme des Courses C2").Cells(LastRow, "AX").Value = DureeCourse.Text
-            Sheets("Programme des Courses C2").Cells(LastRow, "AY").Value = Split.Text
-            Sheets("Programme des Courses C2").Cells(LastRow, "AZ").Value = "Equipe"
-            Sheets("Programme des Courses C2").Cells(LastRow, "BD").Value = TailleEquipe.Text
+            Sheets("Programme des Courses C2").Cells(LastRow, "A").value = Jour.Text
+            Sheets("Programme des Courses C2").Cells(LastRow, "B").value = Heure.Text
+            Sheets("Programme des Courses C2").Cells(LastRow, "C").value = IDCourse.Text
+            Sheets("Programme des Courses C2").Cells(LastRow, "D").value = EtapeCourse.Text
+            Sheets("Programme des Courses C2").Cells(LastRow, "E").value = EtapeCourse.Text
+            Sheets("Programme des Courses C2").Cells(LastRow, "F").value = CategSel
+            Sheets("Programme des Courses C2").Cells(LastRow, "G").value = Jour.Text
+            Sheets("Programme des Courses C2").Cells(LastRow, "H").value = Tirage.Text
+            Sheets("Programme des Courses C2").Cells(LastRow, "I").value = InfoSysProg.Text
+            Sheets("Programme des Courses C2").Cells(LastRow, "BA").value = TypeCourse.Text
+            Sheets("Programme des Courses C2").Cells(LastRow, "BB").value = ModeCalcul.Text
+            Sheets("Programme des Courses C2").Cells(LastRow, "AX").value = DureeCourse.Text
+            Sheets("Programme des Courses C2").Cells(LastRow, "AY").value = Split.Text
+            Sheets("Programme des Courses C2").Cells(LastRow, "AZ").value = "Equipe"
+            Sheets("Programme des Courses C2").Cells(LastRow, "BD").value = TailleEquipe.Text
             Sheets("Programme des Courses C2").Select
             Columns("G:G").Select
             Selection.Replace What:="Lundi", Replacement:="Monday", LookAt:=xlWhole, _
@@ -222,7 +222,7 @@ Private Sub Sauvegarder_Click()
 End Sub
 Private Sub UserForm_Initialize()
 ' Cette méthode est appelée pour initialiser l'UserForm avec la ligne spécifique à modifier
-CourseARemplacer_C2 = Sheets("Réglages Régate").Cells(27, "B").Value
+CourseARemplacer_C2 = Sheets("Réglages Régate").Cells(27, "B").value
 IDCourse.Text = "C00"
 Heure.Text = "00:00"
 Categ.Clear
@@ -243,7 +243,7 @@ Dim UniqueList()    As String
     ReDim UniqueList(1 To Rng1.Rows.Count)
      
     For Each C In Rng1
-        If Not C.Value = vbNullString Then
+        If Not C.value = vbNullString Then
             Unique = True
             For x = 1 To y
                 If UniqueList(x) = C.Text Then
@@ -283,7 +283,7 @@ Dim UniqueList()    As String
     ReDim UniqueList2(1 To Rng2.Rows.Count)
      
     For Each D In Rng2
-        If Not D.Value = vbNullString Then
+        If Not D.value = vbNullString Then
             Unique2 = True
             For A = 1 To w
                 If UniqueList2(A) = D.Text Then

@@ -16,14 +16,14 @@ Attribute VB_Exposed = False
 
 Private Sub UserForm_Initialize()
 
-TitreRegate.Text = Sheets("Réglages Régate").Range("D4").Value
-LieuRegate.Text = Sheets("Réglages Régate").Range("D6").Value
-ClubOrganisateur.Text = Sheets("Réglages Régate").Range("D8").Value
-NBPartants.Text = Sheets("Réglages Régate").Range("E14").Value
-Affiliation.Text = Sheets("Réglages Régate").Range("E18").Value
-TypeRegate.Text = Sheets("Réglages Régate").Range("E16").Value
-DateDebut.Text = Sheets("Réglages Régate").Range("K4").Value
-DateFin.Text = Sheets("Réglages Régate").Range("K6").Value
+TitreRegate.Text = Sheets("Réglages Régate").Range("D4").value
+LieuRegate.Text = Sheets("Réglages Régate").Range("D6").value
+ClubOrganisateur.Text = Sheets("Réglages Régate").Range("D8").value
+NBPartants.Text = Sheets("Réglages Régate").Range("E14").value
+Affiliation.Text = Sheets("Réglages Régate").Range("E18").value
+TypeRegate.Text = Sheets("Réglages Régate").Range("E16").value
+DateDebut.Text = Sheets("Réglages Régate").Range("K4").value
+DateFin.Text = Sheets("Réglages Régate").Range("K6").value
 
 
 'Remplissage Valeurs Affiliation
@@ -148,14 +148,14 @@ End Sub
 
 Private Sub ReInit_Click()
 If MsgBox("Etes-vous certain de vouloir réinitialiser TOUTE la régate ?", vbYesNo + vbExclamation, "Demande de confirmation") = vbYes Then
-        Sheets("Réglages Régate").Range("D4").Value = ""
-        Sheets("Réglages Régate").Range("D6").Value = ""
-        Sheets("Réglages Régate").Range("D8").Value = ""
-        Sheets("Réglages Régate").Range("E14").Value = ""
-        Sheets("Réglages Régate").Range("E18").Value = ""
-        Sheets("Réglages Régate").Range("E16").Value = ""
-        Sheets("Réglages Régate").Range("K4").Value = ""
-        Sheets("Réglages Régate").Range("K6").Value = ""
+        Sheets("Réglages Régate").Range("D4").value = ""
+        Sheets("Réglages Régate").Range("D6").value = ""
+        Sheets("Réglages Régate").Range("D8").value = ""
+        Sheets("Réglages Régate").Range("E14").value = ""
+        Sheets("Réglages Régate").Range("E18").value = ""
+        Sheets("Réglages Régate").Range("E16").value = ""
+        Sheets("Réglages Régate").Range("K4").value = ""
+        Sheets("Réglages Régate").Range("K6").value = ""
         Sheets("Préparation Tirages CT").Select
         Range("A2:K999").Select
         Selection.ClearContents
@@ -237,49 +237,49 @@ Private Sub Sauvegarder_Click()
 TitreRegate = TitreRegate.Text
 
 'Inscription Titre Regate
-Sheets("Réglages Régate").Range("D4").Value = TitreRegate
+Sheets("Réglages Régate").Range("D4").value = TitreRegate
 
 'Récup Lieu Régate
 LieuRegate = LieuRegate.Text
 
 'Inscription Lieu Regate
-Sheets("Réglages Régate").Range("D6").Value = LieuRegate
+Sheets("Réglages Régate").Range("D6").value = LieuRegate
 
 'Récup Club Orga
 ClubOrga = ClubOrganisateur.Text
 
 'Inscription Lieu Regate
-Sheets("Réglages Régate").Range("D8").Value = ClubOrga
+Sheets("Réglages Régate").Range("D8").value = ClubOrga
 
 'Récup Date Debut
 DateDebut = DateDebut.Text
 
 'Inscription Date Debut
-Sheets("Réglages Régate").Range("K4").Value = DateDebut
+Sheets("Réglages Régate").Range("K4").value = DateDebut
 
 'Récup Date Fin
 DateFin = DateFin.Text
 
 'Inscription Date Fin
-Sheets("Réglages Régate").Range("K6").Value = DateFin
+Sheets("Réglages Régate").Range("K6").value = DateFin
 
 'Récup Type Régate
 TypeRegate = TypeRegate.Text
 
 'Inscription Type Régate
-Sheets("Réglages Régate").Range("E16").Value = TypeRegate
+Sheets("Réglages Régate").Range("E16").value = TypeRegate
 
 'Récup Fede
 Fede = Affiliation.Text
 
 'Inscription Fede
-Sheets("Réglages Régate").Range("E18").Value = Fede
+Sheets("Réglages Régate").Range("E18").value = Fede
 
 'Récup NB Partants
 NBPartants = NBPartants.Text
 
 'Inscription NB Partants
-Sheets("Réglages Régate").Range("E14").Value = NBPartants
+Sheets("Réglages Régate").Range("E14").value = NBPartants
 
 MsgBox "Les réglages de la régate ont été sauvegardés avec succès !", vbOKOnly + vbInformation, "Réglages Sauvegardés"
 

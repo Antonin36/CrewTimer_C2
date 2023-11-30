@@ -23,26 +23,26 @@ Private Sub Sauvegarder_Click()
             Dim i As Long
             For i = 0 To Categ.ListCount - 1
             If Categ.Selected(i) Then
-                Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, 6 + i).Value = Categ.List(i)
+                Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, 6 + i).value = Categ.List(i)
                 CategSel = CategSel & Categ.List(i) & " / "
             End If
             Next i
             CategSel = Left(CategSel, Len(CategSel) - 3)
-            Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, "A").Value = CodeEpreuve.Text
-            Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, "B").Value = Nom_Epreuve.Text
-            Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, "C").Value = CategSel
-            Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, "D").Value = Taille.Text
-            Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, "E").Value = Barreur.Text
-            Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, "AV").Value = CodeEpreuve.Text
-            Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, "F").Value = TypePart.Text
+            Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, "A").value = CodeEpreuve.Text
+            Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, "B").value = Nom_Epreuve.Text
+            Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, "C").value = CategSel
+            Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, "D").value = Taille.Text
+            Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, "E").value = Barreur.Text
+            Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, "AV").value = CodeEpreuve.Text
+            Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, "F").value = TypePart.Text
             Sheets("Stockage Epreuves CT").Select
             Range("A1").Select
             Sheets("Gestion CrewTimer").Select
-          MsgBox "L'épreuve à été créée avec succès !", vbOKOnly + vbInformation, "Epreuve Créée"
+          MsgBox "L'épreuve à été modifiée avec succès !", vbOKOnly + vbInformation, "Epreuve Modifiée"
       Unload Me
 End Sub
 Private Sub UserForm_Initialize()
-CourseAModifier_CT = Sheets("Réglages Régate").Cells(30, "B").Value
+CourseAModifier_CT = Sheets("Réglages Régate").Cells(30, "B").value
     Me.Categ.AddItem ("Jeune (J10)")
     Me.Categ.AddItem ("Jeune (J11)")
     Me.Categ.AddItem ("Jeune (J12)")
@@ -69,16 +69,16 @@ CourseAModifier_CT = Sheets("Réglages Régate").Cells(30, "B").Value
     Me.TypePart.AddItem ("Mixte")
     ' Ajoutez ici le code nécessaire pour charger les données de la ligne spécifiée dans les contrôles de l'UserForm
     ' Par exemple, si vous avez un contrôle TextBoxNomCourse, vous pouvez le remplir comme ceci :
-    CodeEpreuve.Text = Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, 1).Value
-    Nom_Epreuve.Text = Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, 2).Value
-    Taille.Text = Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, 4).Value
-    Barreur.Text = Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, 5).Value
-    TypePart.Text = Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, 6).Value
+    CodeEpreuve.Text = Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, 1).value
+    Nom_Epreuve.Text = Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, 2).value
+    Taille.Text = Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, 4).value
+    Barreur.Text = Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, 5).value
+    TypePart.Text = Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, 6).value
     'Ne Pas Récupérer G et D
     ' Ajoutez d'autres lignes similaires pour les autres contrôles que vous souhaitez initialiser
     For colcateg = 8 To 47
     ' Vérifiez si la cellule spécifiée contient une valeur
-    If Not IsEmpty(Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, colcateg).Value) Then
+    If Not IsEmpty(Sheets("Stockage Epreuves CT").Cells(CourseAModifier_CT, colcateg).value) Then
         ' Assurez-vous que l'index est dans la plage valide pour la ListBox
         If colcateg - 8 < Categ.ListCount Then
             ' Ajoutez l'option à la ListBox

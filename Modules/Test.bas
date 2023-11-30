@@ -37,21 +37,21 @@ Dim course1 As String, course2 As String, course3 As String, course4 As String, 
 Dim course6 As String, course7 As String, course8 As String, course9 As String, course10 As String
 Dim course11 As String, course12 As String, course13 As String, course14 As String, course15 As String
 With Sheets("Stockage Impressions")
-        course1 = .Range("A1").Value
-        course2 = .Range("B1").Value
-        course3 = .Range("C1").Value
-        course4 = .Range("D1").Value
-        course5 = .Range("E1").Value
-        course6 = .Range("F1").Value
-        course7 = .Range("G1").Value
-        course8 = .Range("H1").Value
-        course9 = .Range("I1").Value
-        course10 = .Range("J1").Value
-        course11 = .Range("K1").Value
-        course12 = .Range("L1").Value
-        course13 = .Range("M1").Value
-        course14 = .Range("N1").Value
-        course15 = .Range("O1").Value
+        course1 = .Range("A1").value
+        course2 = .Range("B1").value
+        course3 = .Range("C1").value
+        course4 = .Range("D1").value
+        course5 = .Range("E1").value
+        course6 = .Range("F1").value
+        course7 = .Range("G1").value
+        course8 = .Range("H1").value
+        course9 = .Range("I1").value
+        course10 = .Range("J1").value
+        course11 = .Range("K1").value
+        course12 = .Range("L1").value
+        course13 = .Range("M1").value
+        course14 = .Range("N1").value
+        course15 = .Range("O1").value
     End With
 
     With Sheets("Import Tirages")
@@ -321,6 +321,49 @@ Sub DistanceEntreSautsDePageHorizontal()
     Else
         MsgBox "Il n'y a pas suffisamment de sauts de page horizontaux pour calculer la distance.", vbExclamation
     End If
+End Sub
+
+Sub CompterValeursUniques()
+    Dim ws As Worksheet
+    Dim rng As Range
+    Dim cell As Range
+    Dim dict As Object
+    Dim uniqueValue As Variant
+
+    ' Remplacez "Feuil1" par le nom de votre feuille
+    Set ws = ThisWorkbook.Sheets("Sheet1")
+    ' Remplacez "A" par la colonne que vous souhaitez traiter
+    Set rng = ws.Range("A1:A" & ws.Cells(ws.Rows.Count, "A").End(xlUp).Row)
+
+    ' Utiliser un dictionnaire pour stocker les valeurs uniques et leur compte
+    Set dict = CreateObject("Scripting.Dictionary")
+
+    ' Parcourir chaque cellule dans la plage
+    For Each cell In rng
+        If cell.value <> "" Then
+            ' Incrémenter le compteur pour la valeur unique dans le dictionnaire
+            If dict.Exists(cell.value) Then
+                dict(cell.value) = dict(cell.value) + 1
+            Else
+                ' Ajouter la valeur au dictionnaire avec un compteur initial de 1
+                dict.Add cell.value, 1
+            End If
+        End If
+    Next cell
+
+    ' Écrire les résultats deux colonnes à droite des données d'origine
+    For Each uniqueValue In dict.Keys
+        ' Trouver la première cellule vide deux colonnes à droite
+        ' Trouver la première cellule vide deux colonnes à droite
+        Dim emptyCell As Range
+        Set emptyCell = ws.Cells(ws.Rows.Count, ws.Cells(1, ws.Columns.Count).End(xlToLeft).Column + 2).End(xlUp).Offset(1, 0)
+
+
+        ' Écrire la valeur unique
+        emptyCell.value = uniqueValue
+        ' Écrire le compteur correspondant
+        emptyCell.Offset(0, 1).value = dict(uniqueValue)
+    Next uniqueValue
 End Sub
 
 

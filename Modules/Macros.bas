@@ -12,25 +12,34 @@ Sub AfficheGestImp_PostTirages_CT()
         Sheets("Impressions Tirages CT").Select
         Range("A13:H420").Select
         Selection.ClearContents
-        Sheets("Impressions CT").Select
+        Sheets("Gestion CrewTimer").Select
 End Sub
 Sub AfficheGestImp_PostTirages_C2()
         Sheets("Impressions Tirages C2").Select
         Range("A13:H420").Select
         Selection.ClearContents
-        Sheets("Impressions C2").Select
+        Sheets("Gestion Concept2").Select
 End Sub
 Sub AfficheGestImp_PostResultats_CT()
         Sheets("Impressions Résultats CT").Select
         Range("A13:H420").Select
         Selection.ClearContents
-        Sheets("Impressions CT").Select
+        Sheets("Gestion CrewTimer").Select
 End Sub
 Sub AfficheGestImp_PostResultats_C2()
         Sheets("Impressions Résultats C2").Select
         Range("A13:H420").Select
         Selection.ClearContents
-        Sheets("Impressions C2").Select
+        Sheets("Impressions Concept2").Select
+End Sub
+Sub AfficheGestImp_CT()
+    GestImp_CT.Show
+End Sub
+Sub AfficheGestImp_C2()
+    GestImp_C2.Show
+End Sub
+Sub AfficheAccueilPostEmargement()
+
 End Sub
 Sub Affiche_Tirages_CT()
     GestionTirages_CT.Show
@@ -54,7 +63,7 @@ Sub Retour_Accueil()
     Sheets("Accueil").Select
 End Sub
 Sub Affiche_Gest_CT()
-    If Sheets("Réglages Régate").Range("E16").Value = "Indoor" Then
+    If Sheets("Réglages Régate").Range("E16").value = "Indoor" Then
     MsgBox "Vous avez paramétré une régate Indoor, l'accès à la gestion CrewTimer est impossible. Merci de vérifier vos paramètres de régate.", vbOKOnly + vbExclamation, "Accès Impossible"
     Else
     Sheets("Gestion CrewTimer").Select
@@ -62,7 +71,7 @@ Sub Affiche_Gest_CT()
 End Sub
 Sub Affiche_Gest_C2()
 'MsgBox "En cours de création...", vbCritical, "Accès Interdit"
-If Sheets("Réglages Régate").Range("E16").Value = "Mer" Or Sheets("Réglages Régate").Range("E16").Value = "Rivière" Then
+If Sheets("Réglages Régate").Range("E16").value = "Mer" Or Sheets("Réglages Régate").Range("E16").value = "Rivière" Then
     MsgBox "Vous avez paramétré une régate Rivière ou Mer, l'accès à la gestion Concept2 est impossible. Merci de vérifier vos paramètres de régate.", vbOKOnly + vbExclamation, "Accès Impossible"
     Else
     Sheets("Gestion Concept2").Select
@@ -79,14 +88,14 @@ Sub Affiche_Impr_ReinitImpressions_CT()
     Range("A13:H420").Select
     Selection.ClearContents
     Range("A13").Select
-    Sheets("Impressions CT").Select
+    Sheets("Gestion CrewTimer").Select
 End Sub
 Sub Affiche_Impr_ReinitImpressions_C2()
     ActiveWorkbook.ActiveSheet.Select
     Range("A13:H420").Select
     Selection.ClearContents
     Range("A13").Select
-    Sheets("Impressions C2").Select
+    Sheets("Gestion Concept2").Select
 End Sub
 Sub Affiche_Export_CT()
     Sheets("Feuille CrewTimer").Select
@@ -118,12 +127,12 @@ Dim reponse As VbMsgBoxResult
     Dim i As Long
     LastRow = Sheets("Programme des Courses C2").Cells(Sheets("Programme des Courses C2").Rows.Count, "BC").End(xlUp).Row
     For i = 2 To LastRow
-    Do While Sheets("Programme des Courses C2").Cells(i, 55).Value = ""
+    Do While Sheets("Programme des Courses C2").Cells(i, 55).value = ""
     i = i + 1
     Loop
-    Json = Sheets("Programme des Courses C2").Cells(i, 55).Value
-    jsonString = Sheets("Programme des Courses C2").Cells(i, 55).Value ' Le paramètre Whitespace ajoute une indentation pour une meilleure lisibilité
-    cheminFichier = dossier & "\" & Sheets("Réglages Régate").Range("D4").Value & "_" & Sheets("Programme des Courses C2").Cells(i, 3).Value & "_" & Sheets("Programme des Courses C2").Cells(i, 4).Value & ".rac2"  ' Remplacez "votre_fichier.json" par le nom de fichier de votre choix
+    Json = Sheets("Programme des Courses C2").Cells(i, 55).value
+    jsonString = Sheets("Programme des Courses C2").Cells(i, 55).value ' Le paramètre Whitespace ajoute une indentation pour une meilleure lisibilité
+    cheminFichier = dossier & "\" & Sheets("Réglages Régate").Range("D4").value & "_" & Sheets("Programme des Courses C2").Cells(i, 3).value & "_" & Sheets("Programme des Courses C2").Cells(i, 4).value & ".rac2"  ' Remplacez "votre_fichier.json" par le nom de fichier de votre choix
     ' Enregistrer la chaîne JSON dans le fichier
             Open cheminFichier For Output As #1
             Print #1, jsonString
@@ -285,10 +294,10 @@ Dim answer1 As Integer
 answer1 = MsgBox("Confirmez-vous l'effacement de la feuille CrewTimer ainsi que des Tirages ?", vbYesNo + vbExclamation, "Effacement CrewTimer et Tirages")
   If answer1 = vbYes Then
     Sheets("Feuille CrewTimer").Select
-        Range("A8:K999").Select
+        Range("A8:R999").Select
         Selection.EntireRow.Delete
         Sheets("Préparation Tirages CT").Select
-        Range("A2:K999").Select
+        Range("A2:R999").Select
         Selection.EntireRow.Delete
         Sheets("Feuille CrewTimer").Select
     MsgBox "La feuille CrewTimer ainsi que les tirages ont été effacés !", vbOKOnly + vbInformation, "CrewTimer et Tirages Effacés"
@@ -301,10 +310,10 @@ Dim answer1 As Integer
 answer1 = MsgBox("Confirmez-vous l'effacement de la feuille Concept2 ainsi que des Tirages ?", vbYesNo + vbExclamation, "Effacement Concept2 et Tirages")
   If answer1 = vbYes Then
     Sheets("Feuille Concept2").Select
-        Range("A8:K999").Select
+        Range("A8:R999").Select
         Selection.EntireRow.Delete
         Sheets("Préparation Tirages C2").Select
-        Range("A2:K999").Select
+        Range("A2:R999").Select
         Selection.EntireRow.Delete
         ActiveWorkbook.Worksheets("Programme des Courses C2").Columns("BC").ClearContents
         Sheets("Feuille Concept2").Select
@@ -387,7 +396,7 @@ Sub ImportResultat_CT()
     ' Pour chaque colonne
     For Col = dCol To 1 Step -1
       ' Vérifier si nom de colonne trouvé dans celles à supprimer
-      Flg = IsError(Application.Match(.Cells(1, Col).Value, tColSup, 0))
+      Flg = IsError(Application.Match(.Cells(1, Col).value, tColSup, 0))
       ' Si c'est le cas on supprime
       If Flg Then .Cells(1, Col).EntireColumn.Delete Shift:=xlToLeft
     Next Col
@@ -398,7 +407,24 @@ End Sub
 
 Sub ImportResultat_C2()
     Dim user_selected_filename2 As String
-   
+    Dim LastRow As Long
+    Dim DetailedResultsRow As Long
+    
+     Sheets("Import Resultats C2").Select
+    Cells.Select
+    Selection.Delete Shift:=xlUp
+    Range("A1").Select
+    Application.CutCopyMode = False
+   Do
+   ' Trouver la dernière ligne utilisée dans la feuille "Import Resultats C2"
+        LastRow = Sheets("Import Resultats C2").Cells(Sheets("Import Resultats C2").Rows.Count, "A").End(xlUp).Row
+
+   ' Si la dernière ligne utilisée est la première ligne (peut-être la feuille est vide), alors commencez à la ligne 1, sinon, à la dernière ligne utilisée + 1
+        If LastRow = 1 Then
+            LastRow = 1
+        Else
+            LastRow = LastRow + 1
+        End If
     With Application.FileDialog(msoFileDialogFilePicker)
         .Filters.Clear
         .Filters.Add "Fichier Export Résultats Concept2", "*.txt"
@@ -407,12 +433,8 @@ Sub ImportResultat_C2()
         user_selected_filename2 = .SelectedItems(1)
     End With
 
-    Sheets("Import Resultats C2").Select
-    Cells.Select
-    Selection.Delete Shift:=xlUp
-    Range("A1").Select
-    Application.CutCopyMode = False
-    With ActiveSheet.QueryTables.Add(Connection:="TEXT;" & user_selected_filename2, Destination:=Range("$A$1"))
+    
+    With Sheets("Import Resultats C2").QueryTables.Add(Connection:="TEXT;" & user_selected_filename2, Destination:=Sheets("Import Resultats C2").Cells(LastRow, 1))
         .Name = "r12685"
         .FieldNames = True
         .RowNumbers = False
@@ -439,8 +461,17 @@ Sub ImportResultat_C2()
         .Refresh BackgroundQuery:=False
     End With
     Call clearConnectionsAndQueries
-    Sheets("Gestion Concept2").Select
+    DetailedResultsRow = WorksheetFunction.Match("Detailed Results", Sheets("Import Resultats C2").Range("A:A"), 0)
+    On Error Resume Next
+        StartRow = LastRow
+        EndRow = DetailedResultsRow + 3
+        Sheets("Import Resultats C2").Rows(StartRow & ":" & EndRow).Delete Shift:=xlUp
     MsgBox "L'import du fichier résultat à été réussi avec succès !", vbInformation, "Import Résultats"
+    If MsgBox("Voulez-vous importer un autre fichier ?", vbQuestion + vbYesNo, "Importer un autre fichier ?") = vbNo Then
+            Sheets("Gestion Concept2").Select
+            Exit Do
+        End If
+    Loop
 End Sub
 Function CalculerAge(dateActuelle As Date, dateNaissance As Date) As Integer
     ' Calculer l'âge

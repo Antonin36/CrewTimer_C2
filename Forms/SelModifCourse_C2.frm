@@ -29,12 +29,12 @@ Private Sub Modifier_Click()
             ' Ouvrez le UserForm de modification en passant la ligne sélectionnée en paramètre
             Dim CourseModif_C2 As Long
             CourseModif_C2 = r + 1
-            Sheets("Réglages Régate").Cells(27, "B").Value = CourseModif_C2
-            If Sheets("Programme des Courses C2").Cells(CourseModif_C2, 52).Value = "Indiv" Then ModifCourse_C2_Indiv.Show
-            If Sheets("Programme des Courses C2").Cells(CourseModif_C2, 52).Value = "Relais" Then ModifCourse_C2_Relais.Show
-            If Sheets("Programme des Courses C2").Cells(CourseModif_C2, 52).Value = "Equipe" Then ModifCourse_C2_Equipes.Show
+            Sheets("Réglages Régate").Cells(27, "B").value = CourseModif_C2
+            If Sheets("Programme des Courses C2").Cells(CourseModif_C2, 52).value = "Indiv" Then ModifCourse_C2_Indiv.Show
+            If Sheets("Programme des Courses C2").Cells(CourseModif_C2, 52).value = "Relais" Then ModifCourse_C2_Relais.Show
+            If Sheets("Programme des Courses C2").Cells(CourseModif_C2, 52).value = "Equipe" Then ModifCourse_C2_Equipes.Show
             CourseModif_C2 = 0
-            Sheets("Réglages Régate").Cells(27, "B").Value = 0
+            Sheets("Réglages Régate").Cells(27, "B").value = 0
             Unload Me
         End If
     Else

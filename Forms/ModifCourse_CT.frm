@@ -20,20 +20,20 @@ Dim CategSel As String
             Dim i As Long
             For i = 0 To Categ.ListCount - 1
             If Categ.Selected(i) Then
-                Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, 10 + i).Value = Categ.List(i)
+                Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, 10 + i).value = Categ.List(i)
                 CategSel = CategSel & Categ.List(i) & " / "
             End If
             Next i
             CategSel = Left(CategSel, Len(CategSel) - 3)
-            Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, "A").Value = Jour.Text
-            Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, "B").Value = Heure.Text
-            Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, "C").Value = IDCourse.Text
-            Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, "D").Value = TypeCourse.Text
-            Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, "E").Value = TypeCourse.Text
-            Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, "F").Value = CategSel
-            Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, "G").Value = Jour.Text
-            Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, "H").Value = Tirage.Text
-            Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, "I").Value = InfoSysProg.Text
+            Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, "A").value = Jour.Text
+            Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, "B").value = Heure.Text
+            Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, "C").value = IDCourse.Text
+            Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, "D").value = TypeCourse.Text
+            Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, "E").value = TypeCourse.Text
+            Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, "F").value = CategSel
+            Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, "G").value = Jour.Text
+            Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, "H").value = Tirage.Text
+            Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, "I").value = InfoSysProg.Text
             Sheets("Programme des Courses CT").Select
             Columns("G:G").Select
             Selection.Replace What:="Lundi", Replacement:="Monday", LookAt:=xlWhole, _
@@ -212,7 +212,7 @@ Dim CategSel As String
 End Sub
 Private Sub UserForm_Initialize()
     ' Cette méthode est appelée pour initialiser l'UserForm avec la ligne spécifique à modifier
-    CourseARemplacer_CT = Sheets("Réglages Régate").Cells(26, "B").Value
+    CourseARemplacer_CT = Sheets("Réglages Régate").Cells(26, "B").value
     IDCourse.Text = "C00"
 Heure.Text = "00:00"
 Categ.Clear
@@ -233,7 +233,7 @@ Dim UniqueList()    As String
     ReDim UniqueList(1 To Rng1.Rows.Count)
      
     For Each C In Rng1
-        If Not C.Value = vbNullString Then
+        If Not C.value = vbNullString Then
             Unique = True
             For x = 1 To y
                 If UniqueList(x) = C.Text Then
@@ -273,7 +273,7 @@ Dim UniqueList()    As String
     ReDim UniqueList2(1 To Rng2.Rows.Count)
      
     For Each D In Rng2
-        If Not D.Value = vbNullString Then
+        If Not D.value = vbNullString Then
             Unique2 = True
             For A = 1 To w
                 If UniqueList2(A) = D.Text Then
@@ -298,17 +298,17 @@ Dim UniqueList()    As String
     Me.Jour.AddItem ("Dimanche")
     ' Ajoutez ici le code nécessaire pour charger les données de la ligne spécifiée dans les contrôles de l'UserForm
     ' Par exemple, si vous avez un contrôle TextBoxNomCourse, vous pouvez le remplir comme ceci :
-    Jour.Text = Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, 1).Value
+    Jour.Text = Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, 1).value
     Heure.Text = Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, 2).Text
-    IDCourse.Text = Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, 3).Value
-    TypeCourse.Text = Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, 5).Value
-    Tirage.Text = Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, 8).Value
-    InfoSysProg.Text = Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, 9).Value
+    IDCourse.Text = Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, 3).value
+    TypeCourse.Text = Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, 5).value
+    Tirage.Text = Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, 8).value
+    InfoSysProg.Text = Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, 9).value
     'Ne Pas Récupérer G et D
     ' Ajoutez d'autres lignes similaires pour les autres contrôles que vous souhaitez initialiser
     For colcateg = 10 To 49
     ' Vérifiez si la cellule spécifiée contient une valeur
-    If Not IsEmpty(Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, colcateg).Value) Then
+    If Not IsEmpty(Sheets("Programme des Courses CT").Cells(CourseARemplacer_CT, colcateg).value) Then
         ' Ajoutez l'option à la ListBox
         Categ.Selected(colcateg - 10) = True ' Vous pouvez utiliser la valeur de la cellule ici si nécessaire
     End If

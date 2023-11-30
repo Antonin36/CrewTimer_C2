@@ -88,7 +88,7 @@ Private Sub CreationTirages_Click()
     'Coller Chaque Ligne contenant Oui en H
     For i = 1 To LastRow
     jsonCell = ""
-            If Sheets("Programme des Courses C2").Cells(i, 8).Value = "Oui" Then
+            If Sheets("Programme des Courses C2").Cells(i, 8).value = "Oui" Then
                 partants = 0
                 Equipage = ""
                 trigramme = ""
@@ -99,7 +99,7 @@ Private Sub CreationTirages_Click()
                 End If
                 
                 'numlignegoal = numlignegoal + 1
-                Do While partants < Sheets("Réglages Régate").Range("E14").Value
+                Do While partants < Sheets("Réglages Régate").Range("E14").value
                     rameur1 = ""
                     rameur2 = ""
                     rameur3 = ""
@@ -111,25 +111,25 @@ Private Sub CreationTirages_Click()
                     Barreur = ""
                     Sheets("Programme des Courses C2").Rows(i).Copy Destination:=Worksheets("Préparation Tirages C2").Range("A" & j)
                     Dim A As String
-                    A = Sheets("Préparation Tirages C2").Cells(j, 3).Value & "_" & Sheets("Préparation Tirages C2").Cells(j, 4).Value
+                    A = Sheets("Préparation Tirages C2").Cells(j, 3).value & "_" & Sheets("Préparation Tirages C2").Cells(j, 4).value
                     Dim B As String
-                    B = Sheets("Préparation Tirages C2").Cells(j, 6).Value & "_" & Sheets("Préparation Tirages C2").Cells(j, 4).Value
-                    Sheets("Préparation Tirages C2").Cells(j, 3).Value = A
-                    Sheets("Préparation Tirages C2").Cells(j, 4).Value = B
-                    Sheets("Préparation Tirages C2").Cells(j, 5).Value = A
-                    Sheets("Préparation Tirages C2").Cells(j, 6).Value = Sheets("Préparation Tirages C2").Cells(j, 9).Value
-                    Sheets("Préparation Tirages C2").Cells(j, 13).Value = Sheets("Préparation Tirages C2").Cells(j, 50).Value
-                    Sheets("Préparation Tirages C2").Cells(j, 14).Value = Sheets("Préparation Tirages C2").Cells(j, 51).Value
-                    Sheets("Préparation Tirages C2").Cells(j, 15).Value = Sheets("Préparation Tirages C2").Cells(j, 52).Value
-                    Sheets("Préparation Tirages C2").Cells(j, 16).Value = Sheets("Préparation Tirages C2").Cells(j, 53).Value
-                    Sheets("Préparation Tirages C2").Cells(j, 17).Value = Sheets("Préparation Tirages C2").Cells(j, 54).Value
-                    Sheets("Préparation Tirages C2").Cells(j, 18).Value = Sheets("Préparation Tirages C2").Cells(j, 56).Value
-                    Sheets("Préparation Tirages C2").Cells(j, 50).Value = ""
-                    Sheets("Préparation Tirages C2").Cells(j, 51).Value = ""
-                    Sheets("Préparation Tirages C2").Cells(j, 52).Value = ""
-                    Sheets("Préparation Tirages C2").Cells(j, 53).Value = ""
-                    Sheets("Préparation Tirages C2").Cells(j, 54).Value = ""
-                    Sheets("Préparation Tirages C2").Cells(j, 56).Value = ""
+                    B = Sheets("Préparation Tirages C2").Cells(j, 6).value & "_" & Sheets("Préparation Tirages C2").Cells(j, 4).value
+                    Sheets("Préparation Tirages C2").Cells(j, 3).value = A
+                    Sheets("Préparation Tirages C2").Cells(j, 4).value = B
+                    Sheets("Préparation Tirages C2").Cells(j, 5).value = A
+                    Sheets("Préparation Tirages C2").Cells(j, 6).value = Sheets("Préparation Tirages C2").Cells(j, 9).value
+                    Sheets("Préparation Tirages C2").Cells(j, 13).value = Sheets("Préparation Tirages C2").Cells(j, 50).value
+                    Sheets("Préparation Tirages C2").Cells(j, 14).value = Sheets("Préparation Tirages C2").Cells(j, 51).value
+                    Sheets("Préparation Tirages C2").Cells(j, 15).value = Sheets("Préparation Tirages C2").Cells(j, 52).value
+                    Sheets("Préparation Tirages C2").Cells(j, 16).value = Sheets("Préparation Tirages C2").Cells(j, 53).value
+                    Sheets("Préparation Tirages C2").Cells(j, 17).value = Sheets("Préparation Tirages C2").Cells(j, 54).value
+                    Sheets("Préparation Tirages C2").Cells(j, 18).value = Sheets("Préparation Tirages C2").Cells(j, 56).value
+                    Sheets("Préparation Tirages C2").Cells(j, 50).value = ""
+                    Sheets("Préparation Tirages C2").Cells(j, 51).value = ""
+                    Sheets("Préparation Tirages C2").Cells(j, 52).value = ""
+                    Sheets("Préparation Tirages C2").Cells(j, 53).value = ""
+                    Sheets("Préparation Tirages C2").Cells(j, 54).value = ""
+                    Sheets("Préparation Tirages C2").Cells(j, 56).value = ""
                     Dim u As Integer
                     For u = 10 To 50
                     Do
@@ -141,8 +141,8 @@ Private Sub CreationTirages_Click()
                     Loop
                     Dim casegoal As String
                     Dim casetirage As String
-                    casegoal = Sheets("Import GOAL C2").Cells(numlignegoal, 3).Value
-                    casetirage = Sheets("Préparation Tirages C2").Cells(j, u).Value
+                    casegoal = Sheets("Import GOAL C2").Cells(numlignegoal, 3).value
+                    casetirage = Sheets("Préparation Tirages C2").Cells(j, u).value
                     If casegoal = casetirage Then Exit For
                     
                     If u = 50 Then numlignegoal = numlignegoal + 1
@@ -150,7 +150,7 @@ Private Sub CreationTirages_Click()
                     Next u
                    
                     If casegoal = casetirage Then
-                        Sheets("Préparation Tirages C2").Cells(j, 8).Value = Sheets("Import GOAL C2").Cells(numlignegoal, 5).Value
+                        Sheets("Préparation Tirages C2").Cells(j, 8).value = Sheets("Import GOAL C2").Cells(numlignegoal, 5).value
                         Sheets("Préparation Tirages C2").Select
                         Columns("H:H").Select
                         'LR01 (Auvergne-Rhône-Alpes)
@@ -1527,43 +1527,43 @@ Private Sub CreationTirages_Click()
                         ' Spécifiez la cellule à partir de laquelle vous souhaitez enlever les nombres
                         Set cell = Sheets("Préparation Tirages C2").Cells(j, 8)
 
-                        tempStr = cell.Value
+                        tempStr = cell.value
                         cell.ClearContents ' Efface le contenu de la cellule
 
                         ' Parcourez chaque caractère de la chaîne
                         For carequipage = 1 To Len(tempStr)
                         If Not (IsNumeric(Mid(tempStr, carequipage, 1)) Or Mid(tempStr, carequipage, 1) = " ") Then
                         ' Si le caractère n'est pas numérique, ajoutez-le à la cellule
-                        cell.Value = cell.Value & Mid(tempStr, carequipage, 1)
+                        cell.value = cell.value & Mid(tempStr, carequipage, 1)
                         End If
                         Next carequipage
                         Dim jsonCell2 As String
                         jsonCell2 = ""
                         jsonCell2 = jsonCell
-                        jsonCell = jsonCell & "{""affiliation"": """ & Sheets("Préparation Tirages C2").Cells(j, 8).Value & """,""class_name"": """ & Sheets("Import GOAL C2").Cells(numlignegoal, 3).Value & """,""lane_number"": " & partants + 1 & ","
-                        Equipage = Sheets("Import GOAL C2").Cells(numlignegoal, 5).Value & " (" & Sheets("Import GOAL C2").Cells(numlignegoal, 6).Value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 7).Value
-                        rameur1 = Sheets("Import GOAL C2").Cells(numlignegoal, 6).Value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 7).Value
-                        If Sheets("Import GOAL C2").Cells(numlignegoal, 18).Value <> "" Then
-                            Equipage = Equipage & " / " & Sheets("Import GOAL C2").Cells(numlignegoal, 18).Value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 19).Value
-                            rameur2 = Sheets("Import GOAL C2").Cells(numlignegoal, 18).Value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 19).Value
-                            If Sheets("Import GOAL C2").Cells(numlignegoal, 30).Value <> "" Then
-                                Equipage = Equipage & " / " & Sheets("Import GOAL C2").Cells(numlignegoal, 30).Value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 31).Value
-                                rameur3 = Sheets("Import GOAL C2").Cells(numlignegoal, 30).Value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 31).Value
-                                If Sheets("Import GOAL C2").Cells(numlignegoal, 42).Value <> "" Then
-                                    Equipage = Equipage & " / " & Sheets("Import GOAL C2").Cells(numlignegoal, 42).Value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 43).Value
-                                    rameur4 = Sheets("Import GOAL C2").Cells(numlignegoal, 42).Value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 43).Value
-                                    If Sheets("Import GOAL C2").Cells(numlignegoal, 54).Value <> "" Then
-                                        Equipage = Equipage & " / " & Sheets("Import GOAL C2").Cells(numlignegoal, 54).Value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 55).Value
-                                        rameur5 = Sheets("Import GOAL C2").Cells(numlignegoal, 54).Value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 55).Value
-                                        If Sheets("Import GOAL C2").Cells(numlignegoal, 66).Value <> "" Then
-                                            Equipage = Equipage & " / " & Sheets("Import GOAL C2").Cells(numlignegoal, 66).Value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 67).Value
-                                            rameur6 = Sheets("Import GOAL C2").Cells(numlignegoal, 66).Value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 67)
-                                            If Sheets("Import GOAL C2").Cells(numlignegoal, 78).Value <> "" Then
-                                                Equipage = Equipage & " / " & Sheets("Import GOAL C2").Cells(numlignegoal, 78).Value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 79).Value
-                                                rameur7 = Sheets("Import GOAL C2").Cells(numlignegoal, 78).Value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 79).Value
-                                                If Sheets("Import GOAL C2").Cells(numlignegoal, 90).Value <> "" Then
-                                                    Equipage = Equipage & " / " & Sheets("Import GOAL C2").Cells(numlignegoal, 90).Value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 91).Value
-                                                    rameur8 = Sheets("Import GOAL C2").Cells(numlignegoal, 90).Value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 91).Value
+                        jsonCell = jsonCell & "{""affiliation"": """ & Sheets("Préparation Tirages C2").Cells(j, 8).value & """,""class_name"": """ & Sheets("Import GOAL C2").Cells(numlignegoal, 3).value & """,""lane_number"": " & partants + 1 & ","
+                        Equipage = Sheets("Import GOAL C2").Cells(numlignegoal, 5).value & " (" & Sheets("Import GOAL C2").Cells(numlignegoal, 6).value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 7).value
+                        rameur1 = Sheets("Import GOAL C2").Cells(numlignegoal, 6).value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 7).value
+                        If Sheets("Import GOAL C2").Cells(numlignegoal, 18).value <> "" Then
+                            Equipage = Equipage & " / " & Sheets("Import GOAL C2").Cells(numlignegoal, 18).value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 19).value
+                            rameur2 = Sheets("Import GOAL C2").Cells(numlignegoal, 18).value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 19).value
+                            If Sheets("Import GOAL C2").Cells(numlignegoal, 30).value <> "" Then
+                                Equipage = Equipage & " / " & Sheets("Import GOAL C2").Cells(numlignegoal, 30).value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 31).value
+                                rameur3 = Sheets("Import GOAL C2").Cells(numlignegoal, 30).value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 31).value
+                                If Sheets("Import GOAL C2").Cells(numlignegoal, 42).value <> "" Then
+                                    Equipage = Equipage & " / " & Sheets("Import GOAL C2").Cells(numlignegoal, 42).value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 43).value
+                                    rameur4 = Sheets("Import GOAL C2").Cells(numlignegoal, 42).value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 43).value
+                                    If Sheets("Import GOAL C2").Cells(numlignegoal, 54).value <> "" Then
+                                        Equipage = Equipage & " / " & Sheets("Import GOAL C2").Cells(numlignegoal, 54).value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 55).value
+                                        rameur5 = Sheets("Import GOAL C2").Cells(numlignegoal, 54).value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 55).value
+                                        If Sheets("Import GOAL C2").Cells(numlignegoal, 66).value <> "" Then
+                                            Equipage = Equipage & " / " & Sheets("Import GOAL C2").Cells(numlignegoal, 66).value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 67).value
+                                            rameur6 = Sheets("Import GOAL C2").Cells(numlignegoal, 66).value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 67)
+                                            If Sheets("Import GOAL C2").Cells(numlignegoal, 78).value <> "" Then
+                                                Equipage = Equipage & " / " & Sheets("Import GOAL C2").Cells(numlignegoal, 78).value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 79).value
+                                                rameur7 = Sheets("Import GOAL C2").Cells(numlignegoal, 78).value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 79).value
+                                                If Sheets("Import GOAL C2").Cells(numlignegoal, 90).value <> "" Then
+                                                    Equipage = Equipage & " / " & Sheets("Import GOAL C2").Cells(numlignegoal, 90).value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 91).value
+                                                    rameur8 = Sheets("Import GOAL C2").Cells(numlignegoal, 90).value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 91).value
                                                 End If
                                             End If
                                         End If
@@ -1571,14 +1571,14 @@ Private Sub CreationTirages_Click()
                                 End If
                             End If
                         End If
-                        If Sheets("Import GOAL C2").Cells(numlignegoal, 104).Value <> "" Then
-                            Equipage = Equipage & " / Bar : " & Sheets("Import GOAL C2").Cells(numlignegoal, 104).Value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 105).Value
-                            Barreur = Sheets("Import GOAL C2").Cells(numlignegoal, 104).Value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 105).Value
+                        If Sheets("Import GOAL C2").Cells(numlignegoal, 104).value <> "" Then
+                            Equipage = Equipage & " / Bar : " & Sheets("Import GOAL C2").Cells(numlignegoal, 104).value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 105).value
+                            Barreur = Sheets("Import GOAL C2").Cells(numlignegoal, 104).value & " " & Sheets("Import GOAL C2").Cells(numlignegoal, 105).value
                         End If
                         Equipage = Equipage & ")"
-                        Sheets("Préparation Tirages C2").Cells(j, 7).Value = Equipage
-                        jsonCell = jsonCell & """name"": """ & Sheets("Préparation Tirages C2").Cells(j, 7).Value & """,""participants"": ["
-                        If Sheets("Programme des Courses C2").Cells(i, 52).Value = "Equipe" Then
+                        Sheets("Préparation Tirages C2").Cells(j, 7).value = Equipage
+                        jsonCell = jsonCell & """name"": """ & Sheets("Préparation Tirages C2").Cells(j, 7).value & """,""participants"": ["
+                        If Sheets("Programme des Courses C2").Cells(i, 52).value = "Equipe" Then
                             If rameur1 <> "" Then
                             jsonCell = jsonCell & "{""name"": """ & rameur1 & """},"
                                 If rameur2 <> "" Then
@@ -1608,7 +1608,7 @@ Private Sub CreationTirages_Click()
                         End If
                         jsonCell = jsonCell & "]},"
                         End If
-                        If Sheets("Programme des Courses C2").Cells(i, 52).Value = "Relais" Then
+                        If Sheets("Programme des Courses C2").Cells(i, 52).value = "Relais" Then
                         jsonCell = jsonCell & "{""name"": """
                         If rameur1 <> "" Then
                             jsonCell = jsonCell & rameur1
@@ -1636,13 +1636,13 @@ Private Sub CreationTirages_Click()
                             End If
                         jsonCell = jsonCell & """}]},"
                         End If
-                        If Sheets("Programme des Courses C2").Cells(i, 52).Value = "Indiv" Then
-                        jsonCell = jsonCell & "{""name"": """ & Sheets("Préparation Tirages C2").Cells(j, 7).Value & """}]},"
+                        If Sheets("Programme des Courses C2").Cells(i, 52).value = "Indiv" Then
+                        jsonCell = jsonCell & "{""name"": """ & Sheets("Préparation Tirages C2").Cells(j, 7).value & """}]},"
                         End If
                         If Equipage = " ( )" Then jsonCell = jsonCell2
-                        Sheets("Préparation Tirages C2").Cells(j, 9).Value = Sheets("Import GOAL C2").Cells(numlignegoal, 3).Value
-                        Sheets("Préparation Tirages C2").Cells(j, 11).Value = Sheets("Import GOAL C2").Cells(numlignegoal, 5).Value
-                        Sheets("Préparation Tirages C2").Cells(j, 10).Value = partants + 1
+                        Sheets("Préparation Tirages C2").Cells(j, 9).value = Sheets("Import GOAL C2").Cells(numlignegoal, 3).value
+                        Sheets("Préparation Tirages C2").Cells(j, 11).value = Sheets("Import GOAL C2").Cells(numlignegoal, 5).value
+                        Sheets("Préparation Tirages C2").Cells(j, 10).value = partants + 1
                             numCollection.Add numlignegoal
                             numlignegoal = 2
                             j = j + 1
@@ -3020,62 +3020,62 @@ Private Sub CreationTirages_Click()
     Range("A1").Select
                     End If
                 Loop
-                If partants = Sheets("Réglages Régate").Range("E14").Value Then
+                If partants = Sheets("Réglages Régate").Range("E14").value Then
                 'Code Fin JSON Var jsoncell
                 If Len(jsonCell) > 0 Then
                 jsonCell = Left(jsonCell, Len(jsonCell) - 1)
                 End If
                 jsonCell = jsonCell & "],""c2_race_id"": """","
-                If Sheets("Programme des Courses C2").Cells(i, 52).Value = "Indiv" And Sheets("Programme des Courses C2").Cells(i, 53).Value = "Distance" Then
-                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""meters"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""individual"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_size"": 1,""time_cap"": 0}}"
+                If Sheets("Programme des Courses C2").Cells(i, 52).value = "Indiv" And Sheets("Programme des Courses C2").Cells(i, 53).value = "Distance" Then
+                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).value & ",""duration_type"": ""meters"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""individual"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).value & ",""team_size"": 1,""time_cap"": 0}}"
                 End If
-                If Sheets("Programme des Courses C2").Cells(i, 52).Value = "Indiv" And Sheets("Programme des Courses C2").Cells(i, 53).Value = "Max de Distance" Then
-                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""time"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""individual"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_size"": 1,""time_cap"": 0}}"
+                If Sheets("Programme des Courses C2").Cells(i, 52).value = "Indiv" And Sheets("Programme des Courses C2").Cells(i, 53).value = "Max de Distance" Then
+                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).value & ",""duration_type"": ""time"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""individual"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).value & ",""team_size"": 1,""time_cap"": 0}}"
                 End If
-                If Sheets("Programme des Courses C2").Cells(i, 52).Value = "Indiv" And Sheets("Programme des Courses C2").Cells(i, 53).Value = "Max de Calories" Then
-                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""time"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""individual calorie score"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_size"": 1,""time_cap"": 0}}"
+                If Sheets("Programme des Courses C2").Cells(i, 52).value = "Indiv" And Sheets("Programme des Courses C2").Cells(i, 53).value = "Max de Calories" Then
+                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).value & ",""duration_type"": ""time"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""individual calorie score"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).value & ",""team_size"": 1,""time_cap"": 0}}"
                 End If
-                If Sheets("Programme des Courses C2").Cells(i, 52).Value = "Indiv" And Sheets("Programme des Courses C2").Cells(i, 53).Value = "Calories" Then
-                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""calories"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""individual"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_size"": 1,""time_cap"": 0}}"
+                If Sheets("Programme des Courses C2").Cells(i, 52).value = "Indiv" And Sheets("Programme des Courses C2").Cells(i, 53).value = "Calories" Then
+                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).value & ",""duration_type"": ""calories"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""individual"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).value & ",""team_size"": 1,""time_cap"": 0}}"
                 End If
-                If Sheets("Programme des Courses C2").Cells(i, 52).Value = "Equipe" And Sheets("Programme des Courses C2").Cells(i, 53).Value = "Distance" And Sheets("Programme des Courses C2").Cells(i, 54).Value = "Moyenne" Then
-                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""meters"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""team"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_scoring"": ""avg"",""team_size"": " & Sheets("Programme des Courses C2").Cells(i, 56).Value & ",""time_cap"": 0}}"
+                If Sheets("Programme des Courses C2").Cells(i, 52).value = "Equipe" And Sheets("Programme des Courses C2").Cells(i, 53).value = "Distance" And Sheets("Programme des Courses C2").Cells(i, 54).value = "Moyenne" Then
+                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).value & ",""duration_type"": ""meters"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""team"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).value & ",""team_scoring"": ""avg"",""team_size"": " & Sheets("Programme des Courses C2").Cells(i, 56).value & ",""time_cap"": 0}}"
                 End If
-                If Sheets("Programme des Courses C2").Cells(i, 52).Value = "Equipe" And Sheets("Programme des Courses C2").Cells(i, 53).Value = "Max de Distance" And Sheets("Programme des Courses C2").Cells(i, 54).Value = "Moyenne" Then
-                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""time"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""team"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_scoring"": ""avg"",""team_size"": " & Sheets("Programme des Courses C2").Cells(i, 56).Value & ",""time_cap"": 0}}"
+                If Sheets("Programme des Courses C2").Cells(i, 52).value = "Equipe" And Sheets("Programme des Courses C2").Cells(i, 53).value = "Max de Distance" And Sheets("Programme des Courses C2").Cells(i, 54).value = "Moyenne" Then
+                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).value & ",""duration_type"": ""time"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""team"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).value & ",""team_scoring"": ""avg"",""team_size"": " & Sheets("Programme des Courses C2").Cells(i, 56).value & ",""time_cap"": 0}}"
                 End If
-                If Sheets("Programme des Courses C2").Cells(i, 52).Value = "Equipe" And Sheets("Programme des Courses C2").Cells(i, 53).Value = "Max de Calories" And Sheets("Programme des Courses C2").Cells(i, 54).Value = "Moyenne" Then
-                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""time"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""team calorie score"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_scoring"": ""avg"",""team_size"": " & Sheets("Programme des Courses C2").Cells(i, 56).Value & ",""time_cap"": 0}}"
+                If Sheets("Programme des Courses C2").Cells(i, 52).value = "Equipe" And Sheets("Programme des Courses C2").Cells(i, 53).value = "Max de Calories" And Sheets("Programme des Courses C2").Cells(i, 54).value = "Moyenne" Then
+                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).value & ",""duration_type"": ""time"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""team calorie score"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).value & ",""team_scoring"": ""avg"",""team_size"": " & Sheets("Programme des Courses C2").Cells(i, 56).value & ",""time_cap"": 0}}"
                 End If
-                If Sheets("Programme des Courses C2").Cells(i, 52).Value = "Equipe" And Sheets("Programme des Courses C2").Cells(i, 53).Value = "Calories" And Sheets("Programme des Courses C2").Cells(i, 54).Value = "Moyenne" Then
-                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""calories"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""team"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_scoring"": ""avg"",""team_size"": " & Sheets("Programme des Courses C2").Cells(i, 56).Value & ",""time_cap"": 0}}"
+                If Sheets("Programme des Courses C2").Cells(i, 52).value = "Equipe" And Sheets("Programme des Courses C2").Cells(i, 53).value = "Calories" And Sheets("Programme des Courses C2").Cells(i, 54).value = "Moyenne" Then
+                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).value & ",""duration_type"": ""calories"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""team"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).value & ",""team_scoring"": ""avg"",""team_size"": " & Sheets("Programme des Courses C2").Cells(i, 56).value & ",""time_cap"": 0}}"
                 End If
-                If Sheets("Programme des Courses C2").Cells(i, 52).Value = "Equipe" And Sheets("Programme des Courses C2").Cells(i, 53).Value = "Distance" And Sheets("Programme des Courses C2").Cells(i, 54).Value = "Somme" Then
-                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""meters"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""team"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_scoring"": ""sum"",""team_size"": " & Sheets("Programme des Courses C2").Cells(i, 56).Value & ",""time_cap"": 0}}"
+                If Sheets("Programme des Courses C2").Cells(i, 52).value = "Equipe" And Sheets("Programme des Courses C2").Cells(i, 53).value = "Distance" And Sheets("Programme des Courses C2").Cells(i, 54).value = "Somme" Then
+                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).value & ",""duration_type"": ""meters"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""team"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).value & ",""team_scoring"": ""sum"",""team_size"": " & Sheets("Programme des Courses C2").Cells(i, 56).value & ",""time_cap"": 0}}"
                 End If
-                If Sheets("Programme des Courses C2").Cells(i, 52).Value = "Equipe" And Sheets("Programme des Courses C2").Cells(i, 53).Value = "Max de Distance" And Sheets("Programme des Courses C2").Cells(i, 54).Value = "Somme" Then
-                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""time"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""team"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_scoring"": ""sum"",""team_size"": " & Sheets("Programme des Courses C2").Cells(i, 56).Value & ",""time_cap"": 0}}"
+                If Sheets("Programme des Courses C2").Cells(i, 52).value = "Equipe" And Sheets("Programme des Courses C2").Cells(i, 53).value = "Max de Distance" And Sheets("Programme des Courses C2").Cells(i, 54).value = "Somme" Then
+                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).value & ",""duration_type"": ""time"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""team"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).value & ",""team_scoring"": ""sum"",""team_size"": " & Sheets("Programme des Courses C2").Cells(i, 56).value & ",""time_cap"": 0}}"
                 End If
-                If Sheets("Programme des Courses C2").Cells(i, 52).Value = "Equipe" And Sheets("Programme des Courses C2").Cells(i, 53).Value = "Max de Calories" And Sheets("Programme des Courses C2").Cells(i, 54).Value = "Somme" Then
-                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""time"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""team calorie score"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_scoring"": ""sum"",""team_size"": " & Sheets("Programme des Courses C2").Cells(i, 56).Value & ",""time_cap"": 0}}"
+                If Sheets("Programme des Courses C2").Cells(i, 52).value = "Equipe" And Sheets("Programme des Courses C2").Cells(i, 53).value = "Max de Calories" And Sheets("Programme des Courses C2").Cells(i, 54).value = "Somme" Then
+                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).value & ",""duration_type"": ""time"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""team calorie score"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).value & ",""team_scoring"": ""sum"",""team_size"": " & Sheets("Programme des Courses C2").Cells(i, 56).value & ",""time_cap"": 0}}"
                 End If
-                If Sheets("Programme des Courses C2").Cells(i, 52).Value = "Equipe" And Sheets("Programme des Courses C2").Cells(i, 53).Value = "Calories" And Sheets("Programme des Courses C2").Cells(i, 54).Value = "Somme" Then
-                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""calories"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""team"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_scoring"": ""sum"",""team_size"": " & Sheets("Programme des Courses C2").Cells(i, 56).Value & ",""time_cap"": 0}}"
+                If Sheets("Programme des Courses C2").Cells(i, 52).value = "Equipe" And Sheets("Programme des Courses C2").Cells(i, 53).value = "Calories" And Sheets("Programme des Courses C2").Cells(i, 54).value = "Somme" Then
+                jsonCell = jsonCell & """duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).value & ",""duration_type"": ""calories"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""team"",""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).value & ",""team_scoring"": ""sum"",""team_size"": " & Sheets("Programme des Courses C2").Cells(i, 56).value & ",""time_cap"": 0}}"
                 End If
-                If Sheets("Programme des Courses C2").Cells(i, 52).Value = "Relais" And Sheets("Programme des Courses C2").Cells(i, 53).Value = "Distance" Then
-                jsonCell = jsonCell & """display_prompt_at_splits"": true,""duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""meters"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""relay"",""sound_horn_at_splits"": false,""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_size"": 1,""time_cap"": 0}}"
+                If Sheets("Programme des Courses C2").Cells(i, 52).value = "Relais" And Sheets("Programme des Courses C2").Cells(i, 53).value = "Distance" Then
+                jsonCell = jsonCell & """display_prompt_at_splits"": true,""duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).value & ",""duration_type"": ""meters"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""relay"",""sound_horn_at_splits"": false,""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).value & ",""team_size"": 1,""time_cap"": 0}}"
                 End If
-                If Sheets("Programme des Courses C2").Cells(i, 52).Value = "Relais" And Sheets("Programme des Courses C2").Cells(i, 53).Value = "Temps" Then
-                jsonCell = jsonCell & """display_prompt_at_splits"": true,""duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""time"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""relay"",""sound_horn_at_splits"": false,""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_size"": 1,""time_cap"": 0}}"
+                If Sheets("Programme des Courses C2").Cells(i, 52).value = "Relais" And Sheets("Programme des Courses C2").Cells(i, 53).value = "Temps" Then
+                jsonCell = jsonCell & """display_prompt_at_splits"": true,""duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).value & ",""duration_type"": ""time"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""relay"",""sound_horn_at_splits"": false,""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).value & ",""team_size"": 1,""time_cap"": 0}}"
                 End If
-                If Sheets("Programme des Courses C2").Cells(i, 52).Value = "Relais" And Sheets("Programme des Courses C2").Cells(i, 53).Value = "Calories" Then
-                jsonCell = jsonCell & """display_prompt_at_splits"": true,""duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).Value & ",""duration_type"": ""calories"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").Value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).Value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""relay"",""sound_horn_at_splits"": false,""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).Value & ",""team_size"": 1,""time_cap"": 0}}"
+                If Sheets("Programme des Courses C2").Cells(i, 52).value = "Relais" And Sheets("Programme des Courses C2").Cells(i, 53).value = "Calories" Then
+                jsonCell = jsonCell & """display_prompt_at_splits"": true,""duration"": " & Sheets("Programme des Courses C2").Cells(i, 50).value & ",""duration_type"": ""calories"",""event_name"": """ & Sheets("Réglages Régate").Range("D4").value & """,""name_long"": """ & Sheets("Préparation Tirages C2").Cells(j - 1, 4).value & """,""name_short"": ""short name"",""race_id"": """",""race_type"": ""relay"",""sound_horn_at_splits"": false,""split_value"": " & Sheets("Programme des Courses C2").Cells(i, 51).value & ",""team_size"": 1,""time_cap"": 0}}"
                 End If
                 
                 End If
             End If
             'Implémenter JSON avant reset
-    Sheets("Programme des Courses C2").Cells(i, 55).Value = jsonCell
+    Sheets("Programme des Courses C2").Cells(i, 55).value = jsonCell
     Next i
     
     Dim LastRow2 As Long
@@ -3089,23 +3089,23 @@ Private Sub CreationTirages_Click()
    
    'Paste each row that contains "Mavs" in column A of Sheet1 into Sheet2
    For l = 1 To LastRow2
-           If Sheets("Programme des Courses C2").Cells(l, 8).Value = "Non" Then
+           If Sheets("Programme des Courses C2").Cells(l, 8).value = "Non" Then
            partants2 = 0
-           Do While partants2 < Sheets("Réglages Régate").Range("E14").Value
+           Do While partants2 < Sheets("Réglages Régate").Range("E14").value
                Sheets("Programme des Courses C2").Rows(l).Copy Destination:=Worksheets("Préparation Tirages C2").Range("A" & k)
                 Dim C As String
-                C = Sheets("Préparation Tirages C2").Cells(k, 3).Value & "_" & Sheets("Préparation Tirages C2").Cells(k, 4).Value
+                C = Sheets("Préparation Tirages C2").Cells(k, 3).value & "_" & Sheets("Préparation Tirages C2").Cells(k, 4).value
                 Dim D As String
-                D = Sheets("Préparation Tirages C2").Cells(k, 6).Value & "_" & Sheets("Préparation Tirages C2").Cells(k, 4).Value
-                Sheets("Préparation Tirages C2").Cells(k, 3).Value = C
-                Sheets("Préparation Tirages C2").Cells(k, 4).Value = D
-                Sheets("Préparation Tirages C2").Cells(k, 5).Value = C
-                Sheets("Préparation Tirages C2").Cells(k, 6).Value = Sheets("Préparation Tirages C2").Cells(k, 9).Value
-                Sheets("Préparation Tirages C2").Cells(k, 7).Value = "A Déterminer"
-                Sheets("Préparation Tirages C2").Cells(k, 8).Value = "A Déterminer"
-                Sheets("Préparation Tirages C2").Cells(k, 9).Value = "A Déterminer"
-                Sheets("Préparation Tirages C2").Cells(k, 10).Value = partants2 + 1
-                Sheets("Préparation Tirages C2").Cells(k, 11).Value = ""
+                D = Sheets("Préparation Tirages C2").Cells(k, 6).value & "_" & Sheets("Préparation Tirages C2").Cells(k, 4).value
+                Sheets("Préparation Tirages C2").Cells(k, 3).value = C
+                Sheets("Préparation Tirages C2").Cells(k, 4).value = D
+                Sheets("Préparation Tirages C2").Cells(k, 5).value = C
+                Sheets("Préparation Tirages C2").Cells(k, 6).value = Sheets("Préparation Tirages C2").Cells(k, 9).value
+                Sheets("Préparation Tirages C2").Cells(k, 7).value = "A Déterminer"
+                Sheets("Préparation Tirages C2").Cells(k, 8).value = "A Déterminer"
+                Sheets("Préparation Tirages C2").Cells(k, 9).value = "A Déterminer"
+                Sheets("Préparation Tirages C2").Cells(k, 10).value = partants2 + 1
+                Sheets("Préparation Tirages C2").Cells(k, 11).value = ""
                 k = k + 1
                 partants2 = partants2 + 1
             Loop
@@ -3116,7 +3116,7 @@ Private Sub CreationTirages_Click()
     LastRow3 = Sheets("Préparation Tirages C2").Cells(Sheets("Préparation Tirages C2").Rows.Count, "A").End(xlUp).Row
       
    For w = 1 To LastRow3
-           If Sheets("Préparation Tirages C2").Cells(l, 8).Value = "Non" Or Sheets("Préparation Tirages C2").Cells(w, 8).Value = "Oui" Then
+           If Sheets("Préparation Tirages C2").Cells(l, 8).value = "Non" Or Sheets("Préparation Tirages C2").Cells(w, 8).value = "Oui" Then
            Sheets("Préparation Tirages C2").Rows(w).EntireRow.Delete
            End If
    Next w
@@ -3173,9 +3173,9 @@ Private Sub CreationTirages_Click()
         ActiveSheet.ShowAllData
         Selection.AutoFilter
         Range("A1").Select
-        If Sheets("Réglages Régate").Range("G16").Value = "Rand" Then
+        If Sheets("Réglages Régate").Range("G16").value = "Rand" Then
         Sheets("Réglages Régate").Select
-        Sheets("Réglages Régate").Range("G16").Value = ""
+        Sheets("Réglages Régate").Range("G16").value = ""
         Sheets("Feuille Concept2").Select
         ' Générer des valeurs aléatoires dans la colonne M
         ActiveWorkbook.Worksheets("Feuille Concept2").Range("M8:M1000").FormulaR1C1 = "=RAND()"
@@ -3207,14 +3207,14 @@ alea = False
 Dim random_method As String
 random_method = ""
 Sheets("Réglages Régate").Select
-Sheets("Réglages Régate").Range("G16").Value = ""
-Sheets("Réglages Régate").Range("H16").Value = ""
+Sheets("Réglages Régate").Range("G16").value = ""
+Sheets("Réglages Régate").Range("H16").value = ""
 Sheets("Gestion Concept2").Select
 'Mettre tps pronostique
 If MsgBox("Voulez-vous utiliser un tirage suivant les temps pronostiques ?", vbYesNo + vbQuestion, "Tirages par Temps Pronostique ?") = vbYes Then
     random_method = "Par l'ordre des temps pronostiques"
     Sheets("Réglages Régate").Select
-    Sheets("Réglages Régate").Range("J16").Value = "Tps"
+    Sheets("Réglages Régate").Range("J16").value = "Tps"
     Sheets("Import GOAL C2").Select
     ActiveWorkbook.Worksheets("Import GOAL C2").Sort.SortFields.Clear
     ActiveWorkbook.Worksheets("Import GOAL C2").Sort.SortFields.Add2 Key:=Range( _
@@ -3236,16 +3236,16 @@ ElseIf MsgBox("Voulez-vous utiliser un tirage aléatoire ?", vbYesNo + vbQuestion
 alea = True
 'Mettre créer une colonne random, en ER
     Sheets("Réglages Régate").Select
-    Sheets("Réglages Régate").Range("G16").Value = "Rand"
+    Sheets("Réglages Régate").Range("G16").value = "Rand"
     Sheets("Import GOAL C2").Select
     random_method = "Aléatoire"
     Sheets("Import GOAL C2").Select
-    Range("ER1").Value = "Random"
+    Range("ER1").value = "Random"
     Range("ER2").Select
     Dim rand As Long
     rand = Sheets("Import GOAL C2").Cells(Sheets("Import GOAL C2").Rows.Count, "C").End(xlUp).Row - 1
     For rand = 1 To rand
-    ActiveCell.Value = Rnd()
+    ActiveCell.value = Rnd()
     ActiveCell.Offset(1, 0).Select
 Next rand
 'Trier la table
@@ -3263,14 +3263,14 @@ ActiveWorkbook.Worksheets("Import GOAL C2").Sort.SortFields.Clear
     End With
     'Effacer la colonne random
     Range("ER1:ER999").Select
-    Range("ER1:ER999").Value = ""
+    Range("ER1:ER999").value = ""
     Range("A1").Select
     
     ElseIf MsgBox("Voulez-vous utiliser un tirage où le numéro du bateau défini dans GOAL est l'ordre de départ ?", vbYesNo + vbQuestion, "Tirages par Numéro de Bateau ?") = vbYes Then
     'Procéder au tirage via l'ordre croissant des numéros de bateau
     random_method = "Par l'ordre croissant des numéros de bateau"
     Sheets("Réglages Régate").Select
-    Sheets("Réglages Régate").Range("H16").Value = "Num"
+    Sheets("Réglages Régate").Range("H16").value = "Num"
     Sheets("Import GOAL C2").Select
     ActiveWorkbook.Worksheets("Import GOAL C2").Sort.SortFields.Clear
     ActiveWorkbook.Worksheets("Import GOAL C2").Sort.SortFields.Add2 Key:=Range( _
@@ -3388,8 +3388,8 @@ answer1 = MsgBox("Confirmez-vous la validation des tirages ?", vbYesNo + vbExcla
             End With
             Range("A1").Select
             Sheets("Réglages Régate").Select
-            Sheets("Réglages Régate").Range("G16").Value = ""
-            Sheets("Réglages Régate").Range("H16").Value = ""
+            Sheets("Réglages Régate").Range("G16").value = ""
+            Sheets("Réglages Régate").Range("H16").value = ""
             Sheets("Gestion Concept2").Select
     MsgBox "Les tirages ont bien été validés et transférés dans la table pour l'export vers Concept2 !", vbOKOnly + vbInformation, "Tirages Validés"
     Unload Me
@@ -3433,7 +3433,7 @@ Sheets("Programme des Courses C2").Select
             End With
             Range("A1").Select
             Sheets("Réglages Régate").Select
-            Sheets("Réglages Régate").Range("G16").Value = ""
+            Sheets("Réglages Régate").Range("G16").value = ""
             Sheets("Gestion Concept2").Select
  Unload Me
 End Sub

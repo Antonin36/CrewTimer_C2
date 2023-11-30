@@ -23,17 +23,17 @@ Private Sub Sauvegarder_Click()
             Dim i As Long
             For i = 0 To Categ.ListCount - 1
             If Categ.Selected(i) Then
-                Sheets("Stockage Epreuves C2").Cells(LastRow, 8 + i).Value = Categ.List(i)
+                Sheets("Stockage Epreuves C2").Cells(LastRow, 8 + i).value = Categ.List(i)
                 CategSel = CategSel & Categ.List(i) & " / "
             End If
             Next i
             CategSel = Left(CategSel, Len(CategSel) - 3)
-            Sheets("Stockage Epreuves C2").Cells(LastRow, "A").Value = CodeEpreuve.Text
-            Sheets("Stockage Epreuves C2").Cells(LastRow, "B").Value = Nom_Epreuve.Text
-            Sheets("Stockage Epreuves C2").Cells(LastRow, "C").Value = CategSel
-            Sheets("Stockage Epreuves C2").Cells(LastRow, "D").Value = Taille.Text
-            Sheets("Stockage Epreuves C2").Cells(LastRow, "AV").Value = CodeEpreuve.Text
-            Sheets("Stockage Epreuves C2").Cells(LastRow, "F").Value = TypePart.Text
+            Sheets("Stockage Epreuves C2").Cells(LastRow, "A").value = CodeEpreuve.Text
+            Sheets("Stockage Epreuves C2").Cells(LastRow, "B").value = Nom_Epreuve.Text
+            Sheets("Stockage Epreuves C2").Cells(LastRow, "C").value = CategSel
+            Sheets("Stockage Epreuves C2").Cells(LastRow, "D").value = Taille.Text
+            Sheets("Stockage Epreuves C2").Cells(LastRow, "AV").value = CodeEpreuve.Text
+            Sheets("Stockage Epreuves C2").Cells(LastRow, "F").value = TypePart.Text
             Sheets("Stockage Epreuves C2").Select
             Range("A1").Select
             Sheets("Gestion CrewTimer").Select

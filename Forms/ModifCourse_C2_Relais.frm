@@ -25,24 +25,24 @@ Private Sub Sauvegarder_Click()
             Dim i As Long
             For i = 0 To Categ.ListCount - 1
             If Categ.Selected(i) Then
-                Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, 10 + i).Value = Categ.List(i)
+                Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, 10 + i).value = Categ.List(i)
                 CategSel = CategSel & Categ.List(i) & " / "
             End If
             Next i
             CategSel = Left(CategSel, Len(CategSel) - 3)
-            Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, "A").Value = Jour.Text
-            Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, "B").Value = Heure.Text
-            Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, "C").Value = IDCourse.Text
-            Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, "D").Value = EtapeCourse.Text
-            Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, "E").Value = EtapeCourse.Text
-            Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, "F").Value = CategSel
-            Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, "G").Value = Jour.Text
-            Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, "H").Value = Tirage.Text
-            Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, "I").Value = InfoSysProg.Text
-            Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, "BA").Value = TypeCourse.Text
-            Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, "AX").Value = DureeCourse.Text
-            Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, "AY").Value = Split.Text
-            Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, "AZ").Value = "Relais"
+            Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, "A").value = Jour.Text
+            Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, "B").value = Heure.Text
+            Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, "C").value = IDCourse.Text
+            Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, "D").value = EtapeCourse.Text
+            Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, "E").value = EtapeCourse.Text
+            Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, "F").value = CategSel
+            Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, "G").value = Jour.Text
+            Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, "H").value = Tirage.Text
+            Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, "I").value = InfoSysProg.Text
+            Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, "BA").value = TypeCourse.Text
+            Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, "AX").value = DureeCourse.Text
+            Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, "AY").value = Split.Text
+            Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, "AZ").value = "Relais"
             Sheets("Programme des Courses C2").Select
             Columns("G:G").Select
             Selection.Replace What:="Lundi", Replacement:="Monday", LookAt:=xlWhole, _
@@ -222,7 +222,7 @@ End Sub
 
 Private Sub UserForm_Initialize()
 ' Cette méthode est appelée pour initialiser l'UserForm avec la ligne spécifique à modifier
-CourseARemplacer_C2 = Sheets("Réglages Régate").Cells(27, "B").Value
+CourseARemplacer_C2 = Sheets("Réglages Régate").Cells(27, "B").value
 IDCourse.Text = "C00"
 Heure.Text = "00:00"
 Categ.Clear
@@ -243,7 +243,7 @@ Dim UniqueList()    As String
     ReDim UniqueList(1 To Rng1.Rows.Count)
      
     For Each C In Rng1
-        If Not C.Value = vbNullString Then
+        If Not C.value = vbNullString Then
             Unique = True
             For x = 1 To y
                 If UniqueList(x) = C.Text Then
@@ -283,7 +283,7 @@ Dim UniqueList()    As String
     ReDim UniqueList2(1 To Rng2.Rows.Count)
      
     For Each D In Rng2
-        If Not D.Value = vbNullString Then
+        If Not D.value = vbNullString Then
             Unique2 = True
             For A = 1 To w
                 If UniqueList2(A) = D.Text Then
@@ -311,20 +311,20 @@ Dim UniqueList()    As String
     Me.TypeCourse.AddItem ("Calories")
     ' Ajoutez ici le code nécessaire pour charger les données de la ligne spécifiée dans les contrôles de l'UserForm
     ' Par exemple, si vous avez un contrôle TextBoxNomCourse, vous pouvez le remplir comme ceci :
-    Jour.Text = Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, 1).Value
+    Jour.Text = Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, 1).value
     Heure.Text = Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, 2).Text
-    IDCourse.Text = Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, 3).Value
-    EtapeCourse.Text = Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, 5).Value
-    Tirage.Text = Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, 8).Value
-    InfoSysProg.Text = Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, 9).Value
-    TypeCourse.Text = Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, 53).Value
-    DureeCourse.Text = Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, 50).Value
-    Split.Text = Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, 51).Value
+    IDCourse.Text = Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, 3).value
+    EtapeCourse.Text = Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, 5).value
+    Tirage.Text = Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, 8).value
+    InfoSysProg.Text = Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, 9).value
+    TypeCourse.Text = Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, 53).value
+    DureeCourse.Text = Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, 50).value
+    Split.Text = Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, 51).value
     'Ne Pas Récupérer G et D
     ' Ajoutez d'autres lignes similaires pour les autres contrôles que vous souhaitez initialiser
     For colcateg = 10 To 49
     ' Vérifiez si la cellule spécifiée contient une valeur
-    If Not IsEmpty(Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, colcateg).Value) Then
+    If Not IsEmpty(Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, colcateg).value) Then
         ' Ajoutez l'option à la ListBox
         Categ.Selected(colcateg - 10) = True ' Vous pouvez utiliser la valeur de la cellule ici si nécessaire
     End If

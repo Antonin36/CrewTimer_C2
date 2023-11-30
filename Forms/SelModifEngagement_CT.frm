@@ -29,10 +29,10 @@ Private Sub Modifier_Click()
             ' Ouvrez le UserForm de modification en passant la ligne sélectionnée en paramètre
             Dim EngagementModif_CT As Long
             EngagementModif_CT = r + 1
-            Sheets("Réglages Régate").Cells(30, "D").Value = EngagementModif_CT
+            Sheets("Réglages Régate").Cells(30, "D").value = EngagementModif_CT
             ModifEngagement_CT.Show
             EngagementModif_CT = 0
-            Sheets("Réglages Régate").Cells(30, "D").Value = 0
+            Sheets("Réglages Régate").Cells(30, "D").value = 0
             Unload Me
         End If
     Else

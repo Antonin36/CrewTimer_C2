@@ -29,10 +29,10 @@ Private Sub Modifier_Click()
             ' Ouvrez le UserForm de modification en passant la ligne sélectionnée en paramètre
             Dim EpreuveModif_CT As Long
             EpreuveModif_CT = r + 1
-            Sheets("Réglages Régate").Cells(30, "B").Value = EpreuveModif_CT
+            Sheets("Réglages Régate").Cells(30, "B").value = EpreuveModif_CT
             ModifEpreuve_CT.Show
             EpreuveModif_CT = 0
-            Sheets("Réglages Régate").Cells(30, "B").Value = 0
+            Sheets("Réglages Régate").Cells(30, "B").value = 0
             Unload Me
         End If
     Else

@@ -22,14 +22,14 @@ Private Sub ReInit_Click()
 Dim answer1 As Integer
 answer1 = MsgBox("Etes-vous certain de vouloir réinitialiser TOUTE la régate ?", vbYesNo + vbExclamation, "Demande de confirmation")
   If answer1 = vbYes Then
-        Sheets("Réglages Régate").Range("D4").Value = ""
-        Sheets("Réglages Régate").Range("D6").Value = ""
-        Sheets("Réglages Régate").Range("D8").Value = ""
-        Sheets("Réglages Régate").Range("E14").Value = ""
-        Sheets("Réglages Régate").Range("E18").Value = ""
-        Sheets("Réglages Régate").Range("E16").Value = ""
-        Sheets("Réglages Régate").Range("K4").Value = ""
-        Sheets("Réglages Régate").Range("K6").Value = ""
+        Sheets("Réglages Régate").Range("D4").value = ""
+        Sheets("Réglages Régate").Range("D6").value = ""
+        Sheets("Réglages Régate").Range("D8").value = ""
+        Sheets("Réglages Régate").Range("E14").value = ""
+        Sheets("Réglages Régate").Range("E18").value = ""
+        Sheets("Réglages Régate").Range("E16").value = ""
+        Sheets("Réglages Régate").Range("K4").value = ""
+        Sheets("Réglages Régate").Range("K6").value = ""
         Sheets("Préparation Tirages CT").Select
         Range("A2:K999").Select
         Selection.ClearContents
@@ -107,7 +107,7 @@ End Sub
 
 Private Sub UserForm_Initialize()
     Sheets("Accueil").Select
-    Regate.Caption = Sheets("Réglages Régate").Range("D4").Value
-    Lieu.Caption = Sheets("Réglages Régate").Range("D6").Value
-    Club.Caption = Sheets("Réglages Régate").Range("D8").Value
+    Regate.Caption = Sheets("Réglages Régate").Range("D4").value
+    Lieu.Caption = Sheets("Réglages Régate").Range("D6").value
+    Club.Caption = Sheets("Réglages Régate").Range("D8").value
 End Sub

@@ -33,57 +33,57 @@ TargetType = 0
     If TargetType = 3 Then  ' is validation type is "list"
         Application.ScreenUpdating = False
         Application.EnableEvents = False
-        newValue = Destination.Value
+        newValue = Destination.value
         Application.Undo
-        oldValue = Destination.Value
-        Destination.Value = newValue
+        oldValue = Destination.value
+        Destination.value = newValue
         If oldValue <> "" Then
             If newValue <> "" Then
                 If oldValue = newValue Or oldValue = newValue & Replace(DelimiterType, " ", "") Or oldValue = newValue & DelimiterType Then ' leave the value if there is only one in the list
                     oldValue = Replace(oldValue, DelimiterType, "")
                     oldValue = Replace(oldValue, Replace(DelimiterType, " ", ""), "")
-                    Destination.Value = oldValue
+                    Destination.value = oldValue
                 ElseIf InStr(1, oldValue, DelimiterType & newValue) Or InStr(1, oldValue, " " & newValue & DelimiterType) Then
                     arr = Split(oldValue, DelimiterType)
                 If Not IsError(Application.Match(newValue, arr, 0)) = 0 Then
-                    Destination.Value = oldValue & DelimiterType & newValue
+                    Destination.value = oldValue & DelimiterType & newValue
                         Else:
-                    Destination.Value = ""
+                    Destination.value = ""
                     For i = 0 To UBound(arr)
                     If arr(i) <> newValue Then
-                        Destination.Value = Destination.Value & arr(i) & DelimiterType
+                        Destination.value = Destination.value & arr(i) & DelimiterType
                     End If
                     Next i
-                Destination.Value = Left(Destination.Value, Len(Destination.Value) - Len(DelimiterType))
+                Destination.value = Left(Destination.value, Len(Destination.value) - Len(DelimiterType))
                 End If
                 ElseIf InStr(1, oldValue, newValue & Replace(DelimiterType, " ", "")) Then
                     oldValue = Replace(oldValue, newValue, "")
-                    Destination.Value = oldValue
+                    Destination.value = oldValue
                 Else
-                    Destination.Value = oldValue & DelimiterType & newValue
+                    Destination.value = oldValue & DelimiterType & newValue
                 End If
-                Destination.Value = Replace(Destination.Value, Replace(DelimiterType, " ", "") & Replace(DelimiterType, " ", ""), Replace(DelimiterType, " ", "")) ' remove extra commas and spaces
-                Destination.Value = Replace(Destination.Value, DelimiterType & Replace(DelimiterType, " ", ""), Replace(DelimiterType, " ", ""))
-                If Destination.Value <> "" Then
-                    If Right(Destination.Value, 2) = DelimiterType Then  ' remove delimiter at the end
-                        Destination.Value = Left(Destination.Value, Len(Destination.Value) - 2)
+                Destination.value = Replace(Destination.value, Replace(DelimiterType, " ", "") & Replace(DelimiterType, " ", ""), Replace(DelimiterType, " ", "")) ' remove extra commas and spaces
+                Destination.value = Replace(Destination.value, DelimiterType & Replace(DelimiterType, " ", ""), Replace(DelimiterType, " ", ""))
+                If Destination.value <> "" Then
+                    If Right(Destination.value, 2) = DelimiterType Then  ' remove delimiter at the end
+                        Destination.value = Left(Destination.value, Len(Destination.value) - 2)
                     End If
                 End If
-                If InStr(1, Destination.Value, DelimiterType) = 1 Then ' remove delimiter as first characters
-                    Destination.Value = Replace(Destination.Value, DelimiterType, "", 1, 1)
+                If InStr(1, Destination.value, DelimiterType) = 1 Then ' remove delimiter as first characters
+                    Destination.value = Replace(Destination.value, DelimiterType, "", 1, 1)
                 End If
-                If InStr(1, Destination.Value, Replace(DelimiterType, " ", "")) = 1 Then
-                    Destination.Value = Replace(Destination.Value, Replace(DelimiterType, " ", ""), "", 1, 1)
+                If InStr(1, Destination.value, Replace(DelimiterType, " ", "")) = 1 Then
+                    Destination.value = Replace(Destination.value, Replace(DelimiterType, " ", ""), "", 1, 1)
                 End If
                 DelimiterCount = 0
-                For i = 1 To Len(Destination.Value)
-                    If InStr(i, Destination.Value, Replace(DelimiterType, " ", "")) Then
+                For i = 1 To Len(Destination.value)
+                    If InStr(i, Destination.value, Replace(DelimiterType, " ", "")) Then
                         DelimiterCount = DelimiterCount + 1
                     End If
                 Next i
                 If DelimiterCount = 1 Then ' remove delimiter if last character
-                    Destination.Value = Replace(Destination.Value, DelimiterType, "")
-                    Destination.Value = Replace(Destination.Value, Replace(DelimiterType, " ", ""), "")
+                    Destination.value = Replace(Destination.value, DelimiterType, "")
+                    Destination.value = Replace(Destination.value, Replace(DelimiterType, " ", ""), "")
                 End If
             End If
         End If
