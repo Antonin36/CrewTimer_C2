@@ -23,10 +23,16 @@ End Sub
 Private Sub Sauvegarder_Click()
             Dim CategSel As String
             Dim i As Long
+            ' Trouver la première cellule vide entre les colonnes 10 et 49
+            Dim emptyCell As Range
+            Set emptyCell = Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, 10)
             For i = 0 To Categ.ListCount - 1
             If Categ.Selected(i) Then
-                Sheets("Programme des Courses C2").Cells(CourseARemplacer_C2, 10 + i).value = Categ.List(i)
-                CategSel = CategSel & Categ.List(i) & " / "
+            ' Placer la valeur dans la première cellule vide entre les colonnes 10 et 49
+            emptyCell.value = Categ.List(i)
+            CategSel = CategSel & Categ.List(i) & " / "
+            ' Passer à la cellule suivante
+            Set emptyCell = emptyCell.Offset(0, 1)
             End If
             Next i
             CategSel = Left(CategSel, Len(CategSel) - 3)

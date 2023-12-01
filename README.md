@@ -39,5 +39,5 @@ Import depuis OPUSS, \
 Import depuis FFSU, \
 Transposer dans les tables export (L'ID inscription, l'ID Course, bref tout les paramètres de GOAL...), \
 Webservices GOAL (Si Possible...), prévu : Contrôle Validité, Catégorie, Récupération des Infos Manifestations depuis GOAL via ID Manifestation.
-Augmenter à 100 catégories dans Prg Courses.
+Modifier les fonctions de modif pour effacer les cases des ListBox.
 Pour tous bugs trouvés, merci d'ouvrir une Issue.

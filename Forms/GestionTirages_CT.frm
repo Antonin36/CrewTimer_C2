@@ -14,31 +14,6 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Private alea As Boolean
-Private numCollection As New Collection ' Déclarez une collection pour stocker les numéros de ligne
-
-' Fonction pour ajouter un numéro de ligne à la collection
-Sub AddToCollection(Col As Collection, Item As Long)
-    On Error Resume Next
-    Col.Add Item, CStr(Item) ' Utilisez CStr pour convertir le numéro de ligne en une clé de chaîne unique
-    On Error GoTo 0
-End Sub
-Function IsInCollection(Col As Collection, val As Long) As Boolean
-    On Error Resume Next
-    Dim Item As Variant
-    IsInCollection = False
-    For Each Item In Col
-        If Item = val Then
-            IsInCollection = True
-            Exit Function
-        End If
-    Next Item
-    On Error GoTo 0
-End Function
-
-' Fonction pour vider la collection
-Sub ClearCollection(Col As Collection)
-    Set Col = New Collection
-End Sub
 Private Sub CreationTirages_Click()
     Application.ScreenUpdating = False
     Application.Calculation = xlCalculationManual
@@ -50,6 +25,11 @@ Private Sub CreationTirages_Click()
     Dim i As Long, j As Long, k As Long, l As Long
     Dim cat As Long
     Dim trigramme As String
+    Dim vidangestock As Long
+    For vidangestock = 2 To 2000
+    Sheets("Stockage Divers").Cells(vidangestock, 1).value = ""
+    If vidangestock = 2000 Then Exit For
+    Next vidangestock
     partants = 0
     numlignegoal = 2
     Sheets("Programme des Courses CT").Select
@@ -87,6 +67,9 @@ Private Sub CreationTirages_Click()
                 numlignegoal = 2
                 'numlignegoal = numlignegoal + 1
                 Do While partants < Sheets("Réglages Régate").Range("E14").value
+                    Dim lignestockvide As Long
+                    lignestockvide = Sheets("Stockage Divers").Cells(Sheets("Stockage Divers").Rows.Count, 2).End(xlUp).Row + 1
+                    
                     Sheets("Programme des Courses CT").Rows(i).Copy Destination:=Worksheets("Préparation Tirages CT").Range("A" & j)
                     Sheets("Préparation Tirages CT").Cells(j, 1).value = Sheets("Préparation Tirages CT").Cells(j, 7)
                     Dim A As String
@@ -97,15 +80,24 @@ Private Sub CreationTirages_Click()
                     Sheets("Préparation Tirages CT").Cells(j, 4).value = B
                     Sheets("Préparation Tirages CT").Cells(j, 5).value = A
                     Sheets("Préparation Tirages CT").Cells(j, 6).value = Sheets("Préparation Tirages CT").Cells(j, 9).value
-                    Dim u As Integer
-                    For u = 10 To 50
-                    Do
-                    If Not IsInCollection(numCollection, numlignegoal) Then
-                        Exit Do ' Sort de la boucle Do si numlignegoal n'est pas dans la collection
+                    Dim wsStockage As Worksheet
+                    Set wsStockage = ThisWorkbook.Sheets("Stockage Divers")
+                    Do While numlignegoal <= limgoal
+                    ' Recherche de la valeur dans la colonne B
+                    Dim matchResult As Variant
+                    matchResult = Application.Match(numlignegoal, wsStockage.Columns("B"), 0)
+
+                    ' Si une correspondance est trouvée, passez à la valeur suivante
+                    If Not IsError(matchResult) Then
+                    numlignegoal = numlignegoal + 1
                     Else
-                        numlignegoal = numlignegoal + 1 ' Incrémente numlignegoal
+                    Exit Do
                     End If
                     Loop
+                    Dim u As Integer
+                    For u = 10 To 50
+                    
+                    
                     Dim casegoal As String
                     Dim casetirage As String
                     casegoal = Sheets("Import GOAL CT").Cells(numlignegoal, 3).value
@@ -153,7 +145,7 @@ Private Sub CreationTirages_Click()
                             Else
                             Sheets("Préparation Tirages CT").Cells(j, 10).value = partants + 1
                             End If
-                            numCollection.Add numlignegoal
+                            Sheets("Stockage Divers").Cells(lignestockvide, 2).value = numlignegoal
                             numlignegoal = 2
                             j = j + 1
                             partants = partants + 1
@@ -161,7 +153,7 @@ Private Sub CreationTirages_Click()
                             casetirage = ""
                         Else
                             Sheets("Préparation Tirages CT").Cells(j, 10) = Sheets("Import GOAL CT").Cells(numlignegoal, 4).value
-                            numCollection.Add numlignegoal
+                            Sheets("Stockage Divers").Cells(lignestockvide, 2).value = numlignegoal
                             numlignegoal = 2
                             j = j + 1
                             partants = partants + 1
@@ -175,7 +167,368 @@ Private Sub CreationTirages_Click()
     Next i
     
     Sheets("Préparation Tirages CT").Select
-    Columns("H:H").Select 'LR01 (Auvergne-Rhône-Alpes)
+    Columns("H:H").Select
+    Call RemplacerCodeCourt
+    Range("A1").Select
+    Dim LastRow2 As Long
+    Dim partants2 As Long
+   'Find last used row in a Column A of Sheet1
+      LastRow2 = Sheets("Programme des Courses CT").Cells(Sheets("Programme des Courses CT").Rows.Count, "A").End(xlUp).Row
+
+   'Find first row where values should be posted in Sheet2
+      k = Sheets("Préparation Tirages CT").Cells(Sheets("Préparation Tirages CT").Rows.Count, "A").End(xlUp).Row + 1
+ 
+   
+   'Paste each row that contains "Mavs" in column A of Sheet1 into Sheet2
+   For l = 1 To LastRow2
+           If Sheets("Programme des Courses CT").Cells(l, 8).value = "Non" Then
+           partants2 = 0
+           Do While partants2 < Sheets("Réglages Régate").Range("E14").value
+               Sheets("Programme des Courses CT").Rows(l).Copy Destination:=Worksheets("Préparation Tirages CT").Range("A" & k)
+                Sheets("Préparation Tirages CT").Cells(k, 1).value = Sheets("Préparation Tirages CT").Cells(k, 7)
+                Dim C As String
+                C = Sheets("Préparation Tirages CT").Cells(k, 3).value & "_" & Sheets("Préparation Tirages CT").Cells(k, 4).value
+                Dim D As String
+                D = Sheets("Préparation Tirages CT").Cells(k, 6).value & "_" & Sheets("Préparation Tirages CT").Cells(k, 4).value
+                Sheets("Préparation Tirages CT").Cells(k, 3).value = C
+                Sheets("Préparation Tirages CT").Cells(k, 4).value = D
+                Sheets("Préparation Tirages CT").Cells(k, 5).value = C
+                Sheets("Préparation Tirages CT").Cells(k, 6).value = Sheets("Préparation Tirages CT").Cells(k, 9).value
+                Sheets("Préparation Tirages CT").Cells(k, 7).value = "TBD"
+                Sheets("Préparation Tirages CT").Cells(k, 8).value = "TBD"
+                Sheets("Préparation Tirages CT").Cells(k, 9).value = "TBD"
+                Sheets("Préparation Tirages CT").Cells(k, 10).value = partants2 + 1
+                Sheets("Préparation Tirages CT").Cells(k, 11).value = ""
+                k = k + 1
+                partants2 = partants2 + 1
+            Loop
+            End If
+   Next l
+   Dim LastRow3 As Long
+   'Find last used row in a Column A of Sheet1
+    LastRow3 = Sheets("Préparation Tirages CT").Cells(Sheets("Préparation Tirages CT").Rows.Count, "A").End(xlUp).Row
+      
+   For w = 1 To LastRow3
+           If Sheets("Préparation Tirages CT").Cells(l, 8).value = "Non" Or Sheets("Préparation Tirages CT").Cells(w, 8).value = "Oui" Then
+           Sheets("Préparation Tirages CT").Rows(w).EntireRow.Delete
+           End If
+   Next w
+        Application.Calculation = xlCalculationAutomatic
+        Application.ScreenUpdating = True
+       MsgBox "Les tirages ont été créés avec succès !", vbOKOnly + vbInformation, "Tirages Créés"
+       
+       Sheets("Préparation Tirages CT").Select
+            Cells.Select
+            ActiveWorkbook.Worksheets("Préparation Tirages CT").Sort.SortFields.Clear
+            ActiveWorkbook.Worksheets("Préparation Tirages CT").Sort.SortFields.Add2 Key:= _
+            Range("A:A"), SortOn:=xlSortOnValues, Order:=xlAscending, CustomOrder:= _
+            "Lundi,Mardi,Mercredi,Jeudi,Vendredi,Samedi,Dimanche", DataOption:= _
+            xlSortNormal
+            ActiveWorkbook.Worksheets("Préparation Tirages CT").Sort.SortFields.Add2 Key:= _
+            Range("B:B"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
+            xlSortNormal
+            With ActiveWorkbook.Worksheets("Préparation Tirages CT").Sort
+                .SetRange Range("A1:AW999")
+                .Header = xlYes
+                .MatchCase = False
+                .Orientation = xlTopToBottom
+                .SortMethod = xlPinYin
+                .Apply
+            End With
+            Range("A1").Select
+            Sheets("Gestion CrewTimer").Select
+            Sheets("Programme des Courses CT").Select
+            Cells.Select
+            ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Clear
+            ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Add2 Key:= _
+            Range("A:A"), SortOn:=xlSortOnValues, Order:=xlAscending, CustomOrder:= _
+            "Lundi,Mardi,Mercredi,Jeudi,Vendredi,Samedi,Dimanche", DataOption:= _
+            xlSortNormal
+            ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Add2 Key:= _
+            Range("B:B"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
+            xlSortNormal
+            With ActiveWorkbook.Worksheets("Programme des Courses CT").Sort
+                .SetRange Range("A1:AW999")
+                .Header = xlYes
+                .MatchCase = False
+                .Orientation = xlTopToBottom
+                .SortMethod = xlPinYin
+                .Apply
+            End With
+            Range("A1").Select
+            Sheets("Préparation Tirages CT").Select
+        Rows("1:1").Select
+        Selection.AutoFilter
+        ActiveSheet.Range("$A$1:$Z$403").AutoFilter Field:=7, Criteria1:="( )"
+        Rows("2:1048576").Select
+        Selection.Delete Shift:=xlUp
+        Rows("1:1").Select
+        ActiveSheet.ShowAllData
+        Selection.AutoFilter
+        Range("A1").Select
+        If Sheets("Réglages Régate").Range("G16").value = "TDR" Then
+        Sheets("Préparation Tirages CT").Select
+    Range("J2:J999").Select
+    ActiveWorkbook.Worksheets("Préparation Tirages CT").Sort.SortFields.Clear
+    ActiveWorkbook.Worksheets("Préparation Tirages CT").Sort.SortFields.Add2 Key _
+        :=Range("J2:J999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption _
+        :=xlSortNormal
+    With ActiveWorkbook.Worksheets("Préparation Tirages CT").Sort
+        .SetRange Range("A1:AW999")
+        .Header = xlYes
+        .MatchCase = False
+        .Orientation = xlTopToBottom
+        .SortMethod = xlPinYin
+        .Apply
+    End With
+    Range("A1").Select
+        End If
+        If Sheets("Réglages Régate").Range("G16").value = "Rand" Then
+        Sheets("Réglages Régate").Select
+        Sheets("Réglages Régate").Range("G16").value = ""
+        Sheets("Feuille CrewTimer").Select
+        ' Générer des valeurs aléatoires dans la colonne M
+        ActiveWorkbook.Worksheets("Feuille CrewTimer").Range("M8:M1000").FormulaR1C1 = "=RAND()"
+
+        ' Tri des données
+        With ActiveWorkbook.Worksheets("Feuille CrewTimer").Sort
+            .SortFields.Clear
+            .SortFields.Add2 Key:=ActiveWorkbook.Worksheets("Feuille CrewTimer").Range("A8:A1000"), SortOn:=xlSortOnValues, Order:=xlAscending, CustomOrder _
+                :="Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday", DataOption:=xlSortNormal
+            .SortFields.Add2 Key:=ActiveWorkbook.Worksheets("Feuille CrewTimer").Range("B8:B1000"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption _
+                :=xlSortNormal
+            .SortFields.Add2 Key:=ActiveWorkbook.Worksheets("Feuille CrewTimer").Range("M8:M1000"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption _
+                :=xlSortNormal
+            .SetRange ActiveWorkbook.Worksheets("Feuille CrewTimer").Range("A7:N1000")
+            .Header = xlYes
+            .MatchCase = False
+            .Orientation = xlTopToBottom
+            .SortMethod = xlPinYin
+            .Apply
+        End With
+
+        ' Suppression de la colonne M
+        ActiveWorkbook.Worksheets("Feuille CrewTimer").Columns("M:M").Delete Shift:=xlToLeft
+        End If
+        Sheets("Gestion CrewTimer").Select
+End Sub
+Private Sub UserForm_Initialize()
+alea = False
+Dim random_method As String
+random_method = ""
+Sheets("Réglages Régate").Select
+            Sheets("Réglages Régate").Range("G16").value = ""
+    Sheets("Gestion CrewTimer").Select
+If MsgBox("Voulez-vous utiliser un tirage aléatoire ?", vbYesNo + vbQuestion, "Tirages Aléatoires ?") = vbYes Then
+alea = True
+'Mettre créer une colonne random, en ER
+    Sheets("Réglages Régate").Select
+    Sheets("Réglages Régate").Range("G16").value = "Rand"
+    Sheets("Import GOAL CT").Select
+    random_method = "Aléatoire"
+    Sheets("Import GOAL CT").Select
+    Range("ER1").value = "Random"
+    Range("ER2").Select
+    Dim rand As Long
+    rand = 998
+    For rand = 1 To rand
+    ActiveCell.value = Rnd()
+    ActiveCell.Offset(1, 0).Select
+Next rand
+'Trier la table
+ActiveWorkbook.Worksheets("Import GOAL CT").Sort.SortFields.Clear
+    ActiveWorkbook.Worksheets("Import GOAL CT").Sort.SortFields.Add2 Key:=Range( _
+        "C2:C999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
+        xlSortNormal
+    ActiveWorkbook.Worksheets("Import GOAL CT").Sort.SortFields.Add2 Key:=Range( _
+        "ER2:ER999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
+        xlSortNormal
+    With ActiveWorkbook.Worksheets("Import GOAL CT").Sort
+        .SetRange Range("A1:ER999")
+        .Header = xlYes
+        .MatchCase = False
+        .Orientation = xlTopToBottom
+        .SortMethod = xlPinYin
+        .Apply
+    End With
+    'Effacer la colonne random
+    Range("ER1:ER999").value = ""
+    Range("A1").Select
+    
+    ElseIf MsgBox("Voulez-vous utiliser un tirage où le numéro du bateau est l'ordre de départ ? (Tête de Rivière UNIQUEMENT)", vbYesNo + vbQuestion, "Tirages par Numéro de Bateau ?") = vbYes Then
+    'Procéder au tirage via l'ordre croissant des numéros de bateau
+    random_method = "Par l'ordre croissant des numéros de bateau"
+    Sheets("Réglages Régate").Select
+    Sheets("Réglages Régate").Range("G16").value = "TDR"
+        Sheets("Import GOAL CT").Select
+    ActiveWorkbook.Worksheets("Import GOAL CT").Sort.SortFields.Clear
+    ActiveWorkbook.Worksheets("Import GOAL CT").Sort.SortFields.Add2 Key:=Range( _
+        "C2:C999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
+        xlSortNormal
+    ActiveWorkbook.Worksheets("Import GOAL CT").Sort.SortFields.Add2 Key:=Range( _
+        "D2:D999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
+        xlSortNormal
+    With ActiveWorkbook.Worksheets("Import GOAL CT").Sort
+        .SetRange Range("A1:EQ999")
+        .Header = xlYes
+        .MatchCase = False
+        .Orientation = xlTopToBottom
+        .SortMethod = xlPinYin
+        .Apply
+        End With
+    
+    Else
+    'Tirage Ordre Alphabétique Nom Court
+    MsgBox "Le Tirage va être effectué dans l'ordre alphabétique des noms courts des clubs.", vbOKOnly + vbInformation, "Tirage Normal"
+    random_method = "Par l'ordre alphabétique des noms courts des clubs"
+    Sheets("Import GOAL CT").Select
+    ActiveWorkbook.Worksheets("Import GOAL CT").Sort.SortFields.Clear
+    ActiveWorkbook.Worksheets("Import GOAL CT").Sort.SortFields.Add2 Key:=Range( _
+        "C2:C999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
+        xlSortNormal
+    ActiveWorkbook.Worksheets("Import GOAL CT").Sort.SortFields.Add2 Key:=Range( _
+        "E2:E999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
+        xlSortNormal
+    With ActiveWorkbook.Worksheets("Import GOAL CT").Sort
+        .SetRange Range("A1:EQ999")
+        .Header = xlYes
+        .MatchCase = False
+        .Orientation = xlTopToBottom
+        .SortMethod = xlPinYin
+        .Apply
+    End With
+    'Prg Courses selon Ordre Alphabétique Catég
+    Sheets("Programme des Courses CT").Select
+    Columns("F:F").Select
+    ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Clear
+    ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Add2 Key:= _
+        Range("F1:F999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
+        xlSortNormal
+    With ActiveWorkbook.Worksheets("Programme des Courses CT").Sort
+        .SetRange Range("A1:AW999")
+        .Header = xlYes
+        .MatchCase = False
+        .Orientation = xlTopToBottom
+        .SortMethod = xlPinYin
+        .Apply
+    End With
+    End If
+    If MsgBox("Le mode de tirage défini est : " + random_method + ". Confirmez-vous ce choix ?", vbYesNo + vbInformation, "Confirmation Mode de Tirage") = vbYes Then
+    ' Feuille à Sélectionner
+    Sheets("Préparation Tirages CT").Select
+    ' Champs à Afficher (Ne pas oublier de déclarer le nbre de colonnes dans Properties.
+    TableauTirages.RowSource = "A1:K999"
+    TableauTirages.ColumnWidths = "50;80;150;400;150;500;1000;50;50;80;200"
+    Sheets("Gestion CrewTimer").Select
+    Exit Sub
+    Else
+    Call UserForm_Initialize
+    End If
+    Sheets("Programme des Courses CT").Select
+    Columns("F:F").Select
+    ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Clear
+    ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Add2 Key:= _
+        Range("F1:F999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
+        xlSortNormal
+    With ActiveWorkbook.Worksheets("Programme des Courses CT").Sort
+        .SetRange Range("A1:AW999")
+        .Header = xlYes
+        .MatchCase = False
+        .Orientation = xlTopToBottom
+        .SortMethod = xlPinYin
+        .Apply
+    End With
+    ' Feuille à Sélectionner
+    Sheets("Préparation Tirages CT").Select
+    ' Champs à Afficher (Ne pas oublier de déclarer le nbre de colonnes dans Properties.
+    TableauTirages.RowSource = "A1:K999"
+    TableauTirages.ColumnWidths = "50;80;150;400;150;500;1000;50;50;80;200"
+        Sheets("Gestion CrewTimer").Select
+End Sub
+
+Private Sub ValidTirages_Click()
+Dim answer1 As Integer
+answer1 = MsgBox("Confirmez-vous la validation des tirages ?", vbYesNo + vbExclamation, "Confirmation Validation Tirages")
+  If answer1 = vbYes Then
+  Sheets("Préparation Tirages CT").Select
+    Range("A2:K999").Select
+    Selection.Copy
+    Sheets("Feuille CrewTimer").Select
+    Range("A8").Select
+    ActiveSheet.Paste
+    Sheets("Gestion CrewTimer").Select
+    Sheets("Programme des Courses CT").Select
+            Cells.Select
+            ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Clear
+            ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Add2 Key:= _
+            Range("A:A"), SortOn:=xlSortOnValues, Order:=xlAscending, CustomOrder:= _
+            "Lundi,Mardi,Mercredi,Jeudi,Vendredi,Samedi,Dimanche", DataOption:= _
+            xlSortNormal
+            ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Add2 Key:= _
+            Range("B:B"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
+            xlSortNormal
+            With ActiveWorkbook.Worksheets("Programme des Courses CT").Sort
+                .SetRange Range("A1:AW999")
+                .Header = xlYes
+                .MatchCase = False
+                .Orientation = xlTopToBottom
+                .SortMethod = xlPinYin
+                .Apply
+            End With
+            Range("A1").Select
+            Sheets("Réglages Régate").Select
+            Sheets("Réglages Régate").Range("G16").value = ""
+            Range("B8:B999").Select
+            Selection.NumberFormat = "hh:mm:ss"
+            Range("B8").Select
+            Sheets("Gestion CrewTimer").Select
+    MsgBox "Les tirages ont bien été validés et transférés dans la table pour l'export vers CrewTimer !", vbOKOnly + vbInformation, "Tirages Validés"
+    Unload Me
+  Else
+    Exit Sub
+  End If
+End Sub
+Private Sub SupprTirages_Click()
+Dim answer2 As Integer
+answer2 = MsgBox("Confirmez-vous l'invalidation des tirages ?", vbYesNo + vbExclamation, "Confirmation Invalidation Tirages")
+  If answer2 = vbYes Then
+    Sheets("Préparation Tirages CT").Select
+    Range("A2:K999").Select
+    Selection.EntireRow.Delete
+    Range("A1").Select
+    MsgBox "Les tirages ont bien été invalidés.", vbOKOnly + vbInformation, "Tirages Invalidés"
+    Call UserForm_Initialize
+  Else
+    Exit Sub
+  End If
+End Sub
+Private Sub Quit_Click()
+Sheets("Programme des Courses CT").Select
+            Cells.Select
+            ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Clear
+            ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Add2 Key:= _
+            Range("A:A"), SortOn:=xlSortOnValues, Order:=xlAscending, CustomOrder:= _
+            "Lundi,Mardi,Mercredi,Jeudi,Vendredi,Samedi,Dimanche", DataOption:= _
+            xlSortNormal
+            ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Add2 Key:= _
+            Range("B:B"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
+            xlSortNormal
+            With ActiveWorkbook.Worksheets("Programme des Courses CT").Sort
+                .SetRange Range("A1:AW999")
+                .Header = xlYes
+                .MatchCase = False
+                .Orientation = xlTopToBottom
+                .SortMethod = xlPinYin
+                .Apply
+            End With
+            Range("A1").Select
+            Sheets("Réglages Régate").Select
+            Sheets("Réglages Régate").Range("G16").value = ""
+            Sheets("Gestion CrewTimer").Select
+ Unload Me
+End Sub
+Private Sub RemplacerCodeCourt()
+'LR01 (Auvergne-Rhône-Alpes)
     'CD01 (Ain)
     Selection.Replace What:="STE JULIE ASPLA", Replacement:="ASPA", LookAt:= _
         xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
@@ -1541,361 +1894,6 @@ Private Sub CreationTirages_Click()
     Selection.Replace What:="PUNAAUIA SDAPT", Replacement:="SDAP", LookAt:= _
         xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
         ReplaceFormat:=False, FormulaVersion:=xlReplaceFormula2
-    Range("A1").Select
-    Dim LastRow2 As Long
-    Dim partants2 As Long
-   'Find last used row in a Column A of Sheet1
-      LastRow2 = Sheets("Programme des Courses CT").Cells(Sheets("Programme des Courses CT").Rows.Count, "A").End(xlUp).Row
-
-   'Find first row where values should be posted in Sheet2
-      k = Sheets("Préparation Tirages CT").Cells(Sheets("Préparation Tirages CT").Rows.Count, "A").End(xlUp).Row + 1
- 
-   
-   'Paste each row that contains "Mavs" in column A of Sheet1 into Sheet2
-   For l = 1 To LastRow2
-           If Sheets("Programme des Courses CT").Cells(l, 8).value = "Non" Then
-           partants2 = 0
-           Do While partants2 < Sheets("Réglages Régate").Range("E14").value
-               Sheets("Programme des Courses CT").Rows(l).Copy Destination:=Worksheets("Préparation Tirages CT").Range("A" & k)
-                Sheets("Préparation Tirages CT").Cells(k, 1).value = Sheets("Préparation Tirages CT").Cells(k, 7)
-                Dim C As String
-                C = Sheets("Préparation Tirages CT").Cells(k, 3).value & "_" & Sheets("Préparation Tirages CT").Cells(k, 4).value
-                Dim D As String
-                D = Sheets("Préparation Tirages CT").Cells(k, 6).value & "_" & Sheets("Préparation Tirages CT").Cells(k, 4).value
-                Sheets("Préparation Tirages CT").Cells(k, 3).value = C
-                Sheets("Préparation Tirages CT").Cells(k, 4).value = D
-                Sheets("Préparation Tirages CT").Cells(k, 5).value = C
-                Sheets("Préparation Tirages CT").Cells(k, 6).value = Sheets("Préparation Tirages CT").Cells(k, 9).value
-                Sheets("Préparation Tirages CT").Cells(k, 7).value = "TBD"
-                Sheets("Préparation Tirages CT").Cells(k, 8).value = "TBD"
-                Sheets("Préparation Tirages CT").Cells(k, 9).value = "TBD"
-                Sheets("Préparation Tirages CT").Cells(k, 10).value = partants2 + 1
-                Sheets("Préparation Tirages CT").Cells(k, 11).value = ""
-                k = k + 1
-                partants2 = partants2 + 1
-            Loop
-            End If
-   Next l
-   Dim LastRow3 As Long
-   'Find last used row in a Column A of Sheet1
-    LastRow3 = Sheets("Préparation Tirages CT").Cells(Sheets("Préparation Tirages CT").Rows.Count, "A").End(xlUp).Row
-      
-   For w = 1 To LastRow3
-           If Sheets("Préparation Tirages CT").Cells(l, 8).value = "Non" Or Sheets("Préparation Tirages CT").Cells(w, 8).value = "Oui" Then
-           Sheets("Préparation Tirages CT").Rows(w).EntireRow.Delete
-           End If
-   Next w
-        Application.Calculation = xlCalculationAutomatic
-        Application.ScreenUpdating = True
-       MsgBox "Les tirages ont été créés avec succès !", vbOKOnly + vbInformation, "Tirages Créés"
-       
-       Sheets("Préparation Tirages CT").Select
-            Cells.Select
-            ActiveWorkbook.Worksheets("Préparation Tirages CT").Sort.SortFields.Clear
-            ActiveWorkbook.Worksheets("Préparation Tirages CT").Sort.SortFields.Add2 Key:= _
-            Range("A:A"), SortOn:=xlSortOnValues, Order:=xlAscending, CustomOrder:= _
-            "Lundi,Mardi,Mercredi,Jeudi,Vendredi,Samedi,Dimanche", DataOption:= _
-            xlSortNormal
-            ActiveWorkbook.Worksheets("Préparation Tirages CT").Sort.SortFields.Add2 Key:= _
-            Range("B:B"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
-            xlSortNormal
-            With ActiveWorkbook.Worksheets("Préparation Tirages CT").Sort
-                .SetRange Range("A1:AW999")
-                .Header = xlYes
-                .MatchCase = False
-                .Orientation = xlTopToBottom
-                .SortMethod = xlPinYin
-                .Apply
-            End With
-            Range("A1").Select
-            Sheets("Gestion CrewTimer").Select
-            Sheets("Programme des Courses CT").Select
-            Cells.Select
-            ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Clear
-            ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Add2 Key:= _
-            Range("A:A"), SortOn:=xlSortOnValues, Order:=xlAscending, CustomOrder:= _
-            "Lundi,Mardi,Mercredi,Jeudi,Vendredi,Samedi,Dimanche", DataOption:= _
-            xlSortNormal
-            ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Add2 Key:= _
-            Range("B:B"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
-            xlSortNormal
-            With ActiveWorkbook.Worksheets("Programme des Courses CT").Sort
-                .SetRange Range("A1:AW999")
-                .Header = xlYes
-                .MatchCase = False
-                .Orientation = xlTopToBottom
-                .SortMethod = xlPinYin
-                .Apply
-            End With
-            Range("A1").Select
-            Sheets("Préparation Tirages CT").Select
-        Rows("1:1").Select
-        Selection.AutoFilter
-        ActiveSheet.Range("$A$1:$Z$403").AutoFilter Field:=7, Criteria1:="( )"
-        Rows("2:1048576").Select
-        Selection.Delete Shift:=xlUp
-        Rows("1:1").Select
-        ActiveSheet.ShowAllData
-        Selection.AutoFilter
-        Range("A1").Select
-        If Sheets("Réglages Régate").Range("G16").value = "TDR" Then
-        Sheets("Préparation Tirages CT").Select
-    Range("J2:J999").Select
-    ActiveWorkbook.Worksheets("Préparation Tirages CT").Sort.SortFields.Clear
-    ActiveWorkbook.Worksheets("Préparation Tirages CT").Sort.SortFields.Add2 Key _
-        :=Range("J2:J999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption _
-        :=xlSortNormal
-    With ActiveWorkbook.Worksheets("Préparation Tirages CT").Sort
-        .SetRange Range("A1:AW999")
-        .Header = xlYes
-        .MatchCase = False
-        .Orientation = xlTopToBottom
-        .SortMethod = xlPinYin
-        .Apply
-    End With
-    Range("A1").Select
-        End If
-        If Sheets("Réglages Régate").Range("G16").value = "Rand" Then
-        Sheets("Réglages Régate").Select
-        Sheets("Réglages Régate").Range("G16").value = ""
-        Sheets("Feuille CrewTimer").Select
-        ' Générer des valeurs aléatoires dans la colonne M
-        ActiveWorkbook.Worksheets("Feuille CrewTimer").Range("M8:M1000").FormulaR1C1 = "=RAND()"
-
-        ' Tri des données
-        With ActiveWorkbook.Worksheets("Feuille CrewTimer").Sort
-            .SortFields.Clear
-            .SortFields.Add2 Key:=ActiveWorkbook.Worksheets("Feuille CrewTimer").Range("A8:A1000"), SortOn:=xlSortOnValues, Order:=xlAscending, CustomOrder _
-                :="Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday", DataOption:=xlSortNormal
-            .SortFields.Add2 Key:=ActiveWorkbook.Worksheets("Feuille CrewTimer").Range("B8:B1000"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption _
-                :=xlSortNormal
-            .SortFields.Add2 Key:=ActiveWorkbook.Worksheets("Feuille CrewTimer").Range("M8:M1000"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption _
-                :=xlSortNormal
-            .SetRange ActiveWorkbook.Worksheets("Feuille CrewTimer").Range("A7:N1000")
-            .Header = xlYes
-            .MatchCase = False
-            .Orientation = xlTopToBottom
-            .SortMethod = xlPinYin
-            .Apply
-        End With
-
-        ' Suppression de la colonne M
-        ActiveWorkbook.Worksheets("Feuille CrewTimer").Columns("M:M").Delete Shift:=xlToLeft
-        End If
-        Sheets("Gestion CrewTimer").Select
-End Sub
-Private Sub UserForm_Initialize()
-alea = False
-Dim random_method As String
-random_method = ""
-Sheets("Réglages Régate").Select
-            Sheets("Réglages Régate").Range("G16").value = ""
-    Sheets("Gestion CrewTimer").Select
-If MsgBox("Voulez-vous utiliser un tirage aléatoire ?", vbYesNo + vbQuestion, "Tirages Aléatoires ?") = vbYes Then
-alea = True
-'Mettre créer une colonne random, en ER
-    Sheets("Réglages Régate").Select
-    Sheets("Réglages Régate").Range("G16").value = "Rand"
-    Sheets("Import GOAL CT").Select
-    random_method = "Aléatoire"
-    Sheets("Import GOAL CT").Select
-    Range("ER1").value = "Random"
-    Range("ER2").Select
-    Dim rand As Long
-    rand = 998
-    For rand = 1 To rand
-    ActiveCell.value = Rnd()
-    ActiveCell.Offset(1, 0).Select
-Next rand
-'Trier la table
-ActiveWorkbook.Worksheets("Import GOAL CT").Sort.SortFields.Clear
-    ActiveWorkbook.Worksheets("Import GOAL CT").Sort.SortFields.Add2 Key:=Range( _
-        "C2:C999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
-        xlSortNormal
-    ActiveWorkbook.Worksheets("Import GOAL CT").Sort.SortFields.Add2 Key:=Range( _
-        "ER2:ER999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
-        xlSortNormal
-    With ActiveWorkbook.Worksheets("Import GOAL CT").Sort
-        .SetRange Range("A1:ER999")
-        .Header = xlYes
-        .MatchCase = False
-        .Orientation = xlTopToBottom
-        .SortMethod = xlPinYin
-        .Apply
-    End With
-    'Effacer la colonne random
-    Range("ER1:ER999").value = ""
-    Range("A1").Select
-    
-    ElseIf MsgBox("Voulez-vous utiliser un tirage où le numéro du bateau est l'ordre de départ ? (Tête de Rivière UNIQUEMENT)", vbYesNo + vbQuestion, "Tirages par Numéro de Bateau ?") = vbYes Then
-    'Procéder au tirage via l'ordre croissant des numéros de bateau
-    random_method = "Par l'ordre croissant des numéros de bateau"
-    Sheets("Réglages Régate").Select
-    Sheets("Réglages Régate").Range("G16").value = "TDR"
-        Sheets("Import GOAL CT").Select
-    ActiveWorkbook.Worksheets("Import GOAL CT").Sort.SortFields.Clear
-    ActiveWorkbook.Worksheets("Import GOAL CT").Sort.SortFields.Add2 Key:=Range( _
-        "C2:C999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
-        xlSortNormal
-    ActiveWorkbook.Worksheets("Import GOAL CT").Sort.SortFields.Add2 Key:=Range( _
-        "D2:D999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
-        xlSortNormal
-    With ActiveWorkbook.Worksheets("Import GOAL CT").Sort
-        .SetRange Range("A1:EQ999")
-        .Header = xlYes
-        .MatchCase = False
-        .Orientation = xlTopToBottom
-        .SortMethod = xlPinYin
-        .Apply
-        End With
-    
-    Else
-    'Tirage Ordre Alphabétique Nom Court
-    MsgBox "Le Tirage va être effectué dans l'ordre alphabétique des noms courts des clubs.", vbOKOnly + vbInformation, "Tirage Normal"
-    random_method = "Par l'ordre alphabétique des noms courts des clubs"
-    Sheets("Import GOAL CT").Select
-    ActiveWorkbook.Worksheets("Import GOAL CT").Sort.SortFields.Clear
-    ActiveWorkbook.Worksheets("Import GOAL CT").Sort.SortFields.Add2 Key:=Range( _
-        "C2:C999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
-        xlSortNormal
-    ActiveWorkbook.Worksheets("Import GOAL CT").Sort.SortFields.Add2 Key:=Range( _
-        "E2:E999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
-        xlSortNormal
-    With ActiveWorkbook.Worksheets("Import GOAL CT").Sort
-        .SetRange Range("A1:EQ999")
-        .Header = xlYes
-        .MatchCase = False
-        .Orientation = xlTopToBottom
-        .SortMethod = xlPinYin
-        .Apply
-    End With
-    'Prg Courses selon Ordre Alphabétique Catég
-    Sheets("Programme des Courses CT").Select
-    Columns("F:F").Select
-    ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Clear
-    ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Add2 Key:= _
-        Range("F1:F999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
-        xlSortNormal
-    With ActiveWorkbook.Worksheets("Programme des Courses CT").Sort
-        .SetRange Range("A1:AW999")
-        .Header = xlYes
-        .MatchCase = False
-        .Orientation = xlTopToBottom
-        .SortMethod = xlPinYin
-        .Apply
-    End With
-    End If
-    If MsgBox("Le mode de tirage défini est : " + random_method + ". Confirmez-vous ce choix ?", vbYesNo + vbInformation, "Confirmation Mode de Tirage") = vbYes Then
-    ' Feuille à Sélectionner
-    Sheets("Préparation Tirages CT").Select
-    ' Champs à Afficher (Ne pas oublier de déclarer le nbre de colonnes dans Properties.
-    TableauTirages.RowSource = "A1:K999"
-    TableauTirages.ColumnWidths = "50;80;150;400;150;500;1000;50;50;80;200"
-    Sheets("Gestion CrewTimer").Select
-    Exit Sub
-    Else
-    Call UserForm_Initialize
-    End If
-    Sheets("Programme des Courses CT").Select
-    Columns("F:F").Select
-    ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Clear
-    ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Add2 Key:= _
-        Range("F1:F999"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
-        xlSortNormal
-    With ActiveWorkbook.Worksheets("Programme des Courses CT").Sort
-        .SetRange Range("A1:AW999")
-        .Header = xlYes
-        .MatchCase = False
-        .Orientation = xlTopToBottom
-        .SortMethod = xlPinYin
-        .Apply
-    End With
-    ' Feuille à Sélectionner
-    Sheets("Préparation Tirages CT").Select
-    ' Champs à Afficher (Ne pas oublier de déclarer le nbre de colonnes dans Properties.
-    TableauTirages.RowSource = "A1:K999"
-    TableauTirages.ColumnWidths = "50;80;150;400;150;500;1000;50;50;80;200"
-        Sheets("Gestion CrewTimer").Select
 End Sub
 
-Private Sub ValidTirages_Click()
-Dim answer1 As Integer
-answer1 = MsgBox("Confirmez-vous la validation des tirages ?", vbYesNo + vbExclamation, "Confirmation Validation Tirages")
-  If answer1 = vbYes Then
-  Sheets("Préparation Tirages CT").Select
-    Range("A2:K999").Select
-    Selection.Copy
-    Sheets("Feuille CrewTimer").Select
-    Range("A8").Select
-    ActiveSheet.Paste
-    Sheets("Gestion CrewTimer").Select
-    Sheets("Programme des Courses CT").Select
-            Cells.Select
-            ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Clear
-            ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Add2 Key:= _
-            Range("A:A"), SortOn:=xlSortOnValues, Order:=xlAscending, CustomOrder:= _
-            "Lundi,Mardi,Mercredi,Jeudi,Vendredi,Samedi,Dimanche", DataOption:= _
-            xlSortNormal
-            ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Add2 Key:= _
-            Range("B:B"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
-            xlSortNormal
-            With ActiveWorkbook.Worksheets("Programme des Courses CT").Sort
-                .SetRange Range("A1:AW999")
-                .Header = xlYes
-                .MatchCase = False
-                .Orientation = xlTopToBottom
-                .SortMethod = xlPinYin
-                .Apply
-            End With
-            Range("A1").Select
-            Sheets("Réglages Régate").Select
-            Sheets("Réglages Régate").Range("G16").value = ""
-            Range("B8:B999").Select
-            Selection.NumberFormat = "hh:mm:ss"
-            Range("B8").Select
-            Sheets("Gestion CrewTimer").Select
-    MsgBox "Les tirages ont bien été validés et transférés dans la table pour l'export vers CrewTimer !", vbOKOnly + vbInformation, "Tirages Validés"
-    Unload Me
-  Else
-    Exit Sub
-  End If
-End Sub
-Private Sub SupprTirages_Click()
-Dim answer2 As Integer
-answer2 = MsgBox("Confirmez-vous l'invalidation des tirages ?", vbYesNo + vbExclamation, "Confirmation Invalidation Tirages")
-  If answer2 = vbYes Then
-    Sheets("Préparation Tirages CT").Select
-    Range("A2:K999").Select
-    Selection.EntireRow.Delete
-    Range("A1").Select
-    MsgBox "Les tirages ont bien été invalidés.", vbOKOnly + vbInformation, "Tirages Invalidés"
-    Call UserForm_Initialize
-  Else
-    Exit Sub
-  End If
-End Sub
-Private Sub Quit_Click()
-Sheets("Programme des Courses CT").Select
-            Cells.Select
-            ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Clear
-            ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Add2 Key:= _
-            Range("A:A"), SortOn:=xlSortOnValues, Order:=xlAscending, CustomOrder:= _
-            "Lundi,Mardi,Mercredi,Jeudi,Vendredi,Samedi,Dimanche", DataOption:= _
-            xlSortNormal
-            ActiveWorkbook.Worksheets("Programme des Courses CT").Sort.SortFields.Add2 Key:= _
-            Range("B:B"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
-            xlSortNormal
-            With ActiveWorkbook.Worksheets("Programme des Courses CT").Sort
-                .SetRange Range("A1:AW999")
-                .Header = xlYes
-                .MatchCase = False
-                .Orientation = xlTopToBottom
-                .SortMethod = xlPinYin
-                .Apply
-            End With
-            Range("A1").Select
-            Sheets("Réglages Régate").Select
-            Sheets("Réglages Régate").Range("G16").value = ""
-            Sheets("Gestion CrewTimer").Select
- Unload Me
-End Sub
+
