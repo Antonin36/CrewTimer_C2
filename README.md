@@ -40,4 +40,5 @@ Import depuis FFSU, \
 Transposer dans les tables export (L'ID inscription, l'ID Course, bref tout les paramètres de GOAL...), \
 Webservices GOAL (Si Possible...), prévu : Contrôle Validité, Catégorie, Récupération des Infos Manifestations depuis GOAL via ID Manifestation.
 Modifier les fonctions de modif pour effacer les cases des ListBox.
+Simplifier les impressions, voir CR PACA 2023.
 Pour tous bugs trouvés, merci d'ouvrir une Issue.
