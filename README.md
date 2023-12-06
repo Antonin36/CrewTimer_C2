@@ -29,7 +29,6 @@ Concept2 :
 - Gestion des Epreuves,
 - Gestion du Programme des Courses, 
 - Génération des Fichiers RAC2 pour importation dans ErgRace. \
-Note Importante : L'impression des Résultats doit se faire dans ErgRace !
 
 Fonctions à Implanter : \
 \
