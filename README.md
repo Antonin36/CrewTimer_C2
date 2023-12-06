@@ -38,8 +38,10 @@ CrewTimer et Concept2 : \
 Import depuis OPUSS, \
 Import depuis FFSU, \
 Transposer dans les tables export (L'ID inscription, l'ID Course, bref tout les paramètres de GOAL...), \
-Webservices GOAL (Si Possible...), prévu : Contrôle Validité, Catégorie, Récupération des Infos Manifestations depuis GOAL via ID Manifestation.
-Analyser les requêtes HTTP/HTTPS de GOAL, pour voir le process d'auth, et le token.
-Modifier les fonctions de modif pour effacer les cases des ListBox.
-Simplifier les impressions, voir CR Indoor PACA 2023.
+Webservices GOAL (Si Possible...), prévu : Contrôle Validité, Catégorie, Récupération des Infos Manifestations depuis GOAL via ID Manifestation, \
+Analyser les requêtes HTTP/HTTPS de GOAL, pour voir le process d'auth, et le token, \
+Modifier les fonctions de modif pour effacer les cases des ListBox, \
+Simplifier les impressions, voir CR Indoor PACA 2023, \
+Refaire le module pretirages, ajouter un mode manuel via ID Inscription, \
+Ajouter un contrôle des valeurs pour les ID. \
 Pour tous bugs trouvés, merci d'ouvrir une Issue.
