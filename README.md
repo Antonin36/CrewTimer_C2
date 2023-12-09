@@ -41,6 +41,7 @@ Webservices GOAL (Si Possible...), prévu : Contrôle Validité, Catégorie, Ré
 Analyser les requêtes HTTP/HTTPS de GOAL, pour voir le process d'auth, et le token, \
 Modifier les fonctions de modif pour effacer les cases des ListBox, \
 Simplifier les impressions, voir CR Indoor PACA 2023, \
+Ajouter l'impression de la grille horaire, \
 Refaire le module pretirages, ajouter un mode manuel via ID Inscription, \
 Ajouter un contrôle des valeurs pour les ID. \
 Pour tous bugs trouvés, merci d'ouvrir une Issue.
