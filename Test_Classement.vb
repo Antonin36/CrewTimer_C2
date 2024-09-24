@@ -132,6 +132,28 @@ Function DemanderNombrePartants() As Integer
     End If
 End Function
 
+' Fonction pour extraire la catégorie d'âge, sexe et bateau à partir de l'event_code
+Function ExtraireCategorie(eventCode As String) As String
+    Dim agePart As String
+    Dim sexePart As String
+    Dim bateauPart As String
+
+    ' Vérifier si la catégorie commence par "J" pour les jeunes
+    If Left(eventCode, 1) = "J" Then
+        agePart = Left(eventCode, 3) ' Les 3 premiers caractères (ex : J16, J18)
+        sexePart = Mid(eventCode, 4, 1) ' Le 4e caractère (H ou F ou M)
+        bateauPart = Right(eventCode, 2) ' Les deux derniers caractères (4x ou 8+)
+    Else
+        ' Sinon, c'est une catégorie Sénior (ex : SH, SF)
+        agePart = Left(eventCode, 1) ' Le premier caractère (S)
+        sexePart = Mid(eventCode, 2, 1) ' Le 2e caractère (H ou F ou M)
+        bateauPart = Right(eventCode, 2) ' Les deux derniers caractères (4x ou 8+)
+    End If
+
+    ' Reconstituer la catégorie complète
+    ExtraireCategorie = agePart & sexePart & bateauPart
+End Function
+
 ' Fonction pour extraire le nom de la ligue à partir du nom de l'équipage
 Function ExtraireLigue(crew As String) As String
     Dim parts() As String
