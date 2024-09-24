@@ -1,48 +1,28 @@
-' Fonction pour extraire le nom de la ligue à partir de l'équipage
-Function ExtraireLigue(crew As String) As String
-    ' Extraire la partie du nom de l'équipage avant le numéro (dernier chiffre)
-    Dim parts() As String
-    parts = Split(crew, " ")
-    ExtraireLigue = Join(parts, " ", 0, UBound(parts) - 1)
-End Function
-
-' Fonction pour extraire le type de finale (FA, FB, etc.)
-Function ExtraireTypeFinale(eventName As String, place As Integer) As String
-    ' Exemple d'extraction FA, FB, etc.
-    ExtraireTypeFinale = Mid(eventName, Len(eventName) - 1, 2)
-End Function
-
-' Fonction pour calculer les points en fonction de la place et de la catégorie
-Function CalculerPoints(place As Integer, category As String) As Integer
-    Dim pointsTable4x As Variant
-    Dim pointsTable8plus As Variant
-    
-    ' Points pour le 4x et le 8+
-    pointsTable4x = Array(25, 22, 20, 18, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1)
-    pointsTable8plus = Array(40, 34, 30, 26, 22, 20, 18, 16, 14, 12, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1)
-    
-    ' Vérifier la catégorie
-    If InStr(category, "4x") > 0 Then
-        If place <= 20 Then
-            CalculerPoints = pointsTable4x(place - 1)
-        Else
-            CalculerPoints = 1 ' Pour les places au-delà de 20
-        End If
-    ElseIf InStr(category, "8+") > 0 Then
-        If place <= 20 Then
-            CalculerPoints = pointsTable8plus(place - 1)
-        Else
-            CalculerPoints = 1 ' Pour les places au-delà de 20
-        End If
-    Else
-        CalculerPoints = 0 ' Catégorie non reconnue
+Private Sub btnClassementJour1_Click()
+    ' Gestion du classement pour le jour 1
+    If MsgBox("Voulez-vous calculer et afficher le classement du premier jour ?", vbYesNo + vbQuestion, "Confirmation") = vbYes Then
+        Dim courseNumJour2 As Integer
+        courseNumJour2 = InputBox("Entrez le numéro de la première course du jour 2", "Numéro de Course Jour 2")
+        
+        ' Calcul du classement du jour 1
+        CalculerClassementJour1 courseNumJour2
+        
+        MsgBox "Classement du premier jour terminé et affiché.", vbInformation, "Terminé"
     End If
-End Function
+End Sub
 
-' Fonction pour vérifier si c'est la finale A
-Function IsFinaleA(typeFinale As String) As Boolean
-    IsFinaleA = (typeFinale = "FA")
-End Function
+Private Sub btnClassementFinal_Click()
+    ' Gestion du classement des deux jours
+    If MsgBox("Voulez-vous calculer et afficher le classement des deux jours ?", vbYesNo + vbQuestion, "Confirmation") = vbYes Then
+        Dim courseNumJour2 As Integer
+        courseNumJour2 = InputBox("Entrez le numéro de la première course du jour 2", "Numéro de Course Jour 2")
+        
+        ' Calcul du classement final
+        GestionClassement courseNumJour2
+        
+        MsgBox "Classement des deux jours terminé et affiché.", vbInformation, "Terminé"
+    End If
+End Sub
 
 ' Sub pour gérer le classement total des deux jours avec tri et affichage
 Sub GestionClassement(courseNumJour2 As Integer)
@@ -57,7 +37,6 @@ Sub GestionClassement(courseNumJour2 As Integer)
     Dim maxRow As Long
     Dim totalBonus As Integer
     Dim bonusCategories As String
-    Dim courseNum As Integer ' Numéro de la course extrait
     
     ' Feuilles contenant les résultats et la feuille de sortie pour le classement
     Set wsResultats = Worksheets("FeuilleDeResultats")
@@ -123,14 +102,18 @@ Sub GestionClassement(courseNumJour2 As Integer)
     MsgBox "Le classement trié a été affiché dans la feuille 'Classement'.", vbInformation, "Classement Terminé"
 End Sub
 
-
 ' Sub pour calculer le classement du jour 1 avec tri et affichage
-Sub CalculerClassementJour1(wsResultats As Worksheet, wsJour1 As Worksheet, courseNumJour2 As Integer)
+Sub CalculerClassementJour1(courseNumJour2 As Integer)
+    Dim wsResultats As Worksheet
+    Dim wsJour1 As Worksheet
     Dim i As Integer
-    Dim courseNum As Integer
     Dim ligue As String
     Dim points As Integer
     Dim maxRow As Long
+    
+    ' Feuilles contenant les résultats et la feuille de sortie pour le jour 1
+    Set wsResultats = Worksheets("FeuilleDeResultats")
+    Set wsJour1 = Worksheets("ClassementJour1")
     
     ' Initialisation de la feuille pour le jour 1
     wsJour1.Cells.Clear
@@ -138,10 +121,7 @@ Sub CalculerClassementJour1(wsResultats As Worksheet, wsJour1 As Worksheet, cour
     
     ' Parcourir les résultats jusqu'au numéro de course du jour 2
     For i = 2 To wsResultats.Cells(Rows.Count, 1).End(xlUp).Row
-        courseNum = wsResultats.Cells(i, 1).Value
-        
-        ' Si on dépasse le jour 1, on arrête le traitement
-        If courseNum >= courseNumJour2 Then Exit For
+        If wsResultats.Cells(i, 1).Value >= courseNumJour2 Then Exit For
         
         ' Extraire les informations nécessaires
         ligue = ExtraireLigue(wsResultats.Cells(i, 4).Value)
@@ -165,3 +145,48 @@ Sub CalculerClassementJour1(wsResultats As Worksheet, wsJour1 As Worksheet, cour
     MsgBox "Le classement du premier jour trié a été affiché dans la feuille 'ClassementJour1'.", vbInformation, "Classement Jour 1 Terminé"
 End Sub
 
+' Fonction pour calculer les points en fonction de la place et de la catégorie
+Function CalculerPoints(place As Integer, category As String) As Integer
+    Dim points4x() As Integer
+    Dim points8plus() As Integer
+    
+    ' Points pour 4x
+    points4x = Array(25, 22, 20, 18, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1)
+    
+    ' Points pour 8+
+    points8plus = Array(40, 34, 30, 26, 22, 20, 18, 16, 14, 12, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1)
+    
+    ' Calculer les points en fonction de la catégorie et de la place
+    If InStr(category, "4x") > 0 Then
+        CalculerPoints = IIf(place <= 20, points4x(place - 1), 1)
+    ElseIf InStr(category, "8+") > 0 Then
+        CalculerPoints = IIf(place <= 20, points8plus(place - 1), 1)
+    Else
+        CalculerPoints = 0
+    End If
+End Function
+
+' Fonction pour extraire la ligue à partir du nom de l'équipage
+Function ExtraireLigue(crew As String) As String
+    ExtraireLigue = Trim(Split(crew, "(")(0))
+End Function
+
+' Fonction pour extraire le type de finale (FA, FB, FC, etc.)
+Function ExtraireTypeFinale(eventName As String, place As Integer) As String
+    If place <= 6 Then
+        ExtraireTypeFinale = "FA"
+    ElseIf place <= 12 Then
+        ExtraireTypeFinale = "FB"
+    ElseIf place <= 18 Then
+        ExtraireTypeFinale = "FC"
+    ElseIf place <= 24 Then
+        ExtraireTypeFinale = "FD"
+    Else
+        ExtraireTypeFinale = "Autre"
+    End If
+End Function
+
+' Fonction pour vérifier si la finale est une finale A
+Function IsFinaleA(typeFinale As String) As Boolean
+    IsFinaleA = (typeFinale = "FA")
+End Function
