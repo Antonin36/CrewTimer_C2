@@ -1,4 +1,17 @@
-Sub ClassementWE_Click()
+Private Sub ClassementCalcul_Click()
+    Dim response As VbMsgBoxResult
+    response = MsgBox("Voulez-vous procéder au calcul du classement ?", vbYesNo + vbQuestion, "Calcul du Classement")
+
+    If response = vbYes Then
+        ' Call the calculation subroutine
+        Call CalculClassement_CDF
+    Else
+        ' Unload the form
+        Unload Me
+    End If
+End Sub
+
+Sub CalculClassement_CDF()
 
     Dim wsResultats As Worksheet
     Dim wsClassement As Worksheet
@@ -24,8 +37,9 @@ Sub ClassementWE_Click()
     Set wsRecap = ThisWorkbook.Sheets("Impressions Classement CT")
     Set wsReglages = ThisWorkbook.Sheets("Réglages Régate")
     
-    ' Effacer la feuille de classement
+    ' Effacer la feuille de classement et de récap
     wsClassement.Cells.Clear
+    wsRecap.Range("B13:E113").ClearContents
     
     ' Dernière ligne des résultats
     lastRow = wsResultats.Cells(wsResultats.Rows.Count, 1).End(xlUp).Row
@@ -107,21 +121,37 @@ Sub ClassementWE_Click()
     Next i
     
     ' Inscrire le récapitulatif dans la feuille Imp_Classement
-    recapRow = 2
+    recapRow = 13
     wsRecap.Cells(1, 1).value = "Ligue"
     wsRecap.Cells(1, 2).value = "Points"
     wsRecap.Cells(1, 3).value = "Bonus"
     wsRecap.Cells(1, 4).value = "Total"
     For Each crewName2 In dictPoints.Keys
-        wsRecap.Cells(recapRow, 1).value = crewName2
-        wsRecap.Cells(recapRow, 2).value = dictPoints(crewName2) ' Total des points
-        wsRecap.Cells(recapRow, 3).value = dictBonus(crewName2) ' Total des bonus
-        wsRecap.Cells(recapRow, 4).value = dictPoints(crewName2) + dictBonus(crewName2) ' Total points + bonus
+        wsRecap.Cells(recapRow, 2).value = crewName2
+        wsRecap.Cells(recapRow, 3).value = dictPoints(crewName2) ' Total des points
+        wsRecap.Cells(recapRow, 4).value = dictBonus(crewName2) ' Total des bonus
+        wsRecap.Cells(recapRow, 5).value = dictPoints(crewName2) + dictBonus(crewName2) ' Total points + bonus
         recapRow = recapRow + 1
     Next crewName2
+    ThisWorkbook.Sheets("Impressions Classement CT").Select
+    Range("B13:E113").Select
+    Range("E13").Activate
+    ActiveWorkbook.Worksheets("Impressions Classement CT").Sort.SortFields.Clear
+    ActiveWorkbook.Worksheets("Impressions Classement CT").Sort.SortFields.Add2 _
+        key:=Range("E13:E113"), SortOn:=xlSortOnValues, Order:=xlDescending, _
+        DataOption:=xlSortNormal
+    With ActiveWorkbook.Worksheets("Impressions Classement CT").Sort
+        .SetRange Range("B13:E113")
+        .Header = xlNo
+        .MatchCase = False
+        .Orientation = xlTopToBottom
+        .SortMethod = xlPinYin
+        .Apply
+    End With
+    Range("A1").Select
 
     MsgBox "Le calcul du classement est terminé."
-    ThisWorkbook.Sheets("Impressions Classement CT").Select
+    
     Unload Me
 End Sub
 
@@ -240,4 +270,5 @@ End Function
 Private Sub RetourAccueil_Click()
     Unload Me
 End Sub
+
 
