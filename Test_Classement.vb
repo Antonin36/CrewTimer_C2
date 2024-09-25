@@ -7,6 +7,7 @@ Sub ClassementWE_Click()
     Dim categorie As String
     Dim courseNum As String
     Dim crewName As String
+    Dim crewName2 As Variant
     Dim points As Integer
     Dim nbPartants As Integer
     Dim place As Integer
@@ -19,7 +20,8 @@ Sub ClassementWE_Click()
 
     ' Définir les feuilles
     Set wsResultats = ThisWorkbook.Sheets("Import Resultats CT")
-    Set wsClassement = ThisWorkbook.Sheets("Impressions Classement CT")
+    Set wsClassement = ThisWorkbook.Sheets("Stockage Calcul Classement")
+    Set wsRecap = ThisWorkbook.Sheets("Impressions Classement CT")
     Set wsReglages = ThisWorkbook.Sheets("Réglages Régate")
     
     ' Effacer la feuille de classement
@@ -39,6 +41,8 @@ Sub ClassementWE_Click()
     
     ' Initialiser un dictionnaire pour stocker les gagnants du jour 1
     Set dictJour1 = CreateObject("Scripting.Dictionary")
+    Set dictPoints = CreateObject("Scripting.Dictionary")
+    Set dictBonus = CreateObject("Scripting.Dictionary")
 
     ' Analyser chaque ligne des résultats
     For i = 2 To lastRow ' Ligne 1 contient les en-têtes
@@ -76,20 +80,45 @@ Sub ClassementWE_Click()
                 If Not dictJour1.Exists(key) Then
                     dictJour1.Add key, True
                 End If
-                wsClassement.Cells(i, 10).value = 0 ' Pas de bonus pour le jour 1
+                bonus = 0
+                wsClassement.Cells(i, 10).value = bonus ' Pas de bonus pour le jour 1
             Else
                 ' Si c'est le jour 2, vérifier si l'équipage a gagné le jour 1
                 If dictJour1.Exists(key) Then
                     bonus = 80 ' Attribuer 80 points bonus
                     wsClassement.Cells(i, 10).value = bonus ' Inscrire les bonus en colonne J
                 Else
-                    wsClassement.Cells(i, 10).value = 0 ' Pas de bonus si l'équipage n'a pas gagné le jour 1
+                    bonus = 0
+                    wsClassement.Cells(i, 10).value = bonus ' Pas de bonus si l'équipage n'a pas gagné le jour 1
                 End If
             End If
         Else
-            wsClassement.Cells(i, 10).value = 0 ' Pas de bonus pour les autres finales ou places
+            bonus = 0
+            wsClassement.Cells(i, 10).value = bonus ' Pas de bonus pour les autres finales ou places
+        End If
+        ' Ajouter les points et bonus au dictionnaire correspondant
+        If dictPoints.Exists(crewName) Then
+            dictPoints(crewName) = dictPoints(crewName) + points
+            dictBonus(crewName) = dictBonus(crewName) + bonus
+        Else
+            dictPoints.Add crewName, points
+            dictBonus.Add crewName, bonus
         End If
     Next i
+    
+    ' Inscrire le récapitulatif dans la feuille Imp_Classement
+    recapRow = 2
+    wsRecap.Cells(1, 1).value = "Ligue"
+    wsRecap.Cells(1, 2).value = "Points"
+    wsRecap.Cells(1, 3).value = "Bonus"
+    wsRecap.Cells(1, 4).value = "Total"
+    For Each crewName2 In dictPoints.Keys
+        wsRecap.Cells(recapRow, 1).value = crewName2
+        wsRecap.Cells(recapRow, 2).value = dictPoints(crewName2) ' Total des points
+        wsRecap.Cells(recapRow, 3).value = dictBonus(crewName2) ' Total des bonus
+        wsRecap.Cells(recapRow, 4).value = dictPoints(crewName2) + dictBonus(crewName2) ' Total points + bonus
+        recapRow = recapRow + 1
+    Next crewName2
 
     MsgBox "Le calcul du classement est terminé."
     ThisWorkbook.Sheets("Impressions Classement CT").Select
@@ -211,3 +240,4 @@ End Function
 Private Sub RetourAccueil_Click()
     Unload Me
 End Sub
+
