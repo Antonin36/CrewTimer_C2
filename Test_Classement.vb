@@ -12,6 +12,10 @@ Sub ClassementWE_Click()
     Dim place As Integer
     Dim finaleType As String
     Dim i As Long
+    Dim jour2Start As String ' Variable pour stocker le numéro de la première course du jour 2
+    Dim dictJour1 As Object
+    Dim key As String
+    Dim bonus As Integer
 
     ' Définir les feuilles
     Set wsResultats = ThisWorkbook.Sheets("Import Resultats CT")
@@ -29,6 +33,12 @@ Sub ClassementWE_Click()
     
     ' Nombre de partants dans la cellule E14 de la feuille Réglages Régate
     nbPartants = wsReglages.Cells(14, 5).value
+    
+    ' Numéro de la première course du jour 2 (à ajuster selon ta logique)
+    jour2Start = "C03" ' À définir selon le numéro de la première course du jour 2
+    
+    ' Initialiser un dictionnaire pour stocker les gagnants du jour 1
+    Set dictJour1 = CreateObject("Scripting.Dictionary")
 
     ' Analyser chaque ligne des résultats
     For i = 2 To lastRow ' Ligne 1 contient les en-têtes
@@ -38,7 +48,8 @@ Sub ClassementWE_Click()
         
         ' Traiter le nom de l'équipage
         crewName = wsClassement.Cells(i, 4).value
-        wsClassement.Cells(i, 4).value = ReformaterCrew(crewName)
+        crewName = ReformaterCrew(crewName)
+        wsClassement.Cells(i, 4).value = crewName
         
         ' Détecter le type de finale (FA, FB, FC, etc.)
         finaleType = Mid(courseNum, InStr(courseNum, "_") + 1, 2)
@@ -53,12 +64,36 @@ Sub ClassementWE_Click()
             points = 0
         End If
         
-        ' Inscrire les points dans la colonne J
-        wsClassement.Cells(i, 10).value = points
+        ' Inscrire les points dans la colonne I
+        wsClassement.Cells(i, 9).value = points
+        
+        ' Gérer les bonus uniquement pour les équipages qui ont remporté la finale A
+        If finaleType = "FA" And place = 1 Then
+            key = crewName & "|" & categorie ' Utiliser une clé combinant le nom de l'équipage et la catégorie
+            
+            ' Si c'est le jour 1, stocker l'équipage gagnant
+            If courseNum < jour2Start Then
+                If Not dictJour1.Exists(key) Then
+                    dictJour1.Add key, True
+                End If
+                wsClassement.Cells(i, 10).value = 0 ' Pas de bonus pour le jour 1
+            Else
+                ' Si c'est le jour 2, vérifier si l'équipage a gagné le jour 1
+                If dictJour1.Exists(key) Then
+                    bonus = 80 ' Attribuer 80 points bonus
+                    wsClassement.Cells(i, 10).value = bonus ' Inscrire les bonus en colonne J
+                Else
+                    wsClassement.Cells(i, 10).value = 0 ' Pas de bonus si l'équipage n'a pas gagné le jour 1
+                End If
+            End If
+        Else
+            wsClassement.Cells(i, 10).value = 0 ' Pas de bonus pour les autres finales ou places
+        End If
     Next i
 
-    MsgBox "Le calcul du classement et des points est terminé."
-
+    MsgBox "Le calcul du classement est terminé."
+    ThisWorkbook.Sheets("Impressions Classement CT").Select
+    Unload Me
 End Sub
 
 ' Fonction pour obtenir les points pour la catégorie 4x
