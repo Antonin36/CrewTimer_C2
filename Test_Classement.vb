@@ -1,7 +1,6 @@
 Private Sub ClassementCalcul_Click()
     Dim response As VbMsgBoxResult
     response = MsgBox("Voulez-vous procéder au calcul du classement ?", vbYesNo + vbQuestion, "Calcul du Classement")
-
     If response = vbYes Then
         ' Call the calculation subroutine
         Call CalculClassement_CDF
@@ -12,7 +11,6 @@ Private Sub ClassementCalcul_Click()
 End Sub
 
 Sub CalculClassement_CDF()
-
     Dim wsResultats As Worksheet
     Dim wsClassement As Worksheet
     Dim wsReglages As Worksheet
@@ -270,5 +268,3 @@ End Function
 Private Sub RetourAccueil_Click()
     Unload Me
 End Sub
-
-
