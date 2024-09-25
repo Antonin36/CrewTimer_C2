@@ -1,182 +1,178 @@
-Private Sub ClassementJ1_Click()
-    If MsgBox("Êtes-vous sûr de vouloir calculer le classement du Jour 1 ?", vbYesNo + vbQuestion, "Confirmation") = vbYes Then
-        CalculerClassement "J1"
-    End If
-End Sub
+Sub ClassementWE_Click()
 
-Private Sub ClassementWE_Click()
-    If MsgBox("Êtes-vous sûr de vouloir calculer le classement du Week-End ?", vbYesNo + vbQuestion, "Confirmation") = vbYes Then
-        CalculerClassement "WE"
-    End If
-End Sub
-
-Private Sub Retour_Accueil_Click()
-    Unload Me
-End Sub
-
-Sub CalculerClassement(jour As String)
     Dim wsResultats As Worksheet
     Dim wsClassement As Worksheet
+    Dim wsReglages As Worksheet
+    Dim lastRow As Long
+    Dim categorie As String
+    Dim courseNum As String
+    Dim crewName As String
+    Dim points As Integer
     Dim nbPartants As Integer
-    Dim bonusGagnes As Dictionary
-    Dim categorieKey As String
+    Dim place As Integer
+    Dim finaleType As String
+    Dim i As Long
+
+    ' Définir les feuilles
+    Set wsResultats = ThisWorkbook.Sheets("Import Resultats CT")
+    Set wsClassement = ThisWorkbook.Sheets("Impressions Classement CT")
+    Set wsReglages = ThisWorkbook.Sheets("Réglages Régate")
     
-    ' Récupérer la feuille de résultats et la feuille de classement
-    Set wsResultats = Worksheets("Import Resultats CT")
-    Set wsClassement = Worksheets("Impressions Classement CT")
+    ' Effacer la feuille de classement
+    wsClassement.Cells.Clear
     
-    ' Demander ou récupérer le nombre de partants
-    nbPartants = DemanderNombrePartants()
+    ' Dernière ligne des résultats
+    lastRow = wsResultats.Cells(wsResultats.Rows.Count, 1).End(xlUp).Row
     
-    ' Initialiser le dictionnaire pour les bonus gagnés
-    Set bonusGagnes = New Dictionary
+    ' Copier les résultats dans la feuille de classement
+    wsResultats.Range("A1:H" & lastRow).Copy Destination:=wsClassement.Range("A1")
     
-    ' Boucler à travers les résultats pour calculer le classement
-    Dim i As Integer
-    For i = 2 To wsResultats.Cells(wsResultats.Rows.Count, 1).End(xlUp).Row
-        Dim place As Integer
-        Dim crew As String
-        Dim eventCode As String
-        Dim category As String
-        Dim ligue As String
-        Dim points As Integer
-        Dim typeFinale As String
+    ' Nombre de partants dans la cellule E14 de la feuille Réglages Régate
+    nbPartants = wsReglages.Cells(14, 5).value
+
+    ' Analyser chaque ligne des résultats
+    For i = 2 To lastRow ' Ligne 1 contient les en-têtes
+        categorie = wsClassement.Cells(i, 6).value ' Colonne F pour "Stroke"
+        courseNum = wsClassement.Cells(i, 1).value ' Colonne A pour "EventNum"
+        place = wsClassement.Cells(i, 3).value ' Colonne C pour "Place"
         
-        place = wsResultats.Cells(i, 3).Value
-        crew = wsResultats.Cells(i, 4).Value
-        eventCode = wsResultats.Cells(i, 2).Value
-        category = ExtraireCategorie(wsResultats.Cells(i, 2).Value)
-        ligue = ExtraireLigue(crew)
+        ' Traiter le nom de l'équipage
+        crewName = wsClassement.Cells(i, 4).value
+        wsClassement.Cells(i, 4).value = ReformaterCrew(crewName)
         
-        ' Calculer les points en fonction de la catégorie et de la place
-        points = CalculerPoints(category, place)
+        ' Détecter le type de finale (FA, FB, FC, etc.)
+        finaleType = Mid(courseNum, InStr(courseNum, "_") + 1, 2)
         
-        ' Déterminer le type de finale (FA, FB, FC, FD)
-        typeFinale = ExtraireTypeFinale(eventCode, place, nbPartants)
-        
-        ' Enregistrer les résultats dans la feuille de classement
-        With wsClassement
-            .Cells(i, 1).Value = ligue
-            .Cells(i, 2).Value = crew
-            .Cells(i, 3).Value = place
-            .Cells(i, 4).Value = points
-            .Cells(i, 5).Value = typeFinale
-        End With
-        
-        ' Gestion des bonus : vérifier si l'équipage a gagné dans la même catégorie d'âge et bateau
-        If jour = "WE" And IsFinaleA(typeFinale) And place = 1 Then
-            categorieKey = category & "_" & crew
-            If bonusGagnes.Exists(categorieKey) Then
-                ' Vérifier si cet équipage a déjà gagné la finale A le premier jour
-                If bonusGagnes(categorieKey) = "J1" Then
-                    ' Ajouter les 80 points de bonus
-                    With wsClassement
-                        .Cells(i, 6).Value = 80
-                        .Cells(i, 7).Value = category
-                    End With
-                End If
-            Else
-                ' Enregistrer que l'équipage a gagné la finale A au jour 1
-                bonusGagnes.Add categorieKey, jour
-            End If
+        ' Assigner les points en fonction de la catégorie du bateau
+        If InStr(categorie, "4x") > 0 Then
+            points = GetPoints4x(DeterminPlaceGlobal(place, finaleType, nbPartants))
+        ElseIf InStr(categorie, "8+") > 0 Then
+            points = GetPoints8(DeterminPlaceGlobal(place, finaleType, nbPartants))
+        Else
+            ' Autres catégories si nécessaire
+            points = 0
         End If
+        
+        ' Inscrire les points dans la colonne J
+        wsClassement.Cells(i, 10).value = points
     Next i
-    
-    ' Trier le classement par points décroissants
-    wsClassement.Sort.SortFields.Clear
-    wsClassement.Sort.SortFields.Add Key:=wsClassement.Columns(4), Order:=xlDescending
-    wsClassement.Sort.SetRange wsClassement.Range("A1:E" & wsClassement.Cells(wsClassement.Rows.Count, 1).End(xlUp).Row)
-    wsClassement.Sort.Header = xlYes
-    wsClassement.Sort.Apply
-    
-    ' Afficher le classement
-    MsgBox "Classement calculé et trié !", vbInformation
+
+    MsgBox "Le calcul du classement et des points est terminé."
+
 End Sub
 
-' Fonction pour calculer les points selon la place et la catégorie
-Function CalculerPoints(category As String, place As Integer) As Integer
-    Dim points4x As Variant
-    Dim points8plus As Variant
+' Fonction pour obtenir les points pour la catégorie 4x
+Function GetPoints4x(place As Integer) As Integer
+    Select Case place
+        Case 1: GetPoints4x = 25
+        Case 2: GetPoints4x = 22
+        Case 3: GetPoints4x = 20
+        Case 4: GetPoints4x = 18
+        Case 5: GetPoints4x = 16
+        Case 6: GetPoints4x = 15
+        Case 7: GetPoints4x = 14
+        Case 8: GetPoints4x = 13
+        Case 9: GetPoints4x = 12
+        Case 10: GetPoints4x = 11
+        Case 11: GetPoints4x = 10
+        Case 12: GetPoints4x = 9
+        Case 13: GetPoints4x = 8
+        Case 14: GetPoints4x = 7
+        Case 15: GetPoints4x = 6
+        Case 16: GetPoints4x = 5
+        Case 17: GetPoints4x = 4
+        Case 18: GetPoints4x = 3
+        Case 19: GetPoints4x = 2
+        Case Else: GetPoints4x = 1
+    End Select
+End Function
+
+' Fonction pour obtenir les points pour la catégorie 8+
+Function GetPoints8(place As Integer) As Integer
+    Select Case place
+        Case 1: GetPoints8 = 40
+        Case 2: GetPoints8 = 34
+        Case 3: GetPoints8 = 30
+        Case 4: GetPoints8 = 26
+        Case 5: GetPoints8 = 22
+        Case 6: GetPoints8 = 20
+        Case 7: GetPoints8 = 18
+        Case 8: GetPoints8 = 16
+        Case 9: GetPoints8 = 14
+        Case 10: GetPoints8 = 12
+        Case 11: GetPoints8 = 10
+        Case 12: GetPoints8 = 9
+        Case 13: GetPoints8 = 8
+        Case 14: GetPoints8 = 7
+        Case 15: GetPoints8 = 6
+        Case 16: GetPoints8 = 5
+        Case 17: GetPoints8 = 4
+        Case 18: GetPoints8 = 3
+        Case 19: GetPoints8 = 2
+        Case Else: GetPoints8 = 1
+    End Select
+End Function
+
+' Fonction pour déterminer la place globale en fonction de la finale et du nombre de partants
+Function DeterminPlaceGlobal(place As Integer, finaleType As String, nbPartants As Integer) As Integer
+    Dim startRange As Integer
+    Select Case finaleType
+        Case "FA"
+            startRange = 1
+        Case "FB"
+            startRange = 7
+        Case "FC"
+            startRange = 13
+        Case "FD"
+            startRange = 19
+        Case "FE"
+            startRange = 25
+        Case "FF"
+            startRange = 31
+        Case "FG"
+            startRange = 37
+        Case "FH"
+            startRange = 43
+        Case "FI"
+            startRange = 49
+        Case "FJ"
+            startRange = 55
+        Case "FK"
+            startRange = 61
+        Case "FL"
+            startRange = 67
+        ' Ajouter d'autres finales si nécessaire
+        Case Else
+            startRange = 0
+    End Select
     
-    points4x = Array(25, 22, 20, 18, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1)
-    points8plus = Array(40, 34, 30, 26, 22, 20, 18, 16, 14, 12, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1)
+    ' Calculer la place globale en ajoutant la position dans la finale
+    DeterminPlaceGlobal = startRange + place - 1
+End Function
+Function ReformaterCrew(crew As String) As String
+    Dim result As String
+    Dim openParenPos As Integer
     
-    If InStr(category, "4x") > 0 Then
-        ' 4x
-        If place <= 20 Then
-            CalculerPoints = points4x(place - 1)
-        Else
-            CalculerPoints = 1
-        End If
-    ElseIf InStr(category, "8+") > 0 Then
-        ' 8+
-        If place <= 20 Then
-            CalculerPoints = points8plus(place - 1)
-        Else
-            CalculerPoints = 1
-        End If
-    Else
-        ' Autres types de courses peuvent être ajoutés à l'avenir
-        CalculerPoints = 0
+    ' Supprimer tous les chiffres du nom
+    result = Replace(crew, "0", "")
+    result = Replace(result, "1", "")
+    result = Replace(result, "2", "")
+    result = Replace(result, "3", "")
+    result = Replace(result, "4", "")
+    result = Replace(result, "5", "")
+    result = Replace(result, "6", "")
+    result = Replace(result, "7", "")
+    result = Replace(result, "8", "")
+    result = Replace(result, "9", "")
+    
+    ' Supprimer les parenthèses et leur contenu
+    openParenPos = InStr(result, "(")
+    If openParenPos > 0 Then
+        result = Trim(Left(result, openParenPos - 1))
     End If
+    
+    ReformaterCrew = result
 End Function
-
-' Fonction pour demander le nombre de partants à l'utilisateur ou le récupérer depuis la feuille de réglages
-Function DemanderNombrePartants() As Integer
-    If MsgBox("Voulez-vous utiliser le nombre de partants stocké ?", vbYesNo + vbQuestion, "Utiliser le nombre de partants") = vbYes Then
-        ' Récupérer depuis la feuille de réglages
-        DemanderNombrePartants = Worksheets("Réglages Régate").Range("E14").Value
-    Else
-        ' Demander à l'utilisateur
-        DemanderNombrePartants = InputBox("Entrez le nombre de partants", "Nombre de Partants")
-    End If
-End Function
-
-' Fonction pour extraire la catégorie d'âge, sexe et bateau à partir de l'event_code
-Function ExtraireCategorie(eventCode As String) As String
-    Dim agePart As String
-    Dim sexePart As String
-    Dim bateauPart As String
-
-    ' Vérifier si la catégorie commence par "J" pour les jeunes
-    If Left(eventCode, 1) = "J" Then
-        agePart = Left(eventCode, 3) ' Les 3 premiers caractères (ex : J16, J18)
-        sexePart = Mid(eventCode, 4, 1) ' Le 4e caractère (H ou F ou M)
-        bateauPart = Right(eventCode, 2) ' Les deux derniers caractères (4x ou 8+)
-    Else
-        ' Sinon, c'est une catégorie Sénior (ex : SH, SF)
-        agePart = Left(eventCode, 1) ' Le premier caractère (S)
-        sexePart = Mid(eventCode, 2, 1) ' Le 2e caractère (H ou F ou M)
-        bateauPart = Right(eventCode, 2) ' Les deux derniers caractères (4x ou 8+)
-    End If
-
-    ' Reconstituer la catégorie complète
-    ExtraireCategorie = agePart & sexePart & bateauPart
-End Function
-
-' Fonction pour extraire le nom de la ligue à partir du nom de l'équipage
-Function ExtraireLigue(crew As String) As String
-    Dim parts() As String
-    parts = Split(crew, " ")
-    ExtraireLigue = parts(0) ' Retourne la première partie (nom de la ligue)
-End Function
-
-' Fonction pour extraire le type de finale (FA, FB, etc.)
-Function ExtraireTypeFinale(eventCode As String, place As Integer, nbPartants As Integer) As String
-    If place <= 6 Then
-        ExtraireTypeFinale = "FA"
-    ElseIf place <= 12 Then
-        ExtraireTypeFinale = "FB"
-    ElseIf place <= 18 Then
-        ExtraireTypeFinale = "FC"
-    ElseIf place <= nbPartants Then
-        ExtraireTypeFinale = "FD"
-    Else
-        ExtraireTypeFinale = "Autres"
-    End If
-End Function
-
-' Fonction pour déterminer si une course est en finale A
-Function IsFinaleA(typeFinale As String) As Boolean
-    IsFinaleA = (typeFinale = "FA")
-End Function
+Private Sub RetourAccueil_Click()
+    Unload Me
+End Sub
